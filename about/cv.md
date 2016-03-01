@@ -1,5 +1,5 @@
 ## Nick Sorros
 
-> nsorros@gmail.com
-> github.com/nsorros
-> twitter.com/nsorros
+:envelope: nsorros@gmail.com
+:octopus: http://www.github.com/nsorros
+http://www.twitter.com/nsorros
