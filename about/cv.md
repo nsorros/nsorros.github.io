@@ -75,7 +75,7 @@ Dimensionality reduction, Classifier, Facial point detection, Feature extraction
 ## Education
   
 **Imperial College London**  
-*October 2012 - September 2013*
+*October 2012 - September 2013*  
 Master of Science (M.Sc.), Advanced Computing   
 Grade 73%, Distinction, top 10%  
   
