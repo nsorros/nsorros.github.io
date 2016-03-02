@@ -7,9 +7,7 @@ Website: nsorros.com
 ### Summary
   
 Data scientist with a mission to use data driven approaches to maximise happiness.  
-
 Why happiness? Because happy users translate to a great company and not the other way around.  
-
 Love to brainstorm, discuss and prototype ideas to test a hypothesis.
   
 ### Experience
@@ -77,3 +75,17 @@ My research in Imperial focused in non obtrusive methods to capture physiologica
 Dimensionality reduction, Classifier, Facial point detection, Feature extraction, Parameter optimisation, Anomaly detection   
 Main technologies:  
 Matlab, PCA, LDA, HOGHOF, SVM
+  
+### Education
+  
+**Imperial College London**  
+*October 2012 - September 2013*
+Master of Science (M.Sc.), Advanced Computing   
+Grade 73%, Distinction, top 10%  
+  
+**University of Patras**  
+*October 2006 - July 2012*  
+Master of Engineering (M.Eng.), Electrical and Computing Engineering  
+Grade 81%, Merit, top 5%  
+  
+
