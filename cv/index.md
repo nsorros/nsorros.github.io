@@ -1,8 +1,6 @@
 ---
-layout: default
-title: My life
+title: Cv
 ---
-<p markdown="1">
 
 # Nick Sorros
   
@@ -89,6 +87,3 @@ Grade 73%, Distinction, top 10%
 *October 2006 - July 2012*  
 Master of Engineering (M.Eng.), Electrical and Computing Engineering  
 Grade 81%, Merit, top 5%
- </p>
-  
-
