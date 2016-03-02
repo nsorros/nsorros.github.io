@@ -25,9 +25,9 @@ People is the most important thing in our lives and yet 1 in 5 people report fee
 both within the app and the web.
 * by building a dashboard displaying our key performance indicators. Similarity search, Recommenders, Feature engineering, 
   
-**Topic modeling, Growth marketing, User analytics, Dashboards**  
-*Scala, Slick, Play, Akka, Jenkins, Git*  
-*Python, Elasticsearch, Flask, CircleCI, Git*  
+*Topic modeling, Growth marketing, User analytics, Dashboards**  
+> Scala, Slick, Play, Akka, Jenkins, Git  
+> Python, Elasticsearch, Flask, CircleCI  
   
 **Data scientist @ Conversocial**  
 *August 2014 - January 2015 (6 months)*  
@@ -41,8 +41,8 @@ connecting with the companies you user as a customer by providing an intuitive S
 * proposed to implement a prioritisation engine to rank the inquiries from most to least important
 * proposed to implement automated responses to speed up the resolution of customer inquiries  
 
-**Classifier, Data Warehouse, Topic Modelling, Analytics**  
-*Python, MongoDB, PostgreSQL, RabbitMQ, Jira, Git, Jenkins*  
+*Classifier, Data Warehouse, Topic Modelling, Analytics*  
+> Python, MongoDB, PostgreSQL, RabbitMQ, Jira, Git, Jenkins  
   
 **Software engineer @ Factset**  
 *January 2014 - July 2014 (7 months)*  
