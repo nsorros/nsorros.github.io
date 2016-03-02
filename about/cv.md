@@ -26,8 +26,8 @@ both within the app and the web.
 * by building a dashboard displaying our key performance indicators. Similarity search, Recommenders, Feature engineering, 
   
 *Topic modeling, Growth marketing, User analytics, Dashboards**  
-> Scala, Slick, Play, Akka, Jenkins, Git  
-> Python, Elasticsearch, Flask, CircleCI  
+```Scala, Slick, Play, Akka, Jenkins, Git  
+Python, Elasticsearch, Flask, CircleCI```   
   
 **Data scientist @ Conversocial**  
 *August 2014 - January 2015 (6 months)*  
