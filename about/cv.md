@@ -39,11 +39,11 @@ Product: Slack, Trello, Geckoboard
 Customer service is the brand of the company. Conversocial's mission is to remove the friction from
 connecting with the companies you user as a customer by providing an intuitive SaaS platform to address customer inquiries coming from social media. My role in Conversocial involved:  
   
-# creating a data warehouse in PostgreSQL for product and marketing analytics
-# maintaining a filtering classifier to separate customer service inquiries from noise
-# builded a language detector for Conversocial Crowds, a crowdsource customer service solution
-# proposed to implement a prioritisation engine to rank the inquiries from most to least important
-# proposed to implement automated responses to speed up the resolution of customer inquiries  
+* creating a data warehouse in PostgreSQL for product and marketing analytics
+* maintaining a filtering classifier to separate customer service inquiries from noise
+* builded a language detector for Conversocial Crowds, a crowdsource customer service solution
+* proposed to implement a prioritisation engine to rank the inquiries from most to least important
+* proposed to implement automated responses to speed up the resolution of customer inquiries  
 
 Classifier, Data Warehouse, Topic Modelling, Analytics  
   
