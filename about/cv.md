@@ -1,4 +1,7 @@
 # Nick Sorros
+  
+
+![alt text](http://www.fancyicons.com/free-icons/222/simple/png/128/github_128.png "Logo Title Text 1")
 
 Email: nsorros@gmail.com  
 Twitter: @nsorros  
