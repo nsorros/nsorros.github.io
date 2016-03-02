@@ -41,3 +41,7 @@ ul {
     margin: 20px auto 40px; 
     font-size: 1.3em;
 }
+
+ul li {
+    list-style: none;
+}
