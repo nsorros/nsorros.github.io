@@ -4,10 +4,7 @@ title: Cv
 
 # Nick Sorros
   
-nsorros@gmail.com  
-http://twitter.com/nsorros  
-http://linkedin.com/in/nsorros  
-http://nsorros.com  
+nsorros @ gmail @ twitter @ github @ linkedin @ com   
   
 ## Summary
 ---
