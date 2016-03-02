@@ -23,6 +23,10 @@ h1 {
     font-size: 3em;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
+h2 {
+    font-size: 2em;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
 p {
     font-size: 1.5em;
     line-height: 1.4em;
@@ -33,11 +37,11 @@ footer {
     font-size: .8em;
 }
 
-ul.posts { 
+ul { 
     margin: 20px auto 40px; 
     font-size: 1.5em;
 }
 
-ul.posts li {
+ul li {
     list-style: none;
 }
