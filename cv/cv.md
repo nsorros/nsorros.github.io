@@ -3,13 +3,15 @@ Nick Sorros
   
 **nsorros @ gmail @ twitter @ github @ linkedin @ com**  
   
-## Summary
+Summary
+---
   
 Data scientist with a mission to use data driven approaches to maximise happiness.  
 Why happiness? Because happy users translate to a great company and not the other way around.  
 Love to brainstorm, discuss and prototype ideas to test a hypothesis.
   
-## Experience  
+Experience  
+---  
   
 **Data scientist @ 6tribes**  
 *January 2015 - Present (1 year 3 months)*
@@ -70,7 +72,8 @@ My research in Imperial focused in non obtrusive methods to capture physiologica
   
 ```Matlab, PCA, LDA, HOGHOF, SVM```  
   
-## Education  
+Education  
+---  
   
 **Imperial College London**  
 *October 2012 - September 2013*  
