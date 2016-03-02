@@ -1,7 +1,8 @@
 ---
+layout: default
 title: Cv
 ---
-
+{% capture x %}
 # Nick Sorros
   
 **nsorros @ gmail @ twitter @ github @ linkedin @ com**  
@@ -89,3 +90,5 @@ Grade 73%, Distinction, top 10%
   
 Master of Engineering (M.Eng.), Electrical and Computing Engineering  
 Grade 81%, Merit, top 5%
+{% endcapture %}
+<p>{{ x | markdownify }}</p>
