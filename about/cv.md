@@ -26,8 +26,8 @@ both within the app and the web.
 * by building a dashboard displaying our key performance indicators. Similarity search, Recommenders, Feature engineering, 
   
 *Topic modeling, Growth marketing, User analytics, Dashboards**  
-```Scala, Slick, Play, Akka, Jenkins, Git  
-Python, Elasticsearch, Flask, CircleCI```   
+```Scala, Slick, Play, Akka, Jenkins, Git```  
+```Python, Elasticsearch, Flask, CircleCI```   
   
 **Data scientist @ Conversocial**  
 *August 2014 - January 2015 (6 months)*  
@@ -42,7 +42,7 @@ connecting with the companies you user as a customer by providing an intuitive S
 * proposed to implement automated responses to speed up the resolution of customer inquiries  
 
 *Classifier, Data Warehouse, Topic Modelling, Analytics*  
-> Python, MongoDB, PostgreSQL, RabbitMQ, Jira, Git, Jenkins  
+```Python, MongoDB, PostgreSQL, RabbitMQ, Jira, Git, Jenkins```  
   
 **Software engineer @ Factset**  
 *January 2014 - July 2014 (7 months)*  
@@ -54,9 +54,7 @@ Soon after I joined the Mutual Funds team I realised that most of these migratio
 During my time in Factset I became really interested in the development of our in house ETL tool, NGen which was written in C++ and shipped two changes in production while learning how the internals were working. It was also during this time that I realised the importance of well written code while refactoring a 10 years old ETL system written in Perl, which for the last 5 years everyone was avoiding to touch and reducing the time it took to complete from around 24 hours to 3 hours. On my spare time I worked out a proposal on ingesting social media data in our database, starting with twitter, for those companies that Factset's clients were mostly interested in and something that Bloomberg (Factset main competitor) has introduced 6 months ago.  
   
 Database administrator, Database migration, ETL, Scripting    
-  
-Main technologies:  
-C++, Perl, Bash, Perforce, ReviewBoard, Jams Scheduler
+```C++, Perl, Bash, Perforce, ReviewBoard, Jams Scheduler```  
   
 **Research assistant @ Imperial College**  
 *October 2013 - December 2013 (3 months)*  
