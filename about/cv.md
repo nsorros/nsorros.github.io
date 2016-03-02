@@ -1,8 +1,9 @@
 # Nick Sorros
   
-Email: nsorros@gmail.com  
-Twitter: @nsorros  
-Website: nsorros.com  
+nsorros@gmail.com  
+twitter.com/nsorros  
+linkedin.com/in/nsorros
+nsorros.com  
   
 ## Summary
   
