@@ -4,7 +4,7 @@ title: Cv
 
 # Nick Sorros
   
-nsorros @ gmail @ twitter @ github @ linkedin @ com   
+**nsorros @ gmail @ twitter @ github @ linkedin @ com**  
   
 ## Summary
 ---
@@ -76,7 +76,7 @@ My research in Imperial focused in non obtrusive methods to capture physiologica
 ```Matlab, PCA, LDA, HOGHOF, SVM```  
   
 ## Education
---  
+---  
   
 **Imperial College London**  
 *October 2012 - September 2013*  
