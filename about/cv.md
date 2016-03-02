@@ -26,6 +26,7 @@ both within the app and the web.
 * by building a dashboard displaying our key performance indicators. Similarity search, Recommenders, Feature engineering, 
   
 *Topic modeling, Growth marketing, User analytics, Dashboards**  
+  
 ```Scala, Slick, Play, Akka, Jenkins, Git```  
 ```Python, Elasticsearch, Flask, CircleCI```   
   
@@ -42,6 +43,7 @@ connecting with the companies you user as a customer by providing an intuitive S
 * proposed to implement automated responses to speed up the resolution of customer inquiries  
 
 *Classifier, Data Warehouse, Topic Modelling, Analytics*  
+  
 ```Python, MongoDB, PostgreSQL, RabbitMQ, Jira, Git, Jenkins```  
   
 **Software engineer @ Factset**  
@@ -54,6 +56,7 @@ Soon after I joined the Mutual Funds team I realised that most of these migratio
 During my time in Factset I became really interested in the development of our in house ETL tool, NGen which was written in C++ and shipped two changes in production while learning how the internals were working. It was also during this time that I realised the importance of well written code while refactoring a 10 years old ETL system written in Perl, which for the last 5 years everyone was avoiding to touch and reducing the time it took to complete from around 24 hours to 3 hours. On my spare time I worked out a proposal on ingesting social media data in our database, starting with twitter, for those companies that Factset's clients were mostly interested in and something that Bloomberg (Factset main competitor) has introduced 6 months ago.  
   
 Database administrator, Database migration, ETL, Scripting    
+  
 ```C++, Perl, Bash, Perforce, ReviewBoard, Jams Scheduler```  
   
 **Research assistant @ Imperial College**  
@@ -64,9 +67,9 @@ to every day life, other types of lies can have financial and even tragical cons
   
 My research in Imperial focused in non obtrusive methods to capture physiological cues of human deception. The area around the eyes exposes some of those responses that seem to originate from the sympathetic nervous system, which makes them hard to control. Examples are the temperature around the eyes, the blinking duration and frequency and the pupil size but not the gaze of your eyes which is a common misbelief. As part of my research I developed a blink detector with a 95% accuracy in an ethnically diverse database in a less controlled environment.  
   
-Dimensionality reduction, Classifier, Facial point detection, Feature extraction, Parameter optimisation, Anomaly detection   
-Main technologies:  
-Matlab, PCA, LDA, HOGHOF, SVM
+Dimensionality reduction, Classifier, Facial point detection, Feature extraction, Parameter optimisation, Anomaly detection 
+  
+```Matlab, PCA, LDA, HOGHOF, SVM```  
   
 ## Education
   
