@@ -3,7 +3,7 @@ Nick Sorros
   
 **nsorros @ gmail @ twitter @ github @ linkedin @ com**  
   
-## Summary
+Summary
 ---
   
 Data scientist with a mission to use data driven approaches to maximise happiness.  
