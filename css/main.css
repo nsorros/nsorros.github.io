@@ -42,6 +42,6 @@ ul {
     font-size: 1.3em;
 }
 
-ul li {
+ul li.posts {
     list-style: none;
 }
