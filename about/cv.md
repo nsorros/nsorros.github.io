@@ -1,10 +1,8 @@
 # Nick Sorros
   
-
-![alt text](http://sciactive.com/pnotify/includes/github-icon.png "Github") github.com/nsorros
-![alt text](https://abs.twimg.com/favicons/favicon.ico "Twitter") @nsorros  
-![alt text](http://icons.iconarchive.com/icons/glyphish/glyphish/32/18-envelope-icon.png "Email") nsorros@gmail.com  
-Website: nsorros.com    
+Email: nsorros@gmail.com  
+Twitter: @nsorros  
+Website: nsorros.com  
   
 ## Summary
   
