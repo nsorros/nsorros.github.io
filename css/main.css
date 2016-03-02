@@ -29,9 +29,13 @@ h2 {
 }
 p {
     font-size: 1.5em;
-    line-height: 1.4em;
     color: #333;
 }
+
+p.posts {
+    line-height: 1.4em;
+}
+
 footer {
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
