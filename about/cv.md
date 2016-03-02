@@ -1,12 +1,11 @@
 # Nick Sorros
   
 
-![alt text](http://www.fancyicons.com/free-icons/222/simple/png/128/github_128.png "Logo Title Text 1")
-
-Email: nsorros@gmail.com  
-Twitter: @nsorros  
+![alt text](http://sciactive.com/pnotify/includes/github-icon.png "Github") github.com/nsorros
+![alt text](https://abs.twimg.com/favicons/favicon.ico "Twitter") @nsorros  
+![alt text](http://icons.iconarchive.com/icons/glyphish/glyphish/32/18-envelope-icon.png "Email") nsorros@gmail.com  
 Website: nsorros.com    
-
+  
 ## Summary
   
 Data scientist with a mission to use data driven approaches to maximise happiness.  
