@@ -1,6 +1,8 @@
 ## Nick Sorros
 
-nsorros.com
+Email: nsorros@gmail.com
+Twitter: @nsorros
+Website: nsorros.com  
 
 ### Summary
   
@@ -64,3 +66,14 @@ Database administrator, Database migration, ETL, Scripting
 Main technologies:  
 C++, Perl, Bash, Perforce, ReviewBoard, Jams Scheduler
   
+**Research assistant @ Imperial College**  
+*October 2013 - December 2013 (3 months)*  
+  
+60% of people can't have a 10 minute conversation without lying at least once. While white lies are necessary
+to every day life, other types of lies can have financial and even tragical consequences like terrorism. Unfortunately humans are not better than randomness in predicting whether someone is lying. Our best effort so far has been a century old solution better known as polygraph. Polygraph accuracy is significantly higher than chance but still way below perfect with the exact accuracy ranging from study to study.  
+  
+My research in Imperial focused in non obtrusive methods to capture physiological cues of human deception. The area around the eyes exposes some of those responses that seem to originate from the sympathetic nervous system, which makes them hard to control. Examples are the temperature around the eyes, the blinking duration and frequency and the pupil size but not the gaze of your eyes which is a common misbelief. As part of my research I developed a blink detector with a 95% accuracy in an ethnically diverse database in a less controlled environment.  
+  
+Dimensionality reduction, Classifier, Facial point detection, Feature extraction, Parameter optimisation, Anomaly detection   
+Main technologies:  
+Matlab, PCA, LDA, HOGHOF, SVM
