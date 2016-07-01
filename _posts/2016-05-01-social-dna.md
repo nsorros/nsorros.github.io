@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Bluff game
-date: 2012-07-10
+title: Social dna
+date: 2016-05-01
 ---
 
-My undergraduate thesis
+My work in 6tribes
