@@ -1,5 +1,7 @@
 html {
     height: 100%;
+    font-family:'Inconsolata', 'monospace';
+    font-weight: 300;
 }
 body {
     margin: 5% auto;
@@ -7,7 +9,6 @@ body {
     height: 90%;
 }
 nav ul, footer ul {
-    font-family:'Roboto', 'Arial', 'Sans-Serif';
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -24,13 +25,19 @@ a:hover {
     text-decoration: underline;
 }
 h1 {
-    font-size: 4em;
-    font-family:'Roboto', 'Arial', 'Sans-Serif';
+    font-size: 3.5em;
+    font-weight: 800;
     margin: 5% auto;
 }
 h2 {
     font-size: 2em;
-    font-family:'Roboto', 'Arial', 'Sans-Serif';
+}
+img {
+   position: fixed;
+   top: 32%;
+   right: 35%;
+   width: 15%;
+   height: auto;
 }
 p {
     font-size: 1em;
@@ -48,7 +55,7 @@ p.posts {
 }
 
 footer {
-    border-top: 1px solid #d5d5d5;
+#    border-top: 1px solid #d5d5d5;
     font-size: .8em;
 }
 
