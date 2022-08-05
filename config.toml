@@ -1,4 +1,4 @@
-baseURL = 'http://nsorros.github.io/'
+baseURL = 'https://nsorros.github.io'
 languageCode = 'en-us'
 title = 'Nick Sorros'
 theme = 'PaperMod'
