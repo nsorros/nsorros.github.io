@@ -9,6 +9,12 @@ name = "tags"
 url = "/tags/"
 weight = 10
 
+[[menu.main]]
+identifier = "talks"
+name = "talks"
+url = "/tags/talk/"
+weight = 20
+
 [params.homeInfoParams]
 Title = "Hi 👋"
 Content = "my name is Nick Sorros and I am the founder of MantisNLP"
