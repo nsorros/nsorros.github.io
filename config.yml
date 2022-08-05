@@ -1,0 +1,41 @@
+baseURL: 'https://nsorros.github.io'
+languageCode: en-us
+title: Nick Sorros
+theme: PaperMod
+
+menu:
+    main:
+        - identifier: tags
+          name: tags
+          url: /tags/
+          weight: 10
+        - identifier: talks
+          name: talks
+          url: /tags/talk/
+          weight: 20
+
+params:
+    ShowCodeCopyButtons: true
+    ShowPostNavLinks: true
+    ShowReadingTime: true
+    ShowBreadCrumbs: true
+
+    homeInfoParams:
+        Title: "Hi 👋"
+        Content: >
+            My name is Nick Sorros and I am a Data Scientist. I am also the founder of MantisNLP ✨
+  
+            - &nbsp;
+
+            - I organise the PyData meetup in Cyprus and I am part of the scoping commitee of DataKind
+        
+
+    socialIcons:
+        - name: twitter
+          url: "https://twitter.com/nsorros"
+        - name: github
+          url: "http://github.com/nsorros"
+        - name: linkedin
+          url: "https://www.linkedin.com/in/nsorros/"
+        - name: email
+          url: "mailto:nick@mantisnlp.com"
