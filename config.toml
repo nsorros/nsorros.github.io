@@ -1,0 +1,10 @@
+baseURL = 'http://nsorros.github.io/'
+languageCode = 'en-us'
+title = 'Nick Sorros'
+theme = 'PaperMod'
+
+[[menu.main]]
+identifier = "tags"
+name = "tags"
+url = "/tags/"
+weight = 10
