@@ -31,6 +31,10 @@ url = "http://github.com/nsorros"
 name = "linkedin"
 url = "https://www.linkedin.com/in/nsorros/"
 
+[[params.socialIcons]]
+name = "email"
+url = "mailto:nick@mantisnlp.com"
+
 [params]
 ShowCodeCopyButtons = "true"
 ShowPostNavLinks = "true"
