@@ -8,3 +8,19 @@ identifier = "tags"
 name = "tags"
 url = "/tags/"
 weight = 10
+
+[params.homeInfoParams]
+Title = "Hi 👋"
+Content = "my name is Nick Sorros and I am the founder of MantisNLP"
+
+[[params.socialIcons]]
+name = "twitter"
+url = "https://twitter.com/nsorros"
+
+[[params.socialIcons]]
+name = "github"
+url = "http://github.com/nsorros"
+
+[[params.socialIcons]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/nsorros/"
