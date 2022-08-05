@@ -24,3 +24,9 @@ url = "http://github.com/nsorros"
 [[params.socialIcons]]
 name = "linkedin"
 url = "https://www.linkedin.com/in/nsorros/"
+
+[params]
+ShowCodeCopyButtons = "true"
+ShowPostNavLinks = "true"
+ShowReadingTime = "true"
+ShowBreadCrumbs = "true"
