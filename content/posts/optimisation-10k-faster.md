@@ -38,7 +38,7 @@ Line profiler was brought to my attention from the excellent book [High performa
 As we can see most of the time is being spent inside the sklearn function f1_score. If we go ahead and profile it by adding the @profile decorator in the argmax function we get:
 
 &nbsp;
-![profiler-argmax-sklearn](/images/profiler-argmax-sklearn#center)
+![profiler-argmax-sklearn](/images/profiler-argmax-sklearn.png#center)
 &nbsp;
 
 As it turns out, half of the time is being spent on checking that the data being passed are correct (see line 1547). This is super helpful in most cases, as it will throw an error if the data or flags do not make sense, but quite inefficient in our case, as we constantly pass the same data. Since we cannot disable this behavior we can simply write our own f1_score function.
