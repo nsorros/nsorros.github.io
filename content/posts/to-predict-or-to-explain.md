@@ -1,6 +1,6 @@
 ---
 title: "To Predict or to Explain"
-date: 2022-08-05T10:10:30+03:00
+date: 2017-05-24T10:10:30+03:00
 tags: ["machine learning", "explanatory"]
 ---
 
