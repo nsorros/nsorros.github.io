@@ -18,11 +18,11 @@ weight = 20
 [params.homeInfoParams]
 Title = "Hi 👋"
 Content = """
-    my name is Nick Sorros and i am a Data Scientist
-    i am also the founder of MantisNLP
+    My name is Nick Sorros and I am a Data Scientist
+    I am also the founder of MantisNLP
 
-    i co organise the PyData meetup in Cyprus
-    and i also participate in the scoping commitee of DataKind UK
+    I co organise the PyData meetup in Cyprus
+    and I also participate in the scoping commitee of DataKind UK
 """
 
 [[params.socialIcons]]
