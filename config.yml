@@ -5,14 +5,18 @@ theme: PaperMod
 
 menu:
     main:
-        - identifier: tags
-          name: tags
-          url: /tags/
+        - identifier: about
+          name: about
+          url: /about/
           weight: 10
         - identifier: talks
           name: talks
           url: /tags/talk/
           weight: 20
+        - identifier: tags
+          name: tags
+          url: /tags/
+          weight: 30
 
 params:
     ShowCodeCopyButtons: true
