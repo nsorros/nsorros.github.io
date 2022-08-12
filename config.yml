@@ -3,6 +3,8 @@ languageCode: en-us
 title: Nick Sorros
 theme: PaperMod
 
+googleAnalytics: G-SGMTPX0KNQ
+
 menu:
     main:
         - identifier: about
