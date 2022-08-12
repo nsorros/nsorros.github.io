@@ -23,13 +23,10 @@ params:
     homeInfoParams:
         Title: "Hi 👋"
         Content: >
-            My name is Nick Sorros and I am a Data Scientist. I am also the founder of MantisNLP ✨
-  
-            - &nbsp;
-
-            - I organise the PyData meetup in Cyprus and I am part of the scoping commitee of DataKind
+            My name is Nick Sorros and I am a Data Scientist specialising in Natural Language Processing.
+            I am also the founder of [MantisNLP](https://mantisnlp.com/) ✨, a remote first NLP consultancy. If you are interested to work
+            with me, drop me an email at nick@mantisnlp.com
         
-
     socialIcons:
         - name: twitter
           url: "https://twitter.com/nsorros"
@@ -37,5 +34,3 @@ params:
           url: "http://github.com/nsorros"
         - name: linkedin
           url: "https://www.linkedin.com/in/nsorros/"
-        - name: email
-          url: "mailto:nick@mantisnlp.com"
