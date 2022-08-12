@@ -1,7 +1,7 @@
 ---
 title: "MLOps with SageMaker — Part I"
 date: 2022-05-04T10:10:30+03:00
-tags: ["machine learning", "transformers", "sagemaker"]
+tags: ["machine learning", "transformers", "sagemaker", "pytorch", "sklearn"]
 ---
 
 ## How to effortlessly train sklearn 📊, pytorch🔥, and transformers 🤗 models in the cloud

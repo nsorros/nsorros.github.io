@@ -1,7 +1,7 @@
 ---
 title: "MLOps with SageMaker — Part II"
 date: 2022-06-29T10:10:30+03:00
-tags: ["machine learning", "transformers", "sagemaker", "docker"]
+tags: ["machine learning", "sagemaker", "docker", "pytorch", "sklearn"]
 ---
 
 ## Customize train 🐳

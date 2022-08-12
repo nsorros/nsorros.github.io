@@ -1,7 +1,7 @@
 ---
 title: "To Predict or to Explain"
 date: 2017-05-24T10:10:30+03:00
-tags: ["machine learning", "explanatory"]
+tags: ["machine learning", "explanatory modelling"]
 ---
 
 As data scientists, our day job is around modelling. We create models to recommend new products, to increase conversion rates, to explain user behaviour etc. And depending on your background, it is more likely to be familiar either with machine learning techniques or regression type analysis. It is the difference among these two distinct approaches in modelling that motivated me to write this post which is a summary of a talk I gave recently in PyData London.

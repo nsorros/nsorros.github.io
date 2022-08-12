@@ -1,7 +1,7 @@
 ---
 title: "A neural network tagging biomedical grants"
 date: 2020-11-24T10:10:30+03:00
-tags: ["machine learning", "neural networks", "cnn"]
+tags: ["machine learning", "cnn", "attention"]
 ---
 ![meshcnn-architecture](/images/meshcnn-architecture.png#center)
 &nbsp;
