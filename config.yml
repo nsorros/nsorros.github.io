@@ -21,6 +21,7 @@ menu:
           weight: 30
 
 params:
+    env: production
     ShowCodeCopyButtons: true
     ShowPostNavLinks: true
     ShowReadingTime: true
