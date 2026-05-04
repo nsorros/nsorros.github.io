@@ -637,12 +637,14 @@
   margin: 36px 0;
 }
 .prose figure { margin: 28px 0; }
-.prose figure img {
+.prose figure img,
+.prose p > img {
   display: block;
   max-width: 100%;
   height: auto;
   border: 1px solid var(--line);
   background: var(--paper);
+  margin: 28px auto;
 }
 .prose .callout {
   border: 1px solid var(--line);

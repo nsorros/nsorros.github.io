@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MLOps with SageMaker — Part II — Nick Sorros</title>
+<meta name="description" content="MLOps with SageMaker — Part II — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2022.06</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">MLOps with SageMaker — Part II</h1>
+    </header>
+
+    <div class="prose">
+<h2>Customize train 🐳</h2>
+<p>In an earlier <a href="https://medium.com/mantisnlp/mlops-with-sagemaker-44ffc2c1054a">post</a> we went through how to run a training script using <code>sklearn</code>, <code>PyTorch</code> or <code>transformers</code> with SageMaker by leveraging their preconfigured framework containers. The training scripts we used were self contained, meaning they only used the respective framework and python standard library. This meant we only had to worry about uploading our data and fetching our model from s3, and deciding the instance type we wanted to use.</p>
+<p>This is excellent for quick prototyping but in practice our code lives in separate modules to reduce duplication, and often requires additional libraries. Case in point: all our training scripts from the previous post were sharing the same <code>load_data</code> function and our PyTorch script had to implement its own <code>tokenizer</code> in the absence of additional libraries.</p>
+<p>In this post, we will look into how we can customize SageMaker training to address those issues as well as create our own containers to run training.</p>
+<p>As a reminder, this is our minimal project setup
+<img alt="project-structure" src="../../assets/images/project-structure.png" /></p>
+<p>The code for our projects lives in src and the libraries required are defined in <code>requirements.txt</code>.</p>
+<p>The data comes from a s<a href="https://www.kaggle.com/yasserh/imdb-movie-ratings-sentiment-analysis">entiment classification task</a> in Kaggle. The data comes in CSV format and contains two columns, text and label. The label is either 0 or 1.</p>
+<p>We use a scripts folder to add all necessary functionality for interacting with SageMaker. The intention is that you can simply take some of those into your own project and get started.</p>
+<p>Here is an <code>sklearn</code> training script that uses <code>tf-idf naive-bayes</code> which imports <code>load_data</code> from a <code>utils</code> module.</p>
+<p><img alt="tfidf-naivebayes-script" src="../../assets/images/tfidf-naivebayes-script.png" /></p>
+<p>And here is the utils module</p>
+<p><img alt="load-data" src="../../assets/images/load-data.png" /></p>
+<p>Let’s run this outside of SageMaker first.</p>
+<p><img alt="run-train-sklearn-naivebayes" src="../../assets/images/run-train-sklearn-naivebayes.png" /></p>
+<p>In order for SageMaker to run our job, we need to include any additional files that are required. We can do that via the <code>source_dir</code> parameter that all SageMaker Estimators (e.g. SkLearn, PyTorch, HuggingFace, etc.) expose. As the name hints, this allows us to specify a directory with our source code which should be included. This is our src folder.</p>
+<p>Here is the code for running the job, which is very similar to one from the previous <a href="https://github.com/MantisAI/sagemaker_examples/blob/main/src/train_sklearn.py">post</a></p>
+<p><img alt="sagemaker-sklearn-naivebayes" src="../../assets/images/sagemaker-sklearn-naivebayes.png" /></p>
+<p>Notice that the <code>entry_point</code> no longer needs to include src as the path is now relative. This is how you run it</p>
+<p><img alt="run-sagemaker-sklearn-naivebayes" src="../../assets/images/run-sagemaker-sklearn-naivebayes.png" /></p>
+<p>This should take care of any additional modules our code might depend on. Remember we need to prepend data and model paths with <code>file://</code> or <code>s3://</code> for local or s3 paths respectively.</p>
+<p>How about extra libraries? In our previous <a href="https://medium.com/mantisnlp/mlops-with-sagemaker-44ffc2c1054a">post</a> our pytorch training <a href="https://github.com/MantisAI/sagemaker_examples/blob/main/src/train_pytorch.py">script</a> included a custom tokenizer to avoid using external libraries. Here is another pytorch training script which uses the tokenizers library from hugging face for tokenization instead.</p>
+<p><img alt="pytorch-script-transformers-tokenizer" src="../../assets/images/pytorch-script-transformers-tokenizer.png" /></p>
+<p>The only thing we have to change for SageMaker to pick up our additional libraries is an environment variable called <code>SAGEMAKER_REQUIREMENTS</code>. This variable needs to point to our r<code>equirements.txt</code>. We can define <code>environment</code> variables to be passed inside the container using the environment parameter of our estimator.</p>
+<p>Here is the part that needs to change (<a href="https://github.com/MantisAI/sagemaker_examples/blob/main/scripts/run_pytorch_transformers_tokenizer_sagemaker.py">full script</a>)</p>
+<p><img alt="sagemaker-pytorch-environment" src="../../assets/images/sagemaker-pytorch-environment.png" /></p>
+<p>When SageMaker runs our job it will install all additional libraries mentioned in that file during setup.</p>
+<p>While these customisations can take you a long way, they are still building on top of SageMaker preconfigured containers. This is convenient because we do not have to build and push any containers to run our job or worry about setting up gpu drivers. There are cases though, for example when you are not using one of the frameworks for which there are preconfigured containers, where a custom container environment for your job makes more sense.</p>
+<p>To customize the training environment, we need to create our own containers. We need a Dockerfile for that. Here is a minimal one to use with our sklearn scripts.</p>
+<p><img alt="train-dockerfile" src="../../assets/images/train-dockerfile.png" /></p>
+<p>Notice that we do not pass any code. The intention is to create an environment with all libraries needed and pass the training script and any additional source files when invoking the job, similar to what we have been doing with the preconfigured containers. This is called Script Mode mode in SageMaker, and in order for it to work we need to have <code>sagemaker-training</code> installed. Let’s build our container</p>
+<p><img alt="docker-build-sklearn" src="../../assets/images/docker-build-sklearn.png" /></p>
+<p>To run our job we will use a generic Estimator that is framework agnostic</p>
+<p><img alt="sagemaker-train-estimator" src="../../assets/images/sagemaker-train-estimator.png" /></p>
+<p>The main difference is that we need to pass the image_uri parameter which is the name of our container, script-sklearn in this case.</p>
+<p><img alt="run-sagemaker-train-estimator" src="../../assets/images/run-sagemaker-train-estimator.png" /></p>
+<p>To be able to run the job using AWS infrastructure we need to push our container to ECR. Here is a small bash script that does this (read more <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html">here</a>)</p>
+<p><img alt="upload-container" src="../../assets/images/upload-container.png" /></p>
+<p>This approach allows us to customize our environment but we can take it even further if we remove <code>sagemaker-training</code>. This means we need to replicate some of its functionality. Let’s start with the Dockerfile</p>
+<p><img alt="dockerfile-custom" src="../../assets/images/dockerfile-custom.png" /></p>
+<p>Notice that we need to copy our code. This makes it slightly less flexible as we will need to rebuild and push our container whenever we make any change to the training. We also need to name our entrypoint python script train, and make it executable intentionally because SageMaker will look for and run train upon start, and it will fail if it cannot find it. Note that we also update the <code>PYTHONPATH</code> to make our code visible from the train entrypoint script so that the imports work.</p>
+<p>Here is our python entrypoint:</p>
+<p><img alt="train-entrypoint" src="../../assets/images/train-entrypoint.png" /></p>
+<p>It is important to include <code>#!/usr/bin/env</code> python so that SageMaker knows how to run the script. In the absence of <code>sagemaker-training</code>, the paths are not initialized in environment variables and the hyperparameters are not read and passed automatically, so we need to do that ourselves. The predefined locations that SageMaker used are</p>
+<ul>
+<li><code>/opt/ml/input/data/train</code> — this is where the train data is being copied,</li>
+<li><code>/opt/ml/model</code> — the contents of this folder are copied out of the container,</li>
+<li><code>/opt/ml/input/config/hyperparameters.json</code> — this is where the parameters passed as arguments to the estimator are saved</li>
+</ul>
+<p>We also use <code>Pydantic</code> to validate and convert types for our hyperparameters, otherwise we would need to convert each to their right type.</p>
+<p>You can find all the code in our sagemaker examples repository https://github.com/MantisAI/sagemaker_examples</p>
+<p>In this post we explored how to customize our SageMaker training job by including additional files and defining any external dependencies. We also show how to use our own custom containers so we are not limited to the ones provided by SageMaker. This post builds on top of an earlier post which also defines some helper script on how to move data and models to and from AWS as well as monitor training which might be of interest to you.</p>
+<p>In the next post, we will explore SageMaker inference which reduces the complexity around deploying our models behind an endpoint significantly.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/MLOps-with-SageMaker-Part-II-1b45904c8bc7801794cfdf5b2eefc741" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
