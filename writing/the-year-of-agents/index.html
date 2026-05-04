@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The year of agents — Nick Sorros</title>
+<meta name="description" content="The year of agents — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.03</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">The year of agents</h1>
+    </header>
+
+    <div class="prose">
+<p>Last year was supposed to be the year of AI and it definitely was the year of reasoning AI. I believe this year would be the year of agents but before we get there let’s review what happened last year that led to today.</p>
+<h4>Data 💿</h4>
+<p>The amount of data used to train, at least open AI models, dramatically increased from 2 trillion tokens in Llama 2 all the way to 15 trillion in Llama 3. That, in turn, resulted to a close in performance gap between open and closed source performance, excluding the o series. We also seem to have hit a ceiling in regards to real world data which is unsurprising since the amount of high quality training data had been estimated to be about <a href="https://arxiv.org/pdf/2211.04325" target="_blank" rel="noopener">100 trillion tokens</a>. Note that this excludes synthetic data as well as non text data, both of which will continue to drive progress forward.</p>
+<h4>Cost 💰</h4>
+<p>The cost of AI decreased significantly during the year from 10$ per 1 million tokens at the start to 2.5$ at the end, and half that using caching. Performance at ever smaller model sizes became a hotly contested area with distillation from larger models becoming the norm with models such as Phi 4 (27B) reaching close to GPT4 performance but also the latest Llama 70B almost on par with 405B, their best model to date.</p>
+<h4>Speed 🏎️</h4>
+<p>AI is also running faster thanks to innovations from Groq and Cerebras with speeds faster than 1000 tokens per second, which is at least one order of magnitude faster than the fastest generation at the start of the year. As reasoning and agentic AI takes off, generation speed will become ever more important because both require more compute to tackle more complex tasks.</p>
+<h4>AI integration 🖱️</h4>
+<p>Many companies experimented with AI features last year, with varying level of success. From summarising unread messages and notifications in your phone and communication platforms, to help you write and rewrite content as well as find relevant information and answers faster, most of those attempts were less transformational than they seemed. Cracking AI use cases is proving to be a bit harder than initially thought.</p>
+<h4>Reasoning 🤔</h4>
+<p>I think the biggest development this year, was reasoning AI with models such as the o series from OpenAI. The impact of those models has been flying a bit under the radar, there was no ChatGPT moment, since the chat interface is probably not the best way for those models to shine. One way to grasp the impact is the fact that AI went from being an average programmer to being the 175th best programmer in the world. Reasoning is in many ways a necessary but not sufficient step for more useful AI that can automate human tasks so now that reasoning has improved we can more reliably move to the next phase of AI which is agents.</p>
+<h4>The year ahead</h4>
+<p>At the very least we should expect the same incremental improvements we saw last year, such as cheaper and faster models and more AI into the apps we use. On top of that though, I believe this will be the year of agents, where initially small tasks will be delegated to AI, like checking you in, or sending that document a colleague asked in an email by simply prompting a model. At the same time, there will be a lot of innovation and disruption inside companies that will experiment even more with agentic workflows across the company to make them do more with less. This should be an exciting year, not that any year is particularly boring in AI.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/The-year-of-agents-1af5904c8bc780528580f5348b7ecfc0" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

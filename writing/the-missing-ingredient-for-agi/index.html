@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The missing ingredient for AGI — Nick Sorros</title>
+<meta name="description" content="The missing ingredient for AGI — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.03</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">The missing ingredient for AGI</h1>
+    </header>
+
+    <div class="prose">
+<p>There is a broad agreement that we are on a path to human or even super human like intelligence and the only disagreement seems to be whether it’s in two years or two decades. But aren’t we already there?</p>
+<p>The AI models of today are definitely super human in many tasks and definitely know more than most if not all humans even if few humans have a small edge on specific domains still. So what is even the debate here?</p>
+<p>Well as you know, these models even though excellent in “theory” they often fall short in many tasks and in non human ways. How can a model that can create any software application with one prompt is the same model that introduces easy to fix bugs or be so confident when making obvious mistakes…A human engineer in contrast is much much more robust, the amount of mistakes reduce with experience and confidence increases, you don’t have senior engineers introducing obvious bugs frequently, it’s an exception, yet this is what we have with today’s AI.</p>
+<p>There are many theories of what’s going on here but there is one thing everyone seems to agree. The models of today lack continual learning, essentially learning from interacting with the world as we humans do. Continual learning would allow them to learn from their errors and get better at any task they attempt over time and with appropriate feedback.</p>
+<p>The current paradigm on the other hand, offers us a fixed intelligence that can be flexible only so far as its context window allows. This is already transformational even if continual learning does not arrive any time soon. It still allows us to create amazing and continuous productivity boosts by training the models to become better every year even if they don’t learn from their environment but from us feeding them with as many data as we have.</p>
+<p>The real question here is whether continual learning can be built on top of the models we currently have or we need a completely different approach and hence the 2 vs 20 years variance in predictions.</p>
+<p>And what’s important to keep in mind is that even though current models might not displace many people or disrupt the industry as much, continual learning models is a whole other discussion. So when planning for the next five years do include a paragraph about how such models might affect your business or life and what’s your response.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/The-missing-ingredient-for-AGI-2ce5904c8bc7801b9b5ec92bca711197" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

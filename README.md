@@ -31,7 +31,7 @@ open http://127.0.0.1:8765
 4. Writing & Talks — 10 most recent, links to nsorros.com archive
 5. Trusted by — text-logo grid
 6. Contact — `> ssh` block + `$ compose` mailto button
-7. Footer — `built in vim · deployed $(date)`
+7. Footer — `built using AI · deployed $(date)`
 
 ## Hard rules
 

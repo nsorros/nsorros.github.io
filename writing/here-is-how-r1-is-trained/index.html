@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Here is how R1 is trained — Nick Sorros</title>
+<meta name="description" content="Here is how R1 is trained — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.04</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">Here is how R1 is trained</h1>
+    </header>
+
+    <div class="prose">
+<p>The recipe behind R1 is quite standard</p>
+<p>1️⃣ pre train a large language model on 15T tokens (DeepSeekV3)</p>
+<p>2️⃣ tune it with instruction (200K examples) and reasoning data (600K examples)</p>
+<p>3️⃣ tune it with preferences from humans so that its answers are more helpful 💁 and safe 🦺</p>
+<p>The magic 🪄 lies behind the 600K reasoning examples. These could have come from human annotators by carefully creating a high quality and diverse set of math, coding and other problems that describe the thinking process behind the solution. This would still be noteworthy but not as much as the fact that those examples were generated from the model itself that learned how to reason by solving problems and learning based on whether the answer was correct or not, in the same way that AI learned to play Atari games or Go by playing with itself 😮</p>
+<p>The exact recipe for creating the reasoning data is</p>
+<p>1️⃣ collect a small amount of reasoning data (5K) to tune the base model (DeepSeekV3) to generate answers and thoughts in a human readable format</p>
+<p>2️⃣ generate answers and score them based on whether they are correct, expose their thinking process and use consistent language. retrain the model using that data in a loop 🔁</p>
+<p>3️⃣ generate reasoning data (3M) and filter some low quality ones, like those containing long paragraphs, code blocks and mixed languages</p>
+<p>At this point you might be thinking that the above recipe is slightly different from the process I described earlier where the model learned entirely on itself with no human supervision, more like step 2️⃣ but not 1️⃣ or 3️⃣ and you would be right. As it turns out, training the model with no human supervision at all, results in a very good reasoning model but very bad at following instructions or explaining its thinking in a human readable format so the above process is trying to correct that ✨</p>
+<p>⚠️ Finally note that the order of magnitude of the data used (15T for pre training, ~1M for tuning) and the model (671B) are equivalent to other frontier models so the training costs should be too unlike what’s been reported.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Here-is-how-R1-is-trained-1b45904c8bc780e7ab29f699d3ec170a" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
