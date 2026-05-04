@@ -406,6 +406,7 @@
     border-left: 1px solid var(--line);
   }
   .trust-cell {
+    display: flex; align-items: center; justify-content: center;
     padding: 28px 16px;
     text-align: center;
     font-size: 13px;
@@ -414,6 +415,12 @@
     border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     font-weight: 500;
+    text-decoration: none;
+    transition: color .15s, background .15s;
+  }
+  a.trust-cell:hover {
+    color: var(--ink);
+    background: var(--paper);
   }
 
   /* CONTACT ----------------------------------------------------- */
