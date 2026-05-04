@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nick Sorros — Head of Data / AI</title>
+<meta name="description" content="Nick Sorros — CTO &amp; co-founder of a vertical AI startup. Previously founder of Mantis NLP. Available for a small number of advisory and fractional engagements." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fafaf9;
+    --paper: #f4f3f0;
+    --ink: #0c0c0c;
+    --ink-2: #1a1a1a;
+    --muted: #737373;
+    --line: #d8d6d2;
+    --line-2: #e8e6e2;
+    --accent: #0c0c0c;
+
+    --pad: clamp(20px, 4vw, 64px);
+    --col: 1140px;
+    --section-gap: 120px;
+    --row-gap: 28px;
+  }
+  [data-theme="dark"] {
+    --bg: #0c0c0c;
+    --paper: #161616;
+    --ink: #f0eeea;
+    --ink-2: #d8d6d2;
+    --muted: #8a8a8a;
+    --line: #2a2a2a;
+    --line-2: #1f1f1f;
+    --accent: #f0eeea;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "ss02", "calt", "zero";
+  }
+  body {
+    min-height: 100vh;
+    background-image: radial-gradient(rgba(0,0,0,0.025) 1px, transparent 1px);
+    background-size: 4px 4px;
+    background-position: 0 0;
+  }
+  [data-theme="dark"] body {
+    background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+  }
+  ::selection { background: var(--ink); color: var(--bg); }
+  a { color: inherit; text-decoration: none; }
+
+  /* TOPBAR ----------------------------------------------------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in oklab, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 14px var(--pad);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px;
+    letter-spacing: 0.01em;
+  }
+  .brand { display: flex; align-items: baseline; gap: 4px; font-weight: 600; }
+  .brand-mark {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--ink);
+    margin-right: 8px;
+    animation: blink 1.2s steps(2) infinite;
+    align-self: center;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .brand-text { color: var(--ink); font-weight: 600; }
+  .brand-domain { color: var(--muted); font-weight: 400; }
+  .nav { display: flex; gap: 28px; }
+  .nav a {
+    color: var(--muted);
+    position: relative;
+    padding: 4px 0;
+    transition: color .15s;
+  }
+  .nav a:hover { color: var(--ink); }
+  .nav a::before { content: "/ "; color: var(--line); }
+  .topbar-meta {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .status-dot {
+    width: 8px; height: 8px; background: #16a34a; display: inline-block;
+    box-shadow: 0 0 0 2px color-mix(in oklab, #16a34a 25%, transparent);
+  }
+  [data-theme="dark"] .status-dot { background: #22c55e; }
+
+  /* PAGE -------------------------------------------------------- */
+  .page {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+
+  /* SECTION MARKERS -------------------------------------------- */
+  .section-marker {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 48px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .marker-num { color: var(--ink); font-weight: 600; letter-spacing: 0; }
+  .marker-line {
+    flex: 1; height: 1px;
+    background: repeating-linear-gradient(90deg, var(--line) 0 4px, transparent 4px 8px);
+  }
+  .marker-label { color: var(--muted); }
+
+  /* HERO -------------------------------------------------------- */
+  .hero { padding-top: 80px; padding-bottom: var(--section-gap); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 48px;
+    align-items: start;
+  }
+  .hero-meta {
+    display: flex; flex-direction: column; gap: 12px;
+    padding-top: 8px;
+    font-size: 11px;
+  }
+  .kv { display: flex; flex-direction: column; gap: 2px; }
+  .kv .k {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-size: 10px;
+  }
+  .kv .v { color: var(--ink); font-weight: 500; font-size: 12px; }
+  .kv .v .dot {
+    width: 6px; height: 6px; background: #16a34a; display: inline-block; margin-right: 6px;
+  }
+
+  .hero-eyebrow {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    font-size: 11px; letter-spacing: 0.12em; color: var(--muted);
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+  .hero-eyebrow .sep { color: var(--line); }
+
+  .hero-title {
+    font-size: clamp(40px, 6vw, 76px);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 36px;
+    color: var(--ink);
+  }
+  .hero-title .line { display: block; }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--muted);
+    position: relative;
+  }
+  .hero-title em::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0.08em;
+    height: 0.08em;
+    background: var(--ink);
+    opacity: 0.15;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 56ch;
+    margin-bottom: 36px;
+    text-wrap: pretty;
+  }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0;
+    padding: 12px 18px;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+    transition: transform .12s ease, background .15s, color .15s;
+    cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn.ghost:hover { border-color: var(--ink); }
+  .btn .caret {
+    display: inline-block;
+    width: 7px;
+    margin-left: 6px;
+    animation: blink 1.2s steps(2) infinite;
+  }
+  .btn.block {
+    display: flex; justify-content: center;
+    width: 100%;
+    margin-top: 18px;
+  }
+
+  .hero-portrait { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+  .hero-portrait > .portrait-frame {
+    border: 1px solid var(--line);
+    padding: 12px;
+    background: var(--paper);
+  }
+  .pixel-portrait {
+    position: relative;
+    width: 176px; height: 176px;
+    image-rendering: pixelated;
+  }
+  .pixel-portrait div { position: absolute; }
+  .portrait-caption {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-align: right;
+    text-transform: uppercase;
+  }
+  .portrait-caption .muted { color: var(--line); }
+
+  .hero-code {
+    margin-top: 64px;
+    padding: 24px 28px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink-2);
+    overflow-x: auto;
+    white-space: pre;
+    position: relative;
+    font-family: inherit;
+  }
+  .hero-code::before {
+    content: "─── shell ───";
+    position: absolute; top: -1px; left: 16px;
+    transform: translateY(-50%);
+    background: var(--bg);
+    padding: 0 8px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ABOUT ------------------------------------------------------- */
+  .about { padding-bottom: var(--section-gap); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 240px;
+    gap: 48px;
+  }
+  .about-lead p {
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  .about-body { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
+  .about-body p {
+    font-size: 14px; line-height: 1.7;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .about-body em { font-style: italic; color: var(--ink); font-weight: 500; }
+
+  .kv-block {
+    border: 1px solid var(--line);
+    padding: 16px;
+    background: var(--paper);
+  }
+  .kv-block .kv {
+    flex-direction: row; justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .kv-block .kv:last-child { border-bottom: 0; }
+  .kv-block .k { font-size: 10px; }
+  .kv-block .v { font-size: 11px; }
+
+  /* WORK -------------------------------------------------------- */
+  .work { padding-bottom: var(--section-gap); }
+  .work-list { list-style: none; }
+  .work-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 60px;
+    gap: 32px;
+    padding: var(--row-gap) 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .work-row:last-child { border-bottom: 1px solid var(--line); }
+  .work-year {
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 0.04em;
+    padding-top: 4px;
+  }
+  .work-head {
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .work-co {
+    font-size: 18px; font-weight: 600;
+    letter-spacing: -0.01em; color: var(--ink);
+  }
+  .work-role {
+    font-size: 12px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .work-note {
+    font-size: 14px; line-height: 1.6;
+    color: var(--ink-2); max-width: 64ch;
+    margin-bottom: 12px;
+    text-wrap: pretty;
+  }
+  .work-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    background: var(--paper);
+  }
+  .work-num {
+    font-size: 11px; color: var(--line);
+    text-align: right; font-weight: 600;
+    padding-top: 6px;
+  }
+
+  /* WRITING ----------------------------------------------------- */
+  .writing { padding-bottom: var(--section-gap); }
+  .writing-list { list-style: none; }
+  .writing-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 80px 70px 24px;
+    gap: 24px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    align-items: center;
+    font-size: 13px;
+    transition: padding-left .15s ease, background .15s;
+  }
+  .writing-row:last-child { border-bottom: 1px solid var(--line); }
+  .writing-row:hover { padding-left: 8px; background: var(--paper); }
+  .writing-row a {
+    display: contents;
+    color: inherit;
+  }
+  .writing-date { color: var(--muted); font-size: 11px; letter-spacing: 0.04em; }
+  .writing-title { color: var(--ink); font-weight: 500; letter-spacing: -0.005em; }
+  .writing-kind {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); border: 1px solid var(--line);
+    padding: 3px 8px; text-align: center; width: fit-content;
+  }
+  .writing-read { font-size: 11px; color: var(--muted); text-align: right; }
+  .writing-arrow {
+    color: var(--line); font-size: 14px; text-align: right;
+    transition: color .15s, transform .15s;
+  }
+  .writing-row:hover .writing-arrow { color: var(--ink); transform: translateX(4px); }
+  .writing-more {
+    margin-top: 28px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .writing-more a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1px;
+    transition: border-color .15s;
+  }
+  .writing-more a:hover { border-bottom-color: var(--ink); }
+
+  /* TRUST ------------------------------------------------------- */
+  .trust { padding-bottom: var(--section-gap); }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+  .trust-cell {
+    padding: 28px 16px;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-weight: 500;
+  }
+
+  /* CONTACT ----------------------------------------------------- */
+  .contact { padding-bottom: var(--section-gap); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .contact-lead h2 {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .contact-lead p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 44ch;
+    text-wrap: pretty;
+  }
+  .contact-card {
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    padding: 24px;
+  }
+  .contact-pre {
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--ink-2);
+    white-space: pre;
+  }
+  .contact-pre a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+    transition: border-color .15s;
+  }
+  .contact-pre a:hover { border-bottom-color: var(--ink); }
+
+  /* FOOTER ------------------------------------------------------ */
+  .footer { border-top: 1px solid var(--line); margin-top: 0; }
+  .footer-grid {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 28px var(--pad);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .foot-cell.center { text-align: center; }
+  .foot-cell.right { text-align: right; }
+  .mono-tight { color: var(--ink); }
+
+  /* THEME TOGGLE ----------------------------------------------- */
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    padding: 4px 8px;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color .15s, color .15s;
+  }
+  .theme-toggle:hover { border-color: var(--ink); color: var(--ink); }
+
+  /* RESPONSIVE -------------------------------------------------- */
+  @media (max-width: 920px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-meta { flex-direction: row; flex-wrap: wrap; gap: 24px; }
+    .hero-portrait { align-items: flex-start; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .work-row { grid-template-columns: 1fr; gap: 8px; }
+    .work-num { display: none; }
+    .writing-row { grid-template-columns: 70px 1fr 60px; gap: 12px; font-size: 12px; }
+    .writing-kind, .writing-arrow { display: none; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .foot-cell.center, .foot-cell.right { text-align: left; }
+    .nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </div>
+    <nav class="nav">
+      <a href="#about">about</a>
+      <a href="#work">work</a>
+      <a href="#writing">writing</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <aside class="hero-meta">
+        <div class="kv">
+          <span class="k">file</span>
+          <span class="v">~/nsorros/index.html</span>
+        </div>
+        <div class="kv">
+          <span class="k">last_modified</span>
+          <span class="v">2026-05-04</span>
+        </div>
+        <div class="kv">
+          <span class="k">status</span>
+          <span class="v"><span class="dot"></span>available_q3_2026</span>
+        </div>
+      </aside>
+
+      <div class="hero-main">
+        <div class="hero-eyebrow">
+          <span>NICHOLAS&nbsp;SORROS</span>
+          <span class="sep">·</span>
+          <span>ATHENS&nbsp;/&nbsp;LONDON</span>
+          <span class="sep">·</span>
+          <span>EST.&nbsp;2014</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line">I build AI systems</span>
+          <span class="line">that <em>actually ship</em>.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Head of Data &amp; AI. Currently CTO &amp; co-founder at a vertical AI
+          startup. Five years running an independent NLP consultancy before that.
+          I help founders and executives turn machine learning from a slide into
+          a system.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn" href="#contact">
+            <span>$&nbsp;</span>get_in_touch<span class="caret">_</span>
+          </a>
+          <a class="btn ghost" href="#work">cd&nbsp;./work</a>
+        </div>
+      </div>
+
+      <aside class="hero-portrait">
+        <div class="portrait-frame">
+          <div class="pixel-portrait" id="pixel-portrait" aria-label="Pixel portrait of Nick Sorros"></div>
+        </div>
+        <div class="portrait-caption">
+          <div>NS_PORTRAIT.PNG</div>
+          <div class="muted">16×16 · 1bpp</div>
+        </div>
+      </aside>
+    </div>
+
+    <pre class="hero-code" aria-hidden="true">&gt; whoami
+nsorros &mdash; Head of Data / AI &middot; CTO
+
+&gt; stack
+[Python, PyTorch, JAX, TypeScript, Rust*, Postgres, K8s]
+
+&gt; currently
+building a vertical AI company that knows its domain
+better than the customers it serves.</pre>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-marker">
+      <span class="marker-num">[01]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// about</span>
+    </div>
+    <div class="about-grid">
+      <div class="about-lead">
+        <p>
+          I&rsquo;ve spent over a decade making AI useful in places it had no
+          business working &mdash; regulated industries, niche workflows, teams
+          that&rsquo;d been burned by demos that never reached production.
+        </p>
+      </div>
+      <div class="about-body">
+        <p>
+          For the last five years I ran an independent NLP consultancy &mdash;
+          embedded with leadership teams from seed-stage startups to FTSE-listed
+          companies, governments, foundations and research institutions worldwide.
+          Now I&rsquo;m applying everything I learned from the outside, on the
+          inside &mdash; as CTO and co-founder of a vertical AI startup.
+        </p>
+        <p>
+          My work sits at the intersection of <em>research depth</em> and
+          <em>shipping discipline</em>. I read the papers, but I also write the
+          migrations.
+        </p>
+      </div>
+      <aside class="about-side">
+        <div class="kv-block">
+          <div class="kv"><span class="k">role</span><span class="v">CTO &middot; Co-founder</span></div>
+          <div class="kv"><span class="k">prior</span><span class="v">Independent &middot; 5y</span></div>
+          <div class="kv"><span class="k">domain</span><span class="v">Vertical AI</span></div>
+          <div class="kv"><span class="k">talks_to</span><span class="v">Founders, CXOs</span></div>
+          <div class="kv"><span class="k">writes</span><span class="v">Code &amp; essays</span></div>
+          <div class="kv"><span class="k">avoids</span><span class="v">Hype, hand-waving</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work">
+    <div class="section-marker">
+      <span class="marker-num">[02]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// selected_work</span>
+    </div>
+    <ul class="work-list">
+      <li class="work-row">
+        <div class="work-year">2025&mdash;</div>
+        <div class="work-main">
+          <div class="work-head">
+            <span class="work-co">Stealth &middot; Vertical AI</span>
+            <span class="work-role">CTO &amp; Co-founder</span>
+          </div>
+          <p class="work-note">Building from zero. Domain-specific models, evaluation harness, the boring infrastructure that makes the magic feel inevitable.</p>
+          <div class="work-tags">
+            <span class="tag">LLM</span>
+            <span class="tag">Eval</span>
+            <span class="tag">Platform</span>
+          </div>
+        </div>
+        <div class="work-num">01</div>
+      </li>
+
+      <li class="work-row">
+        <div class="work-year">2020&mdash;2025</div>
+        <div class="work-main">
+          <div class="work-head">
+            <span class="work-co">Mantis NLP</span>
+            <span class="work-role">Founder &amp; Director</span>
+          </div>
+          <p class="work-note">Embedded engagements with 30+ organisations &mdash; governments, foundations, research institutions and FTSE-listed companies. Took ML projects from boardroom slide to production system. Trained the teams that took it from there.</p>
+          <div class="work-tags">
+            <span class="tag">NLP</span>
+            <span class="tag">Strategy</span>
+            <span class="tag">ML Eng</span>
+            <span class="tag">Hiring</span>
+          </div>
+        </div>
+        <div class="work-num">02</div>
+      </li>
+
+      <li class="work-row">
+        <div class="work-year">2018&mdash;2020</div>
+        <div class="work-main">
+          <div class="work-head">
+            <span class="work-co">Wellcome Trust</span>
+            <span class="work-role">Senior Data Scientist &middot; Lead</span>
+          </div>
+          <p class="work-note">Set up and led the data science team. Applied NLP across millions of biomedical grants and policy documents. Open-source releases still in active use.</p>
+          <div class="work-tags">
+            <span class="tag">NLP</span>
+            <span class="tag">Research</span>
+            <span class="tag">OSS</span>
+          </div>
+        </div>
+        <div class="work-num">03</div>
+      </li>
+
+      <li class="work-row">
+        <div class="work-year">2014&mdash;2018</div>
+        <div class="work-main">
+          <div class="work-head">
+            <span class="work-co">Earlier &middot; London startups</span>
+            <span class="work-role">Data Scientist</span>
+          </div>
+          <p class="work-note">Conversocial, 6tribes, Seedrs. Language detection at scale, recommender systems, factuality checks on entrepreneur statements. Learned what real production load feels like.</p>
+          <div class="work-tags">
+            <span class="tag">NLP</span>
+            <span class="tag">RecSys</span>
+            <span class="tag">Production</span>
+          </div>
+        </div>
+        <div class="work-num">04</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- WRITING -->
+  <section class="writing" id="writing">
+    <div class="section-marker">
+      <span class="marker-num">[03]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// writing_&amp;_talks</span>
+    </div>
+    <ul class="writing-list">
+      <li class="writing-row"><a href="https://www.nsorros.com/The-end-of-repetitive-tasks-3365904c8bc780a8a105dda578b80b83" target="_blank" rel="noopener">
+        <span class="writing-date">2026.05</span>
+        <span class="writing-title">The end of repetitive tasks</span>
+        <span class="writing-kind">essay</span>
+        <span class="writing-read">5 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+      <li class="writing-row"><a href="https://www.nsorros.com/The-AI-disruption-matrix-3295904c8bc7809c9483c0ef292f49da" target="_blank" rel="noopener">
+        <span class="writing-date">2026.04</span>
+        <span class="writing-title">The AI disruption matrix</span>
+        <span class="writing-kind">essay</span>
+        <span class="writing-read">6 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+      <li class="writing-row"><a href="https://www.nsorros.com/Clawdbot-in-200-lines-of-code-30d5904c8bc780118ffcf3655570ac92" target="_blank" rel="noopener">
+        <span class="writing-date">2026.04</span>
+        <span class="writing-title">Clawdbot in 200 lines of code</span>
+        <span class="writing-kind">essay</span>
+        <span class="writing-read">8 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+      <li class="writing-row"><a href="https://www.nsorros.com/The-future-of-work-2cc5904c8bc780d6a72fd5fe7fd47567" target="_blank" rel="noopener">
+        <span class="writing-date">2026.03</span>
+        <span class="writing-title">The future of work</span>
+        <span class="writing-kind">essay</span>
+        <span class="writing-read">7 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+      <li class="writing-row"><a href="https://www.nsorros.com/Software-engineers-are-obsolete-or-are-they-2b85904c8bc7809c9e85fe1f4a52db75" target="_blank" rel="noopener">
+        <span class="writing-date">2026.02</span>
+        <span class="writing-title">Software engineers are obsolete, or are they?</span>
+        <span class="writing-kind">essay</span>
+        <span class="writing-read">9 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+      <li class="writing-row"><a href="https://www.nsorros.com/Have-you-read-the-AI-in-2027-analysis-2a95904c8bc78069bbb8e6763ba75ba7" target="_blank" rel="noopener">
+        <span class="writing-date">2026.02</span>
+        <span class="writing-title">Have you read the AI 2027 analysis?</span>
+        <span class="writing-kind">essay</span>
+        <span class="writing-read">6 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+      <li class="writing-row"><a href="https://www.nsorros.com/AgenticAI-is-everywhere-but-what-is-an-agent-in-the-first-place-20e5904c8bc7800ea1fccd6d5cce7c6f" target="_blank" rel="noopener">
+        <span class="writing-date">2025.11</span>
+        <span class="writing-title">AgenticAI is everywhere &mdash; but what is an agent?</span>
+        <span class="writing-kind">essay</span>
+        <span class="writing-read">8 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+      <li class="writing-row"><a href="https://www.nsorros.com/Rag-meets-Knowledge-bases-1b45904c8bc7801283e8fad1df859bf4" target="_blank" rel="noopener">
+        <span class="writing-date">2025.06</span>
+        <span class="writing-title">RAG meets knowledge bases</span>
+        <span class="writing-kind">talk</span>
+        <span class="writing-read">28 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+      <li class="writing-row"><a href="https://www.nsorros.com/A-tour-of-LLMs-1af5904c8bc780eeae86f4abcccf86c0" target="_blank" rel="noopener">
+        <span class="writing-date">2024.10</span>
+        <span class="writing-title">A tour of LLMs</span>
+        <span class="writing-kind">talk</span>
+        <span class="writing-read">35 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+      <li class="writing-row"><a href="https://www.nsorros.com/Interpretability-of-LLMs-1af5904c8bc78089b5b7ca9f58b8fdcf" target="_blank" rel="noopener">
+        <span class="writing-date">2024.06</span>
+        <span class="writing-title">Interpretability of LLMs</span>
+        <span class="writing-kind">talk</span>
+        <span class="writing-read">30 min</span>
+        <span class="writing-arrow">→</span>
+      </a></li>
+    </ul>
+    <div class="writing-more">
+      <a href="https://www.nsorros.com/" target="_blank" rel="noopener">→ archive of all writing &amp; talks</a>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="section-marker">
+      <span class="marker-num">[04]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// trusted_by</span>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-cell">WELLCOME</div>
+      <div class="trust-cell">GSMA</div>
+      <div class="trust-cell">OXFORD</div>
+      <div class="trust-cell">IMPERIAL</div>
+      <div class="trust-cell">DM·TECH</div>
+      <div class="trust-cell">CONVERSOCIAL</div>
+      <div class="trust-cell">SEEDRS</div>
+      <div class="trust-cell">6TRIBES</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-marker">
+      <span class="marker-num">[05]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// contact</span>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-lead">
+        <h2>Working with me</h2>
+        <p>
+          I take on a small number of advisory and fractional engagements per
+          year, alongside my CTO role &mdash; typically 10 sessions over 3
+          months, on-call support included. If you&rsquo;re a founder or
+          executive trying to make real AI decisions &mdash; not buy demos
+          &mdash; say hello.
+        </p>
+      </div>
+      <div class="contact-card">
+<pre class="contact-pre">&gt; ssh nick@nsorros.com
+
+  email   <a href="mailto:nick.sorros@proton.me">nick.sorros@proton.me</a>
+  call    <a href="https://meet.nsorros.com/" target="_blank" rel="noopener">meet.nsorros.com</a>
+  github  <a href="https://github.com/nsorros" target="_blank" rel="noopener">github.com/nsorros</a>
+  in      <a href="https://www.linkedin.com/in/nsorros/" target="_blank" rel="noopener">linkedin.com/in/nsorros</a>
+  x       <a href="https://twitter.com/nsorros" target="_blank" rel="noopener">@nsorros</a>
+
+  status  available q3 2026</pre>
+        <a class="btn block" href="mailto:nick.sorros@proton.me?subject=Advisory%20engagement">
+          <span>$&nbsp;</span>compose --to nick.sorros@proton.me<span class="caret">_</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">&copy; 2014&mdash;2026 &middot; Nicholas Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built in <span class="mono-tight">vim</span> &middot; deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Pixel portrait — 16×16, 0=transparent, 1=ink, 2=ink-2
+  (function() {
+    var PIXEL_MAP = [
+      "0000001111110000",
+      "0000011111111000",
+      "0000111111111100",
+      "0001111111111110",
+      "0001112222111110",
+      "0001122222221110",
+      "0001122222221110",
+      "0001122002200110",
+      "0001122002200110",
+      "0001122222221110",
+      "0001122211221110",
+      "0001112222211100",
+      "0011111111111110",
+      "0111111111111111",
+      "1111111111111111",
+      "1110011111100111"
+    ];
+    var host = document.getElementById('pixel-portrait');
+    if (!host) return;
+    var size = 176, cell = size / 16, frag = document.createDocumentFragment();
+    for (var y = 0; y < 16; y++) {
+      for (var x = 0; x < 16; x++) {
+        var v = PIXEL_MAP[y][x];
+        if (v === '0') continue;
+        var d = document.createElement('div');
+        d.style.left = (x * cell) + 'px';
+        d.style.top = (y * cell) + 'px';
+        d.style.width = cell + 'px';
+        d.style.height = cell + 'px';
+        d.style.background = v === '1' ? 'var(--ink)' : 'var(--ink-2)';
+        frag.appendChild(d);
+      }
+    }
+    host.appendChild(frag);
+  })();
+
+  // Theme toggle — respects prefers-color-scheme on first visit
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+
+  // Render the deploy date
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
