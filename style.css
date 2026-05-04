@@ -224,7 +224,7 @@
   }
   .pixel-portrait {
     position: relative;
-    width: 176px; height: 176px;
+    width: 180px; height: 180px;
     image-rendering: pixelated;
   }
   .pixel-portrait div { position: absolute; }
