@@ -329,6 +329,11 @@
     font-size: 18px; font-weight: 600;
     letter-spacing: -0.01em; color: var(--ink);
   }
+  a.work-co {
+    border-bottom: 1px solid transparent;
+    transition: border-color .15s;
+  }
+  a.work-co:hover { border-bottom-color: var(--ink); }
   .work-role {
     font-size: 12px; color: var(--muted);
     text-transform: uppercase; letter-spacing: 0.06em;
@@ -339,6 +344,12 @@
     margin-bottom: 12px;
     text-wrap: pretty;
   }
+  .work-note a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+    transition: border-color .15s;
+  }
+  .work-note a:hover { border-bottom-color: var(--ink); }
   .work-tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .tag {
     font-size: 10px;
@@ -401,6 +412,31 @@
   }
   .writing-more a:hover { border-bottom-color: var(--ink); }
 
+  .writing-subscribe {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .writing-subscribe-label {
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .writing-subscribe .subscribe-input {
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .writing-subscribe .btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
   /* TRUST ------------------------------------------------------- */
   .trust { padding-bottom: var(--section-gap); }
   .trust-grid {
@@ -427,58 +463,6 @@
     background: var(--paper);
   }
 
-  /* NEWSLETTER -------------------------------------------------- */
-  .newsletter-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-  }
-  .newsletter-lead h2 {
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    margin-bottom: 20px;
-    color: var(--ink);
-  }
-  .newsletter-lead p {
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--ink-2);
-    max-width: 44ch;
-    text-wrap: pretty;
-  }
-  .newsletter-meta {
-    margin-top: 14px;
-    font-size: 12px !important;
-    letter-spacing: 0.04em;
-    color: var(--muted) !important;
-  }
-  .newsletter-card {
-    border: 1px solid var(--ink);
-    background: var(--paper);
-    padding: 24px;
-  }
-  .newsletter-pre {
-    font-family: inherit;
-    font-size: 13px;
-    line-height: 1.8;
-    color: var(--ink-2);
-    white-space: pre;
-    margin-bottom: 20px;
-  }
-  .newsletter-pre a {
-    color: var(--ink);
-    border-bottom: 1px solid var(--line);
-    transition: border-color .15s;
-  }
-  .newsletter-pre a:hover { border-bottom-color: var(--ink); }
-  .subscribe-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
   .subscribe-input {
     font-family: inherit;
     font-size: 13px;
@@ -577,7 +561,6 @@
     .writing-row { grid-template-columns: 70px 1fr 60px; gap: 12px; font-size: 12px; }
     .writing-kind, .writing-arrow { display: none; }
     .trust-grid { grid-template-columns: repeat(2, 1fr); }
-    .newsletter-grid { grid-template-columns: 1fr; gap: 32px; }
     .contact-grid { grid-template-columns: 1fr; gap: 32px; }
     .footer-grid { grid-template-columns: 1fr; }
     .foot-cell.center, .foot-cell.right { text-align: left; }
