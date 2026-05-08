@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AgenticAI is everywhere — but what is an agent? — Nick Sorros</title>
+<meta name="description" content="AgenticAI is everywhere — but what is an agent? — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.08</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">AgenticAI is everywhere — but what is an agent?</h1>
+    </header>
+
+    <div class="prose">
+<p>Well the easiest way to answer this is to break down any task into two steps</p>
+<p>🤔 Plan which is about breaking down a task into sub tasks</p>
+<p>👷 Execute which is about completing those sub tasks</p>
+<p>Depending on who does each step we have the following cases</p>
+<p>💼 When planning and executing happens from a human, we call that work</p>
+<p>🧑‍💻 When planning happens from a human and executing from a computer, we call it software engineering which includes AI</p>
+<p>🕵️ When planning and executing happens from a computer, we call it an agent</p>
+<p>🥷 When planning happens from a computer and executing from a human, we call it a terminator</p>
+<p>The distinction between AgenticAI vs “other” AI is around who plans. Having humans plan is more deterministic and auditable so its more suitable for high reliability applications like customer support, medical diagnosis, financial assistants etc. Having computers plan is more adaptable i.e. can do more but can fail more so in tasks where failing is not a big issue this is a more suitable approach to unlock productivity gains.</p>
+<figure><img src="/image/attachment%3Afc235e3f-6110-4489-a8eb-5562e3709d1a%3AScreenshot_2025-06-06_at_5.42.29_PM.png?table=block&amp;id=20a5904c-8bc7-80af-962b-c5e1d515e854&amp;spaceId=e0ae7653-26a1-45d5-bc92-c37a596791d3&amp;width=660&amp;userId=&amp;cache=v2" alt=""></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/AgenticAI-is-everywhere-but-what-is-an-agent-in-the-first-place-20e5904c8bc7800ea1fccd6d5cce7c6f" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

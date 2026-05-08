@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>What makes companies fail — Nick Sorros</title>
+<meta name="description" content="What makes companies fail — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.02</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">What makes companies fail</h1>
+    </header>
+
+    <div class="prose">
+<p>We often talk about characteristics for building succesful companies which are usually derived from previous success stories. One issue with that is that it could exclude many companies that fit some or all of those characteristics but did not become as successful. I find the reverse question of what makes companies fail more interesting because it offers a more clear lists of things you need to do right in order to succeed. Looking at it that way I see three important ingredients of succesful companies</p>
+<p>🖱️ Product market fit</p>
+<p>🫂 Team</p>
+<p>🎖️ Execution</p>
+<p>The most important aspect of success or failure is whether you have a product that people want to use and pay for, ideally to the point where they would resist the idea of not having that product. This is the make or break of any company but one way you can demystify that process is by talking to your users as often as possible, you need to understand their process and their frustrations and build a tool and features that take those away. Failing to do so once or consistently afterwards is a sure recipe for failure.</p>
+<p>Then comes the people that consist the company including the founders relationship, to the senior team you build, all the way to the most junior employee. You need to build that puzzle carefully, not bring people early, not bring the wrong people, not keep the wrong people too long, reward the right people etc. Any mistake in the team creates a disproportionate slowdown by disrupting resources from things that will increase likelihood of success. Bring people in that you are happy to spend a lot of time with and scrutinise choices about roles and people with others.</p>
+<p>Assuming product and team are dialed in, the last piece is execution. Running a company is all about making decisions and you want to make more good than bad ones. You need clear responsibilities, the right hierarchy, a doing more and discussing less culture and staying focus instead of being disrupted by every new idea or market movement. Simplicity wins here, keep the 5 year strategy, year plan, quarter goals and weekly and daily tasks in the same page, and keep moving towards those quarter and year goals while revising often (every quarter) but no too often (every month).</p>
+<p>And while the above are the absolute minimum things to do right in my opinion, there are two more things that substantially increase the likelihood of success or decrease the failure rate, at the very least of early startups. These are</p>
+<p>🛍️ Market</p>
+<p>🕰️ Timing</p>
+<p>It is much easier to operate in a market that is growing than one that is stable or shrinking. This is because it is easier to capture new users than convince them to switch to your product or service. You need to ride the next trend 🌊 and that alone will take care much of the growth you are after. There are many ways to ensure you are in the right market, including having domain knowledge of industry trends, being in the right age group and experiencing the change, reading growth reports and analysis etc.</p>
+<p>A counter though to being in the right trend is to have the wrong timing and that is the last ingredient that will make the company a rocket ship 🚀 vs a modest success. You can be both too early and too late. Did you know that HuggingFace started as a chat app? The transformer architecture was there but LLMs were not, it was not too early. On the opposite, when a trend is too obvious it’s probably too late, probably late to start a meditation app even though mental health importance keeps rising.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/What-makes-companies-fail-2bf5904c8bc780b6a34bce9e11f662f5" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

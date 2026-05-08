@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Will AI make your role obsolete? — Nick Sorros</title>
+<meta name="description" content="Will AI make your role obsolete? — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.06</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">Will AI make your role obsolete?</h1>
+    </header>
+
+    <div class="prose">
+<p>Yes and No. It will definitely make the role you are doing today obsolete in the near future but is that making your role obsolete? Not really, not more than auto pilot in planes made pilots obsolete at least. And note that flying a plane is an extremely predictable task which most job roles are not. But continuing with the fly analogy, even though we do have AI systems that. can fly planes, that does not mean anyone can takeover and fly in an unexpected situation, you still need the expert at the very least for safety.</p>
+<p>Does this mean our roles will transition to becoming the safety fallback option? I don’t think so either, even though I do think that expertise will be required at the very least to manage AI failures, think of an AI system building a website or designing your house, do you know how to make changes in the code or CAD for any details AI got wrong? And even if you do, will you be confident with the result? So how will AI make your current role obsolete while keeping you in the driving seat?</p>
+<p>I think the best way to think about it is as auto-complete ✨ AI will start getting better at auto-completing your actions in whatever task you have or tool you use. As you have access to that universal auto complete, you will start spending more time in other tasks so your role will shift into something new which over time AI will be able to again speed up for you, so your role will be changing every few years as AI is catching up with new workflows we come up with.</p>
+<p>And while making predictions is to be avoided in AI, here is one that could help illustrate what I am saying. One way to measure AI progress is to quantify how much time it takes today for a human to do a task. A recent study, looking at software engineering tasks, found that AI can do tasks that take humans 15 minutes and that time is doubling every 6 months approximately. Let’s assume you plan your work in chunks of 30 minutes (pomodoro technique), in 2 years AI could squash those 30 minutes to 2 giving you a glimpse of the auto completion of that task and in 4 years it should take AI 10 seconds if we follow the doubling trend mentioned before. So here is the prediction 🔮 Every 2 years new AI features will be announced that automate important tasks you are doing at that time and every 4 your role will have completely transformed to something entirely new as these changes propagate to the products you use.</p>
+<figure><img src="/image/attachment%3A4a9e43cc-4756-42d5-8107-6567a92bbf88%3A5d2926d5-fa1e-4ecd-a062-bb550dac2708.png?table=block&amp;id=1d75904c-8bc7-807b-b512-d3c9272cfcc7&amp;spaceId=e0ae7653-26a1-45d5-bc92-c37a596791d3&amp;width=1410&amp;userId=&amp;cache=v2" alt=""></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Will-AI-make-your-role-obsolete-1d75904c8bc780339564dafe01f65c38" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

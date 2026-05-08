@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The end of repetitive tasks — Nick Sorros</title>
+<meta name="description" content="The end of repetitive tasks — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">The end of repetitive tasks</h1>
+    </header>
+
+    <div class="prose">
+<p>There are more conversations and fears about AI taking away our jobs, which I think is not going to happen, than the actual changes in the way we work and create value caused by AI automation. Up until now, most people learned some skills and then practiced them for the rest of their life, earning money out of the inherent demand that repetitive work had i.e. you needed many doctors to do the same diagnosis, many software engineers solving similar problems in different companies etc.</p>
+<p>This is not true anymore, at least partly. It is not hard to imagine a world where any task that has been done before is considered solved and passed over to AI with humans tackling the new and unexpected cases. This is a much bigger change than it might initially seem. We are already seeing this in the software world, where entire products and application spawn into existence out of weekend projects of technical literate people that had no time to make them happen before. The pieces of those projects are not new but putting them together required time or money that was not worth investing even a few weeks before. What does this means for people with the skills to create those products or for businesses that their revenues rely on it?</p>
+<p>To be clear, I am not saying that repetitive tasks or work will not happen. We still need to build the foundations before we innovate but the value of repetitive work will diminish. It also does not mean we will need fewer people or fewer jobs. It does mean though that certain type of experience will not carry the same weight moving on. Does it matter if you have built 1 or 10 software products? Does it matter if you have diagnosed 1 or 100 similar patients?</p>
+<p>The closest profession to have experienced that, from my biased viewpoint, is the same profession that is causing the disruption. In the 12+ years I have been in AI, the field has changed more times than I can remember, making old ways of doing things obsolete and requiring for brand new skills in an every increasing rhythm. This is both exciting and stressful in equal doses. I think we should start planning for a world where the way we work will be changing every year or month. It is true that AI will take all the jobs we current do but the risk is not moving on to the next thing and holding on to what we already know how to do.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/The-end-of-repetitive-tasks-3365904c8bc780a8a105dda578b80b83" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

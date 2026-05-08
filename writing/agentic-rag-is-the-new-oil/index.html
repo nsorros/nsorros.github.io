@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Agentic RAG is the new oil, don&#x27;t miss out! — Nick Sorros</title>
+<meta name="description" content="Agentic RAG is the new oil, don&#x27;t miss out! — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.09</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">Agentic RAG is the new oil, don&#x27;t miss out!</h1>
+    </header>
+
+    <div class="prose">
+<p>Jokes aside, I think RAG is becoming less relevant in some ways partly because of Agents but not only. When ChatGPT first launched, it had one big limitation: it didn’t know anything beyond its training data. That meant it lacked the context to be useful for most business-specific tasks. On top of that, you couldn’t feed it much custom data in a single prompt. This is where RAG (Retrieval-Augmented Generation) became useful—it allowed companies to pull in information from internal documents or systems and pass it to the model in real time, so it could give more relevant answers.</p>
+<p>Fast forward to today, and things look very different:</p>
+<ul><li>AI models have broader and more up-to-date knowledge.</li><li>You can feed in much more context (even entire documents).</li><li>Tools like ChatGPT are now connected to the internet and platforms like Google Drive.</li></ul>
+<p>At the same time, RAG systems have evolved—they’ve become more complex, often combining multiple steps like retrieval, summarization, filtering, and formatting. And that’s where AI agents come in.</p>
+<p>Agents simplify these architectures. Instead of building rigid, multi-step pipelines, we can now give the AI access to tools (like a document database or a search engine), define its goals, and let it figure out how to solve the problem. Think of this like a researcher who knows how to use a library and search tools to complete a task—you don’t need to tell them every single step.</p>
+<p>However, agents also come with a tradeoff: they can be unpredictable. For high-stakes business scenarios, we still need modular, testable workflows—and in some cases, RAG is still the best way to structure those.</p>
+<p>The bottom line? RAG isn’t going away, but it’s becoming just one tool in a broader toolbox. The real shift is toward agentic workflows—systems where AI can reason, plan, and use the right tools to get the job done. That’s what’s most exciting.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Agentic-RAG-is-the-new-oil-don-t-miss-out-2185904c8bc780758751f0849b944063" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

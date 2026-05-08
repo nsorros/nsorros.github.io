@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>My take on Reflection and o1 — Nick Sorros</title>
+<meta name="description" content="My take on Reflection and o1 — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2024.12</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">My take on Reflection and o1</h1>
+    </header>
+
+    <div class="prose">
+<p>Last week a controversial model was released called Reflection that supposedly both open and better than all frontier models 😮 The trick behind that model was supposed to be teaching the model to think more and reflect on its answers 🤔</p>
+<p>As it turned out, the Reflection model was too good to be true but the idea behind it, is legit 👌 In fact, there has been a series of models that have followed that direction starting from WizardLM 🧙 all the way to Orca 🐳. While not exactly the same, those approaches also teach the model to think by including the thought process of a teacher model in their training. The catch is that the resulting models do not surpass their teachers ‼️</p>
+<p>Reflecting on answers is not a new idea either, it is the backbone of most agentic workflows 🕵️ and it is also behind the new o1 model from OpenAI which seems to be what Reflection wanted to be and more ✨ So let’s talk about o1…</p>
+<p>o1 represents another leap from OpenAI, similar to GPT4 and towards what they have defined as Level 2 AGI which is the ability to problem solve 🧩 In some ways this is a small leap, GPT4 can already problem solve and when forced to think and reflect it does even better, so what is the novelty here?</p>
+<p>In short, scaling inference instead of training 📈 As the bitter lesson teaches us, there are only two methods that scale</p>
+<p>🧠 learning</p>
+<p>🔍 search</p>
+<p>Scaling to larger models trained with more data was all about scaling learning 🧠 o1 on the other hand is all about scaling inference, most likely through search 🔍 and a model that is better at guiding that search towards better solutions 🚀 We are at the beginning of understanding the impact this may have in industry applications but if developing software is a good proxy of the abilities that will be unlocked, AI went from being a poor coder to being better than most experienced programmers 🔥</p>
+<p>It will definitely have a big impact on agentic workflows and its an intermediate step before the next which is AI that can take actions on our behalf, essentially the assistant we are all waiting for 🍿</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/My-take-on-Reflection-and-o1-1af5904c8bc7806ca6e2cf046b4e4a40" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
