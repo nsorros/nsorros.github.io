@@ -27,7 +27,7 @@ open http://127.0.0.1:8765
 
 1. Hero — 3-col (meta / title+sub+CTAs / pixel portrait) + shell code block
 2. About — pull-quote + body + key/value side panel
-3. Selected work — 3 entries (Mantis NLP / Wellcome / earlier)
+3. Selected work — 3 entries (Mantis / Wellcome / earlier)
 4. Writing & Talks — 10 most recent, links to archive + inline Substack subscribe
 5. Trusted by — text-logo grid
 6. Contact — `> ssh` block + `$ compose` mailto button
