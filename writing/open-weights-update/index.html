@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Open weights update — Nick Sorros</title>
+<meta name="description" content="Open weights update — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Open weights update</h1>
+    </header>
+
+    <div class="prose">
+<p><strong>Target channel:</strong> LinkedIn
+<strong>Status:</strong> ready to schedule (post + image done)</p>
+<hr />
+<h2>Post body</h2>
+<p>Open weights update — not groundbreaking, but worth noting where we are.</p>
+<p>Two tiers exist today: <strong>frontier</strong> (Opus 4.7, GPT-5.5) and <strong>previous generation</strong> (Opus 4.6, Sonnet 4.6, GPT-5.4). Open weights — Kimi K2.6, DeepSeek V4 Pro, MiMo V2.5 Pro — now sit at the previous-generation level, at 3-5× lower cost.</p>
+<p>The gap used to be much wider. GPT-3.5 → GPT-4 was ~18 months. Open weights spent that whole window playing catch-up to the previous generation. Today the frontier moves every ~2 months — Opus 4.7 shipped 10 weeks after 4.6, GPT-5.5 seven weeks after 5.4 — and open weights are right behind it.</p>
+<p>Does the gap still matter? Yes, for some work. For coding and agentic tasks, where marginal frontier capability is load-bearing, no one ships on the previous generation. For extraction, summarization, and most non-agentic LLM work, previous-gen (open or cheaper closed) delivers fine — and the cost savings are real.</p>
+<p>[image: open-weights-vs-frontier-may-2026.png]</p>
+<hr />
+<h2>Benchmark table — final numbers</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Tier</th>
+<th style="text-align: right;">AA Intelligence</th>
+<th style="text-align: right;">SWE-Bench Verified</th>
+<th style="text-align: right;">$/M in</th>
+<th style="text-align: right;">$/M out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-5.5</td>
+<td>Frontier</td>
+<td style="text-align: right;"><strong>60</strong></td>
+<td style="text-align: right;"><strong>88.7%</strong></td>
+<td style="text-align: right;">$5.00</td>
+<td style="text-align: right;">$30.00</td>
+</tr>
+<tr>
+<td>Claude Opus 4.7</td>
+<td>Frontier</td>
+<td style="text-align: right;"><strong>57</strong></td>
+<td style="text-align: right;"><strong>87.6%</strong></td>
+<td style="text-align: right;">$15.00</td>
+<td style="text-align: right;">$75.00</td>
+</tr>
+<tr>
+<td>GPT-5.4</td>
+<td>Previous gen</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">~80%</td>
+<td style="text-align: right;">$2.50</td>
+<td style="text-align: right;">$15.00</td>
+</tr>
+<tr>
+<td>Claude Opus 4.6</td>
+<td>Previous gen</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">80.8%</td>
+<td style="text-align: right;">$5.00</td>
+<td style="text-align: right;">$25.00</td>
+</tr>
+<tr>
+<td>Claude Sonnet 4.6</td>
+<td>Previous gen</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">79.6%</td>
+<td style="text-align: right;">$3.00</td>
+<td style="text-align: right;">$15.00</td>
+</tr>
+<tr>
+<td><strong>Kimi K2.6</strong></td>
+<td><strong>Open / prev-gen</strong></td>
+<td style="text-align: right;"><strong>54</strong></td>
+<td style="text-align: right;"><strong>80.2%</strong></td>
+<td style="text-align: right;"><strong>$0.60</strong></td>
+<td style="text-align: right;"><strong>$2.50</strong></td>
+</tr>
+<tr>
+<td><strong>MiMo V2.5 Pro</strong></td>
+<td><strong>Open / prev-gen</strong></td>
+<td style="text-align: right;"><strong>54</strong></td>
+<td style="text-align: right;"><strong>78.9%</strong></td>
+<td style="text-align: right;"><strong>$1.00</strong></td>
+<td style="text-align: right;"><strong>$3.00</strong></td>
+</tr>
+<tr>
+<td><strong>DeepSeek V4 Pro</strong></td>
+<td><strong>Open / prev-gen</strong></td>
+<td style="text-align: right;"><strong>52</strong></td>
+<td style="text-align: right;"><strong>80.6%</strong></td>
+<td style="text-align: right;"><strong>$1.74</strong></td>
+<td style="text-align: right;"><strong>$5.00</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note on Opus 4.7:</strong> earlier draft cited 82.1% — that was CharXiv (visual reasoning), not SWE-Bench. Correct SWE-Bench Verified is <strong>87.6%</strong>.</p>
+<p><strong>Note on GPT-5.4:</strong> Intelligence Index of 57 ties Opus 4.7. GPT-5.4 → GPT-5.5 was a smaller jump than Opus 4.6 → 4.7. The "prev-gen" tag is by recency, not capability.</p>
+<p><strong>Note on Kimi K2.6 pricing:</strong> $0.60/$2.50 is Moonshot's official rate; resellers (OpenRouter, DeepInfra) price at $0.74–$0.95 / $3.50–$4.00.</p>
+<hr />
+<h2>Sources</h2>
+<ul>
+<li><a href="https://www.anthropic.com/news/claude-opus-4-7">Claude Opus 4.7 — Anthropic (Apr 16, 2026)</a></li>
+<li><a href="https://www.nxcode.io/resources/news/claude-sonnet-4-6-complete-guide-benchmarks-pricing-2026">Claude Sonnet 4.6 — NxCode benchmark guide</a></li>
+<li><a href="https://artificialanalysis.ai/models/claude-sonnet-4-6-adaptive">Sonnet 4.6 Artificial Analysis page</a></li>
+<li><a href="https://openai.com/index/introducing-gpt-5-5/">Introducing GPT-5.5 — OpenAI (Apr 23, 2026)</a></li>
+<li><a href="https://openai.com/index/introducing-gpt-5-4/">Introducing GPT-5.4 — OpenAI (Mar 5, 2026)</a></li>
+<li><a href="https://developers.openai.com/api/docs/pricing">GPT-5.4 pricing — OpenAI</a></li>
+<li><a href="https://www.marc0.dev/en/leaderboard">SWE-Bench Leaderboard May 2026</a></li>
+<li><a href="https://platform.claude.com/docs/en/about-claude/pricing">Claude Opus 4.6 pricing — Anthropic</a></li>
+<li><a href="https://artificialanalysis.ai/models/kimi-k2-6">Kimi K2.6 — Artificial Analysis</a></li>
+<li><a href="https://www.kimi.com/blog/kimi-k2-6">Kimi K2.6 tech blog — Moonshot</a></li>
+<li><a href="https://platform.kimi.ai/docs/pricing/chat">Kimi K2.6 official API pricing — kimi.ai</a></li>
+<li><a href="https://codersera.com/blog/deepseek-v4-pro-review-benchmarks-pricing-2026/">DeepSeek V4 Pro — Codersera</a></li>
+<li><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro">DeepSeek V4 Pro — Hugging Face</a></li>
+<li><a href="https://www.buildfastwithai.com/blogs/xiaomi-mimo-v2-5-pro-review-2026">MiMo V2.5 Pro — buildfastwithai review</a></li>
+<li><a href="https://artificialanalysis.ai/models/mimo-v2-5-pro">MiMo V2.5 Pro — Artificial Analysis</a></li>
+</ul>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

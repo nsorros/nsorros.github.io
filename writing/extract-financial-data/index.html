@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Extract financial data — Nick Sorros</title>
+<meta name="description" content="Extract financial data — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2024.11</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Extract financial data</h1>
+    </header>
+
+    <div class="prose">
+<p>💵 Extract financial data using LLMs</p>
+<p>Extracting structured information from documents written for humans is maybe the most established use case for text AI. Small models excel in this, so you can find many pretrained models to extract all kind of information as well as train your own quite efficiently 🚀</p>
+<p>That said -in the absence of a pretrained model you can still utilise LLMs to kick off the extraction before training a smaller model that will be more performant and cost-efficient 💰 Here are steps to get you started:</p>
+<p>📇 Convert documents into an LLM-friendly format like markdown instead of HTML or XML</p>
+<p>🚫 Filter out irrelevant pages with a simple zero shot classifier</p>
+<p>🤖 Use regular expressions and structured generation to output the format you want</p>
+<p>🔗 Here is an example for financial data extraction by .txt: <a href="https://blog.dottxt.co/extracting-financial-data.html">https://blog.dottxt.co/extracting-financial-data.html</a></p>
+<figure><img alt="image" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/e0ae7653-26a1-45d5-bc92-c37a596791d3/f98bb83e-3889-4f6b-89a0-250e7b2c1c2a/Screenshot_2024-11-11_at_12.07.22_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=ASIAZI2LB4663NYKRXGQ%2F20260507%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20260507T071744Z&amp;X-Amz-Expires=3600&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDiUCNlxicELrmgDWWQV317YpcSdUXfdLlrybmOTiDoRwIhAO7%2BiYpcSSNHjwVXnNHOA0bOCT61%2FKl3EEli2%2FKe5fOrKogECK%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgzMRnS5mL6FRvFfrWgq3AMELadZldZOGNHP%2BE94F%2Fz11oudL5zx9mZ9BszbQcei3B3aJHbS6bf5XcCmOIS4RfWbdyy%2FFMFs1rspYATpeJxzMiDwV55vw%2BXgZObMXj4HwjOA2wgnaFT%2FlriS79RnDeV5hKxnjFkBZfKtzAp0Acl5YHRLkRRRJN79AHgsn22QdLZ%2Bxr3lf372ADpOR05GUmIfjaohtKCsyGKTDseNzMEdG07nLfoh3DbEFjYva1u1QiP%2Fzr%2FkHPLuOFY6J69vyjzknWafZIQFd4S7Il6Mwi0OXeEUxMRDs922MxvjIDx6DOE7P1JjmDIN9VJaV%2B8OsrVilgQNWokzucwA6okfMDX0eocRhkayEu0NUavs2W7EMMhS3FiitJBHLq%2Foqpm6RW8OUh0BYlqUhya27sFyHLGVyRdpDL31PObWDQizI5Q7mDGrZD7XETY3FqyvtKDqMIWC%2FExaMMqy1j9DysbZTYLmX1n14%2B6ozdImBxneFa6N3U6XWQhoa1UHWA9mxqo1yfq73N2cArnyabB9JORQEDD9jif56fNJK0So2PNMBBZC0k9qia4X96b9jUn8nNNAhpLIXW41rAqzQgF5fdtoeP1nORf8PVSey7R3QkfOlZu2n5jNuxRqdCYwBz8X6jCK2%2FDPBjqkAccGVdqB3TOWOxcNDshL4aEThGxQCoOnNfBy95DLUPGm7rRwgKJBMN%2BnrOkAC%2FMY9M4bjveoeiP8%2BOk6ur8WS5uVcep8WDFFHxcTvXlXnig9OPQMenDMm9%2FWTJ2wclh11Dl3j9d2rYoRy5Z5U%2FrDk7XO1Ulv32Rxx1nETZbLImNKiqKfBgQtWdVBNNiMovYODLqKJlfILJaNUqaj1qIkWHYK3Dhh&amp;X-Amz-Signature=407e3c96e44724cd25e71f957d92bf82d0873094abe08fb49b968c76b19c4ca9&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject" /></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

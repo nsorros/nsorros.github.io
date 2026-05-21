@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Static embeddings — Nick Sorros</title>
+<meta name="description" content="Static embeddings — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.02</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Static embeddings</h1>
+    </header>
+
+    <div class="prose">
+<p>Do you need faster embeddings? Consider static embeddings 🏎️</p>
+<p>Embeddings power many use cases of modern AI since they transform natural language into a numeric representation. The better performing embeddings are calculated during runtime, as their semantic representation depends on the exact wording. However that also means that generating such embeddings is quite slow  🐌</p>
+<p>One way to speed them up is to precompute a representation on the word level that you can combine into a unified representation at runtime. This is not a new approach  - the first embeddings models like word2vec and glove followed that idea.  What <em>is</em> new though is that we can now train those representations using the latest techniques available, which boosts their performance significantly - while keeping the speed gains 🔥</p>
+<p>That gives a nice middle ground between dynamic and performant embedding models like bge and static keyword based approaches like bm25 that do not carry semantic information. </p>
+<p><a href="https://huggingface.co/blog/static-embeddings">https://huggingface.co/blog/static-embeddings</a></p>
+<figure><img alt="image" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/e0ae7653-26a1-45d5-bc92-c37a596791d3/b4d23cb8-c7d6-4ca0-ae6e-a935b25ace03/Screenshot_2025-01-28_at_10.10.55_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=ASIAZI2LB4662N3LXAXB%2F20260507%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20260507T071731Z&amp;X-Amz-Expires=3600&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIFFQe16Y5wb8XL9TBhMdQXFxO0eXm3oqN9v59EyLa%2FfzAiBWe2IUyekjKJvNF%2BIdzvNDq8kGVgKEhYS1BmUhKLq7eyqIBAiw%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDYzNzQyMzE4MzgwNSIMZ4Mi4yJRsSIFfw7HKtwD%2FEOh5T81ad%2FZh6tTqJwmueL%2BPJ6lmfPodO%2BsYjrQO6iijplxeEEJXjXg3lKv%2FZTq5bjvl205mFdQocu3i%2Bkav9LoGjqVFLG7ANgPQs0NZlgc6xJtYnWeJbs8sdTaw2v3JydsNcOKUdNqxzKvUHL9H7sJ%2FTF1yYUZN8AzpqlaP%2FPnQK5ao08Id1QmrMUX%2B%2BqaKX2CiTbBF3jw2onro4bOAZdwx171XW4qrVH7BESRQ7o0wWt%2FccM4LgkfKtbSiAHlR2yEbb0qQRUINK26qTzJds9cCRMcwM8GeaYTr%2FT0p5sGSgZ6n9KrGIgu2epyY6tFwcYEMcYsCWPc4MlhAVkTg6fLGA75bH5WHa1Jb036hnXDEOIxbQMj%2BbukDzuJlXuieKPpwo7Foxk%2F%2B8997Jbn2qhQ72hT4hL2NFztAEV5LR1Y0hS15lNFjrYxkyLPpbBFFJRgJiMXEgCpSKtmRKs72Jml9AfGZgi6k0Whx6aa1g8ktAtj8GlNMDt%2Ff%2F7GG7vDT0QdGD%2FVrA7tPqe3H4gweudK7wdFzP0jTFNdC%2Buy9RFeWAup1bAbU4GLmWZtrGnwbOt06Sep2zBzjMZJJMAbxvyaMLA5A%2FmsF5wxB2Fad6DE7YYqVTr6cFxi0Pkw%2BffwzwY6pgFqfZS%2F9p8ENlVN8OpfR50c9P5wxDyvoZkxb5fJpj%2FqUFobpVoI9%2BmY8%2FM8f%2Fr7y%2Bg035T7C5RKGMNgDp8fVDc9zhJCocbXDqjUfSS7xAJzLIrV1%2Bd%2FJ8bCdSNPd1Qsuh23P%2F%2FhYzT1Jiw7fKr3sQVgQk85tcIjCw4%2B8hy6Kw50zok4G4Kee9IO1n6A%2BZrY4sDUjEC6z%2BdX0aQm6bRGyrsw6t7oBpap&amp;X-Amz-Signature=cc9781baaaa879d9475519195804bd3480627e0348554304968f471a0c3a52fb&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject" /></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

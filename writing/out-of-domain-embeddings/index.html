@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Out-of-domain embeddings — Nick Sorros</title>
+<meta name="description" content="Out-of-domain embeddings — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2024.10</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Out-of-domain embeddings</h1>
+    </header>
+
+    <div class="prose">
+<p>📑 Do you need context aware embeddings?</p>
+<p>Embeddings are the semantic representations of our data that enable us to search over our data and retrieve the most relevant information. Using embeddings allow us to find similar data to our query even if there is no overlap of keywords, which is where traditional keyword based approach fail ❌</p>
+<p>On the other hand, keyword based approaches are quite good at creating context aware representations since they rely on statistics of your data such as how often certain keywords appear in your documents. And while embeddings can incorporate that information from the corpus they are trained, that might be different than your data ⚠️</p>
+<p>In that case, you are better of using a model that can produce context-aware embeddings. One way to achieve this is by  generating embeddings representing your domain, and feeding those into the model together with your query hThis results in a different, more context-aware representation for the same query, taking  c domontextual information about your domain into consideration  🚀</p>
+<p>Read more about this approach <a href="https://arxiv.org/pdf/2410.02525">https://arxiv.org/pdf/2410.02525</a></p>
+<figure><img alt="image" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/e0ae7653-26a1-45d5-bc92-c37a596791d3/1903d236-b913-4065-ad6c-868d38dad5ef/Screenshot_2024-10-23_at_11.43.11_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=ASIAZI2LB466QJ6U5CH6%2F20260507%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20260507T071748Z&amp;X-Amz-Expires=3600&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQCRkDCPR4IjqLZFGBYjrS7OK8ZvwxWxXvRgcoluL1HgnAIhAKgwoCEbjeaGJunfwFERGJeVtcMvl3%2FkBNLQTEQGxdJyKogECK%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1Igxvobx9JnSAW7Y%2FCwUq3AO1uDwYK%2BLxlliWmK9UF%2B6IjLzbwoJFlyg%2FbyonMcijbvk3Q3kUmMpKI2GI9aYH3UpSvOtjOyERQC5dvp1IRJl8C5kK%2BiT%2FGyDASNefsogA0GlinY6b7ku%2BOQ%2BG5bfwwuIVOjVaaSQ%2FMPNiR5My8qpqcA8ce8KBsqqhA2YvIQLJsKc8JbzhYE%2Fdf6MC9YydfiIhESXHNL0fpCeOYhK7JfhYNginJpw0m5IJAQ%2FoMwdlT9vTD7GLOL4%2BDIf3RFNLtdP2awMRb0kbJz5acsQ0646Fo4dLJZPRnHMi6Sr8PAmwZdIYRr4qcqB8VbjxeRaKC0KyGVg6t64m4XVbUbQL3584KdhVLlM%2BYVOl1z%2FQN8uD7%2FdqYrSWVZrMJicGdE5AAcnt1TxLds9DsoJgSyG2oRSmQ9KRmm0uZgYUWsIygSbF7Uy6I7pKqCHyC0NacRE1Eb8eePtL%2FwHnG9kv3qUBg8OcAYkx06BLyo4bZ4xk3DobgwFT6WsfO7HtOymPRJJo2bvgmL%2BP5%2Bn7U0H1ozZ%2B02zlRxPMDZVU967g48CL8t4Gixov4ZW4GbSvLvyvjxLGryZGXVRTSKCZMLxv3EwY4wdrfc9Ap4JBl93u%2Fsd6igTLij5hjDobWwL4g98fpDCX3%2FDPBjqkAcJnA5iVr%2BQJEtbEGY7LlgxGn%2BzdW82KwjqCvJYxiAoyzm5HtZElKMP1IGNAVE38X5pGrFvxvcWJwVu859Pn%2BQST8sjHOOdvwyl3pAtrLBcY9KXviynXMveRV9qBkp894E%2Fer%2BhY5NyA1o138H2b2hFBxbI%2BWYznnC1INiiTIzMWng4E7LoSH1xue1HBTiVcCA9YaUaXEJwRgqsVdZVwjW5ZFgp%2F&amp;X-Amz-Signature=67109dca257966ef437fb53e0e35ed3031a12400a54d9257e119fbb44277cf96&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject" /></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

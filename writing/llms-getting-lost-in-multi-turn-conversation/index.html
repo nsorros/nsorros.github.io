@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LLMs getting lost in multi-turn conversation — Nick Sorros</title>
+<meta name="description" content="LLMs getting lost in multi-turn conversation — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">LLMs getting lost in multi-turn conversation</h1>
+    </header>
+
+    <div class="prose">
+<p>Thoughts</p>
+<ul>
+<li>
+<p>Underspecified instructions seriously degrade the performance of AI</p>
+</li>
+<li>
+<p>This is a very common way of interacting with AI, especially for everyday users of the common interfaces like ChatGPT etc</p>
+</li>
+<li>
+<p>Current benchmarks do not capture this shortcoming</p>
+</li>
+<li>
+<p>Thinking models are not better at resolving this</p>
+</li>
+</ul>
+<p>based on <a href="https://www.notion.so/1f95904c8bc780bfa7aaeb57a3f46c81">LLMs get lost in long conversations</a> </p>
+<p>💬 Have you noticed AI getting repeatedly lost even after you clarify your question?</p>
+<p>I have 🙋‍♂️ As, it turns out this is quite common with current AI systems. It happens when our initial instructions are underspecified, think wanting to do research for a topic of interest and AI making the wrong assumptions to deliver it. Clarifying your intent later at a conversation is not as impactful at course correcting the AI as it would have been have you been more specific in the first place.</p>
+<p>This is partly due to the training of those models that have been trained to follow ever more complex instructions but not necessarily handle cases where crucial information is omitted. All models, including the thinking ones, seem to be affected by this so…</p>
+<p>💡Next time you use AI spend a bit more time when specifying your request and if AI is derailed, probably better to start a new conversation and be more specific there.</p>
+<figure><img alt="image" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/e0ae7653-26a1-45d5-bc92-c37a596791d3/96329518-1332-478a-bd85-583511c1adf6/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=ASIAZI2LB4663QOKXEY7%2F20260507%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20260507T071711Z&amp;X-Amz-Expires=3600&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJIMEYCIQDk2%2Bta5065r8%2B8mJAgZfifF2c17P7IK%2BGkSCrPC6VQ5gIhAMDZ61Mb0vfPUnhgno%2B3%2B%2B34YuJe%2F9vIRU8YNCP1qfvXKogECLD%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMNjM3NDIzMTgzODA1IgyvVzbXQAK6rlclYNUq3AP9TGIL%2FSQbp%2F8M1VGxt06askbAPM%2BKcAb%2FITw61ZYN3qjy6CdU6fiykDNkhc2SFOh47wvEOlIeuFRqd21EdwpEZCql%2FzcoCo5t4voC%2BqBnNUGe0Lgx1MpNNlxhCYWvZc6vHlfiBCZIrI1iY7T09nNG2et37kITOkDXaPxaNo8KrEMOMbuLyGb2wjkTkgMvYDnWbKG1ru6x8mKtjalehJ1QqQi32lOjjMN1L4hlSaDLQF4UubU2Gjqq8Qz15LsCjcwB5nfktcA7FUp3o7M2xesVHdhrwRE1X1vm3dCBI3CBmtmDOAnHMf5VFyvmvdJxozvqaAC5EAZFbwg8JYZ1kkwe%2F%2FHWU8WlYSTc2MhzDTJqSY5tdET4AQeTcVLeZGGJLlR6%2FH1%2BXKdy3t4Dnv1Y2Q1RmfatnX7Vj4yBAkIN1oFlZww%2BfMJbh8b3ae4sxAsvP21eUlVzKBUWfys3%2BRAW7kumiYLZBd%2BAEy4cy93Gs%2Bzvi%2Bhp7BJCq9HOd1Uu7ps4uI7UmcQLo8cOfuK8hDZJZLNv0fcLcxt23PNXgglsl%2BV5Axk1aJI0yiJS8okJMxdhwVpdji1o1eAYtOskB9rSELbQFNunM%2Ffb%2BlxJoH8VVnVQmpsSTuOGk6KydMFSGjCm8fDPBjqkAefW5Ij5O68qRFZv531XzuPJ7dRjH7ZYpcaHQrd6smmzaDboebK3ey7k63O6H4ZOwBSjHqiVcWKfZ9Bi9kP7z8pSCmnDX30UUyC0gk9A7o6bGMFd8Y4R2vgZTIjv7FOJROy73SCkUJMECDmjkmoXtHalTPn1n6%2FgkvaDRYj6nFAl5eqSfxLCuTeOxWdVUtGY9dp%2FVHtMaUEsnFWHEF76W5NBJFjK&amp;X-Amz-Signature=7b6b83982861cfb5ea9a7bd39060b2317c1f27ba0f711e7acb4660012c44cfb9&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject" /></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

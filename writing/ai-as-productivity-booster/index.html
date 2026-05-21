@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI as a productivity booster — Nick Sorros</title>
+<meta name="description" content="AI as a productivity booster — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.06</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">AI as a productivity booster</h1>
+    </header>
+
+    <div class="prose">
+<p><strong>Post</strong>: Nick Sorros shares insights on using AI to boost productivity in business operations.</p>
+<p>I can speak to the example from <a href="https://www.notion.so/2025904c8bc78069a076e8229caad278">AI Opportunity Workshop - Mantis x Learning as Leadership @May 29, 2025 </a> </p>
+<p><strong>Goal</strong>: Position Mantis as a thought leader in AI applications for productivity.</p>
+<p><strong>CTA: want to stay up to date with the latest AI insights? Subscribe to our Substack channel: (link)</strong></p>
+<p>🚀 <strong>Using AI to Supercharge Productivity in Human-Centered Workflows</strong> 🤖💼</p>
+<p>At Mantis, we recently explored how AI can enhance—not replace—the thoughtful work humans do in complex processes like performance review and market analysis. </p>
+<p>🧩 One key insight? Many teams still treat AI like a one-shot tool: throw everything into a single prompt, hoping AI magically generates the end result. But that often <em>adds</em> friction—errors, missed nuance, and cognitive overload from juggling too much raw output generated from the AI.</p>
+<p>Instead, we discussed how <strong>breaking the process down</strong> into manageable, logical steps—similar to the ones humans do to progress the task—lets AI shine ✨ Let’s take market analysis as an example:</p>
+<ul>
+<li>
+<p>Extract what clients are asking from transcripts 📝</p>
+</li>
+<li>
+<p>Find competitors that offer those services 🤺</p>
+</li>
+<li>
+<p>Use AI to compare offerings and find strength and weaknesses 💪</p>
+</li>
+<li>
+<p>Iterate and refine outputs in those steps by clarifying and diving deeper with AI 🤖</p>
+</li>
+</ul>
+<p>💫 The north star? A modular, agentic AI assistant that joins calls, scans the web, offers insights to improve market position, and becomes <em>interactive</em>—so teams can question, refine, and finalize the analsysis together.</p>
+<p>This shift allows AI to become a <strong>true collaborator</strong>, not just a content generator. Over time, you get reusable prompts and workflows that mirror your team’s instincts—just faster. We’re big believers that with the right approach, AI doesn’t replace expertise—it <strong>amplifies</strong> it.</p>
+<hr />
+<p>🧠 Want to stay up to date with the latest AI insights?</p>
+<p>👉 Subscribe to our Substack: <a href="https://thetoken.substack.com/">https://thetoken.substack.com/</a></p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

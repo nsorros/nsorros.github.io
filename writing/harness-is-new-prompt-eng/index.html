@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Harness engineering is the new prompt engineering — Nick Sorros</title>
+<meta name="description" content="Harness engineering is the new prompt engineering — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Harness engineering is the new prompt engineering</h1>
+    </header>
+
+    <div class="prose">
+<p><strong>Channel:</strong> LinkedIn
+<strong>Status:</strong> posted 2026-05-14
+<strong>Image:</strong> image.png (1200×630, on-brand: dot pattern, JetBrains Mono, terminal-prompt title, left-rule accents)</p>
+<hr />
+<h2>Post body (as posted)</h2>
+<p>Will harness engineering have the same fate as prompt engineering?</p>
+<p>Remember how prompt engineering was the talk of town a few years ago? As it turns out, models automated that role before it even took off. Today is all about harness engineering, is that here to stay or will disappear into thin air in a few model iterations?</p>
+<p>Lets decompose the harness and opine on what stays versus what is ephemeral</p>
+<p>🧠 Memory (what the AI remembers across a session) - saves context, retrieves it later, compacts long histories, recaps when needed. This is a long standing limitation of current models that harnesses are addressing. It is becoming slightly less relevant though as context size increases. That said memory or state will be important components of successful harnesses until the models crack that more natively.</p>
+<p>🎼 Orchestration (how the AI plans and retries) - forces the model through plan→execute→reflect cycles, search trees, multi-attempt with diverse strategies. This has already eroded as reasoning models are becoming better at driving their own trace and I think will continue to play a less important role moving on.</p>
+<p>⚒️ Skills and tools (what the AI knows how to do) - loads relevant skill packs, surfaces tool descriptions, picks which tool to use when. I think its safe to say that this will become less important over time as models become better using the right tools, the right way and remember how to do so for the future something that skills solve for right now.</p>
+<p>🤖 Sub-agents (when the AI delegates to copies of itself) - spawns child agents in isolated context, hands back results to the parent. Not sure if models are explicitly trained to use agents or are treated as another tool but I suspect that one way or another this will be absorbed by the ability of the model to break down problems and use proper isolation.</p>
+<p>🪝 Hooks, modes and permissions (the real harness) - runs pre, post finish hooks, planning vs doing and which apps, folders AI has access to. The genuine harness is about the restrictions you put into the model and how you use it.</p>
+<p>The agent loop that started thin, grew with harness engineering, will collapse back to thin. while not done: model(tools, memory). The harness that remains is all about restrictions and less so about turbocharging the model. This is not different from an actual harness…</p>
+<hr />
+<h2>Source notes</h2>
+<p>Working notes + research synthesis: see <code>notes.md</code> in this directory.
+Related: <code>content/essays/0000-harness-engineering/research.md</code> (the AHE / Meta-Harness / ACE deep dive that grounds this take).</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

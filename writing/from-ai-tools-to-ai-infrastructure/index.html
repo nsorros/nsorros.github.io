@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>From AI tools to AI infrastructure — Nick Sorros</title>
+<meta name="description" content="From AI tools to AI infrastructure — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.09</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">From AI tools to AI infrastructure</h1>
+    </header>
+
+    <div class="prose">
+<h2>From AI Tools to AI Infrastructure</h2>
+<p>✨ AI just crossed a massive threshold - and most companies haven't realized it yet.</p>
+<p>Remember when "AI integration" meant adding a chatbot to your website or using ChatGPT for content? Those days are officially over.</p>
+<p>We've moved from AI as a productivity add-on to AI as foundational infrastructure:</p>
+<p>⚖️ <strong>Then</strong>: AI was the nice-to-have layer on top of existing workflows
+📈 <strong>Now</strong>: AI is woven into CRMs predicting customer behavior, ERPs optimizing supply chains, and product development cycles</p>
+<p>🧬 <strong>Then</strong>: Teams used AI tools in isolation for specific tasks
+🎯 <strong>Now</strong>: AI powers decision-making systems that run automatically across entire organizations</p>
+<p>🔄 <strong>Then</strong>: AI required manual prompting and human interpretation
+🚀 <strong>Now</strong>: AI systems communicate with each other, triggering actions without human intervention</p>
+<p>Here's what we’re seeing in the field: Companies that treat AI as "just another tool" are falling behind those building AI-first infrastructure.</p>
+<p>The difference isn't just efficiency - it's competitive moats that become harder to replicate every day.</p>
+<p>The question isn't whether to integrate AI anymore. It's whether your integration strategy positions you as infrastructure or just another user.</p>
+<p>What's your experience been? Are you seeing AI become more foundational in your industry?</p>
+<p>Ready to assess where your organization stands? Check out our AI readiness scan: <a href="https://mantisnlp.com/ai-scan/">https://mantisnlp.com/ai-scan/</a></p>
+<h1>AI #DigitalTransformation #Infrastructure #BusinessStrategy #NLP</h1>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

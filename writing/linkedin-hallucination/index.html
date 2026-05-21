@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LinkedIn hallucination rates — Nick Sorros</title>
+<meta name="description" content="LinkedIn hallucination rates — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">LinkedIn hallucination rates</h1>
+    </header>
+
+    <div class="prose">
+<p><strong>Did OpenAI optimise for the wrong thing?</strong> 🤔</p>
+<p>A lot of people have noticed ChatGPT not performing according to expectations lately. Simple chat queries like "should I take my car to the car wash that is a 5 minute walk away" get a confident "no, it's a waste". More valuable tasks like financial modelling or reviewing legal contracts come back with subtle errors delivered in the same confident tone. Meanwhile Anthropic's revenues are skyrocketing, even though the latest model benchmarks of each lab do not look that different.</p>
+<p>What's going on?</p>
+<p>Hard to say for sure, but one difference in the benchmarks is worth highlighting: how often each model hallucinates, or attempts an answer when it isn't sure.</p>
+<p>📊 <strong>The numbers</strong></p>
+<p>On AA-Omniscience, a benchmark that penalises hallucinations and rewards abstention, Claude Opus 4.7 hallucinates 36% of the time. GPT-5.5 hallucinates 86%. On SimpleQA the gap is similarly large. Claude is also better calibrated, and even with extended reasoning, GPT-5.5 delivers wrong answers in the same confident tone as right ones. Anthropic models do this much less.</p>
+<p>It is as if the two companies are optimising for different objectives:
+- OpenAI: get the right answer
+- Anthropic: do not be wrong, abstain when uncertain</p>
+<p>On the surface those look similar, and they produce similar-looking benchmark results. But in real world tasks like coding, financial modelling or law, one wrong reasoning step compounds into a much worse outcome later on.</p>
+<p>Which leaves me wondering. Is the Claude Code frenzy a story less about Anthropic going after enterprise and OpenAI after consumers, and more about Anthropic having made a better decision — to build a reliable, calibrated model that turns out to perform better on the tasks that actually matter?</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

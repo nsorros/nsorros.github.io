@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Docling — Nick Sorros</title>
+<meta name="description" content="Docling — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2024.11</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Docling</h1>
+    </header>
+
+    <div class="prose">
+<p>📚 Fast and accurate tool to parse technical PDF documents</p>
+<p>Parsing documents written for humans - such as scientific papers, policy documents and patents - is a well established use case of AI aiming to make the information inside those documents structured and usable. Up until now yοu could use either a specialised model that worked only in some cases or an LLM that was more general but failed often depending on the document format.</p>
+<p>It seems that we may have the best of both worlds with Docling 🦆: a new tool, based on a layout- and table-aware architecture, but scaled to a large enough dataset to be more accurate and fast 🔥 It is also open source and easy to use with a few lines of code. Definitely worth trying it as a component of your RAG system or information extraction pipeline. </p>
+<p>🔗  Read more in the technical report <a href="https://arxiv.org/pdf/2408.09869">https://arxiv.org/pdf/2408.09869</a></p>
+<figure><img alt="image" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/e0ae7653-26a1-45d5-bc92-c37a596791d3/9e3bc4cf-572c-4621-b088-4a75322a461f/Screenshot_2024-11-18_at_11.23.04_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=ASIAZI2LB466Y7ZUFAG2%2F20260507%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20260507T071743Z&amp;X-Amz-Expires=3600&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIGqlXrCi5KfX8x0g4WzQJG3X5ULWNY5aQlGbODFA4x9%2BAiAsI3IREFYmn1vcrngo9Y346N%2BEt4Kv00V%2B7NBSmThP4CqIBAiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDYzNzQyMzE4MzgwNSIMt7ihVSaA0iliY3AoKtwDUqrPE68FJ%2BrtHoulmlPvi0xA06Z3e0X71omJS7Kl%2FhP3gX7Ip46NGlMsKO9IBlfhTzHsB%2Fn7PsQ5nYv2IMJhXdy3yUjLIYXfYQSTc9G%2FE%2FuHpYyYN59%2F%2Flza0SThohaQHtBNJSaLhmd%2BUTS%2F6mGRC3IjTRqJonjDA8h8WkyvDKskluqTGg610BSDygsZl5ZsXXsCYsuNCKgooS0k%2FLGojOQFTgW5hFuuJTpSe9B41W5aYfqtD5RNGrundsVejrYWnLBii26ySaOcyo19IoE6cSm1eVPzUCnjZNWERb2al0Uh5IWA%2F1qtE8je67Nrk7G7bJubGfHyzTKIWPa1AGmmxho5QSiFEJcMaS6S3FghIvq4JkNsKEqE20R3rU1655IRlouLaFylmBElENzxQ5fewjaZ8%2FHUmm2QBLAo3sW5RX9PMwIyQogiVSOgOoAADoLGuEjgWqQjCZeHFU3Atmi7Rpjmqial5I2JNkNZJ1I%2BneYr9jjiHb0aVK5X6BzZqAt8c1y3jc3uSXurbktHF1bm1Hje7IkdZh0ZapGQyWkVtMr6%2BNudUng5YrBFw8xTsVVE4OBS5xbUK9FU5WI1ww8QybnvUb8KuyKKnOfGZTPnVRCkE3YEKdqn4beKoHgwtNzwzwY6pgHElRX6dQaFha37H0jrPs7i4puNGdECZU3YI2BYphNqkHrxSKFjfHQ9m3tx3BFX0OsGrWIbsSz%2FL4vNxNYokGNdq%2FD1y03Xxct2RB3SNdFSkl8xsBLw6ZbuGk7QWhglfpevdj%2B3iBXG3mf4Cmc72a2ciuqmU0uGL2seXsOMHLCJM6b%2Ft%2B6ezSFTVJ2FYLw7oTmWBxDAiguyuB62W3y51UBPxz4jOh%2FF&amp;X-Amz-Signature=9b38bc47851b3565ed3e10bac4c4773d1f62db9d2118010354113bff3defdb97&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject" /></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

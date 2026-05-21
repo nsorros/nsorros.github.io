@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LLM world model — Nick Sorros</title>
+<meta name="description" content="LLM world model — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.01</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">LLM world model</h1>
+    </header>
+
+    <div class="prose">
+<p>🧠 Does AI understand our world?</p>
+<p>One hypothesis is that the innocent task of predicting the next word, which is what AI is trained on, requires the model to build a world model in order to be able to make sensible predictions of which words come next. In other words, it needs to understand how our world works to give coherent continuations that follow common sense, physics etc. But is AI really building an ever more accurate world model or just fooling us in thinking it does? 🤔</p>
+<p>One way to examine this question is on whether AI can reconstruct a more restricted world model like a map 🗺️, using the equivalent of next word prediction, which would be predicting a valid route from point A to point B. We can easily train a model to do that from taxi rides, so does that create an accurate representation of a given map?</p>
+<p>The short answer is no ❌ And while this is not conclusive evidence that AI is not understanding the world, it’s worth keeping in mind that it may not in applications where that matters like health 🩺, law ⚖️ and any other high risk application ‼️ You don’t want AI to drive you off a cliff on the way home, because of a minor misunderstanding of its surroundings even if most of the time it seems to work…</p>
+<p>🔗 Read more <a href="https://arxiv.org/pdf/2406.03689">https://arxiv.org/pdf/2406.03689</a></p>
+<figure><img alt="image" src="https://prod-files-secure.s3.us-west-2.amazonaws.com/e0ae7653-26a1-45d5-bc92-c37a596791d3/c06dca84-32bc-48a1-a87e-7e87d916ae44/Screenshot_2025-01-21_at_9.47.18_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=ASIAZI2LB466TQY7K7SE%2F20260507%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20260507T071733Z&amp;X-Amz-Expires=3600&amp;X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIFaFlrccj3VeBbEUp%2BvGLa0b%2FDjXcoMZF2O%2BB%2BpzH3jIAiB6UfDFhiYpqLj7%2FrNrp%2Fqo1rpBRptFL0nFzH9dA86aLSqIBAiv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDYzNzQyMzE4MzgwNSIMsfxx1skPszKJlwR5KtwDvxwYmA0w%2BLI8zE8dRkC9p001avww%2Bo7cCOILUt%2FwqeTfi9DrAKM2ATQz0HtWj%2Bu%2FfhS9%2F1mwY2b0qFiGnIuHr9j3d85v%2BM61A5XwHitN1BZGxV0QMQlGO%2BT30JOJXGXSdVBI4g%2F7UpucnhFH99WyJ9WpvzK9SNcSNA0DFIwwkC2ed2DPEjDgJfWlflDZiZavU0yUbZfWtHoMv%2Bm6UQUXQu7QJ9bAkST0ZrgxLFem0zGy4j5qqv2C6O%2BcGS%2BGHgX8rPVS%2BD2zub7eiPduVuylYSDbf8epNLOu%2Bb2ffW6ct7S%2F5pQ%2B1%2FyZsmRU4nQFANmYHM4LU2Z4p9wJdYyzMAPGiaJKuzt%2FADenkQWvDhHsrD4sbQBdTCSbKiEETOXpeKk0Vw0jb88sUvszjXoUVd3aF61cPl5DenDzRQ%2FkBLfr7OtqfjRgz16pW3FPoPrEJDIpHw7QqSeuc7VFU45g4akUdinnuSJubjrKhcDYdPztMN6B%2FsATRinB3lxk9BiL8s3EiEL6%2BmOaxRmkVJhihQBxMNZ6JEfEi%2B53oEOy74rFeD9YL9DD3syxibnHRQEaoUDDdoe0%2FzL6N%2FiRpd0MlgsOanNM4Esx2kP8vKFu7GliNmmNqJ%2FrhjTtaa%2FFQNgw%2FtrwzwY6pgH8jYMnA5Zom8K6mGYnDIjroAqt9%2FR9Opnc66LPj6QTkUxzauZDbhKO2%2FzbnSx%2FzgHDg%2Bx%2FtFp8kbF%2BkunldGKEo%2BMFS2gD1r%2Bj3%2Bvy7je8OUuADvLZ2dGhginoX%2BDTqA89rsQa7OFN6zg182W2HqmV2mp4yhlqs%2BjMSuSl2e0F31YyTH9Fn0qrOuMZO0qrfAvymFlzDRyq1mBSL77vsq4xo7vbUYLE&amp;X-Amz-Signature=ee60bb973cccecb5b977da044abdd465b28b4b283162abff48dbad80f95e0834&amp;X-Amz-SignedHeaders=host&amp;x-amz-checksum-mode=ENABLED&amp;x-id=GetObject" /></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
