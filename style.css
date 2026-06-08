@@ -476,6 +476,29 @@
   .subscribe-input:focus { border-color: var(--ink); }
   .subscribe-input::placeholder { color: var(--muted); }
 
+  /* TESTIMONIALS ------------------------------------------------ */
+  .testimonials { padding-bottom: var(--section-gap); }
+  .t-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+  .t-cell {
+    display: flex; flex-direction: column; gap: 20px;
+    padding: 28px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .t-quote {
+    font-size: 14px; line-height: 1.65;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+  .t-attr { margin-top: auto; }
+  .t-name { display: block; font-size: 13px; font-weight: 600; color: var(--ink); }
+  .t-role { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+
   /* CONTACT ----------------------------------------------------- */
   .contact { padding-bottom: var(--section-gap); }
   .contact-grid {
@@ -561,6 +584,7 @@
     .writing-row { grid-template-columns: 70px 1fr 60px; gap: 12px; font-size: 12px; }
     .writing-kind, .writing-arrow { display: none; }
     .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .t-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; gap: 32px; }
     .footer-grid { grid-template-columns: 1fr; }
     .foot-cell.center, .foot-cell.right { text-align: left; }
