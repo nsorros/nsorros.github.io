@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Building the factory that builds software — Nick Sorros</title>
+<meta name="description" content="Building the factory that builds software — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.06</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">Building the factory that builds software</h1>
+    </header>
+
+    <div class="prose">
+<p>A lot of organisations are quietly transitioning from using AI-assisted coding to building the factory that produces the software. <a href="https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents">Stripe</a> merges over 1,300 pull requests a week that contain no human-written code. <a href="https://engineering.atspotify.com/2025/11/spotifys-background-coding-agent-part-1">Spotify's</a> background agents merge 650+ PRs a month into production. Around half of <a href="https://builders.ramp.com/post/why-we-built-our-background-agent">Ramp's</a> merged PRs start from their in-house agent, and a three-person team at <a href="https://openai.com/index/harness-engineering/">OpenAI</a> shipped a million-line product by driving agents instead of typing. So how is the factory set up in these organisations?</p>
+
+<h2>It is not a multi-agent system</h2>
+<p>When people picture the factory, they picture fleets of specialised agents &mdash; a planner, a few doers, a reviewer, a tester &mdash; passing work to each other like stations on an assembly line. In fact the opposite is happening, for the precise reason that Cognition, the company behind Devin, articulated in <a href="https://cognition.ai/blog/dont-build-multi-agents">Don't Build Multi-Agents</a>. In short, every action an agent takes carries implicit decisions, and parallel agents that cannot see each other's full traces make conflicting decisions that compound into incoherent work.</p>
+<p>Instead the factory consists of many independent but powerful agents. Stripe's minions are one agent loop wrapped in "blueprints" &mdash; state machines that interleave deterministic steps (lint, push, run the right slice of a 3M-test battery) with agentic ones (implement, fix CI). Spotify's Honk is one deliberately minimal Claude Code agent whose git cannot even push. The only genuine second agent anyone runs in production is OpenAI's <a href="https://alignment.openai.com/auto-review/">Auto-review</a>, and it is a safety reviewer gating sandbox escalations, not a quality reviewer. The factory is one agent and a lot of plumbing.</p>
+
+<h2>The agent gets the environment you would give an engineer</h2>
+<p>If the factory is one agent, the first practical question is where it works. The convergent answer: a sandboxed environment that looks remarkably like what you would hand a new engineer on day one &mdash; the repo, a shell, the tests, and access to the tools your engineers get. Stripe spins up pre-warmed devboxes in about ten seconds, identical to the ones human engineers use, cut off from production and the internet. Ramp restores Modal sandboxes from repo snapshots rebuilt every thirty minutes, so the agent starts near-instantly on code that is at most half an hour stale, with the same telemetry &mdash; Sentry, Datadog, feature flags &mdash; its engineers check.</p>
+<p>This environment is not a new idea. Google's engineers have worked in the cloud for over a decade. By 2023 around 80% of development on its main codebase happened in Cider, its web IDE, on top of a file system that streams the monorepo on demand. GitHub Codespaces made the dev environment a URL back in 2020, and plenty of startups run on that setup today. As it turns out, this way of working is an even better fit for agents than engineers, since a repo, a shell and a test runner is all an agent needs, it spins up a fresh one per task, and it does not keep your hours.</p>
+
+<h2>A hybrid, not a handover</h2>
+<p>The trending setup, on the other hand, is not "agents slowly replacing developers" &mdash; it is a hybrid. A background fleet independently completes the delegable work, while every developer keeps an agentic coding tool like Claude Code or Cursor in hand for the rest. This has two properties I like. First, you are permanently testing the frontier: when an autonomous run fails, the task degrades gracefully into an assisted one rather than a rewrite, and when the models improve, tasks graduate the other way. Second, it is assistive to the developer's flow rather than disruptive &mdash; the developer and the agent work the same way, in the same environment, against the same verification, so nothing about the codebase has to be split into "human code" and "agent code".</p>
+
+<h2>Which tasks go to the factory</h2>
+<p>Not everything belongs on the conveyor belt yet, so it's natural to ask which tasks you send towards the autonomous agents versus your developer team. The tasks organisations actually delegate are well-scoped and mechanically verifiable: migrations, dependency upgrades, bug fixes, cleanup. Spotify's Honk is openly a migration factory &mdash; its dataset migration shipped 240 automated PRs that the company estimates saved ten engineering weeks. Stripe's minion PRs skew towards config changes, upgrades and small refactors. OpenAI runs recurring cleanup agents whose refactoring PRs are small enough to review in under a minute.</p>
+<p>These task classes serve as an excellent testing ground as you keep exploring a boundary that keeps moving. Anthropic's <a href="https://www.anthropic.com/institute/recursive-self-improvement">When AI Builds Itself</a> charts exactly this: success on well-defined tasks saturated first, while success on open-ended coding tasks climbed to 76% by May 2026 &mdash; which is how 80% of the code merged at Anthropic ends up written by Claude.</p>
+<figure><img alt="Claude Code session success rate by task difficulty — trivial, routine, substantial and open-ended — across model generations. Source: Anthropic, When AI Builds Itself" src="anthropic-task-progress.png" /></figure>
+<p>The practical rule: delegate where a pass/fail check exists, keep judgment work hybrid, and re-draw the line every quarter, because the open-ended curve is the one moving.</p>
+
+<h2>Keeping the agent on task</h2>
+<p>The main steering mechanism remains unglamorous: a CLAUDE.md or AGENTS.md file plus skills. It is a compact, inspectable way to inject specific instructions, org policies and practices, and a working memory into every run. The pattern that works is now well documented &mdash; OpenAI tried the one big AGENTS.md and reports it failed in predictable ways; what survives is a ~100-line table of contents pointing into real docs, kept fresh mechanically. GitHub's <a href="https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/">analysis of 2,500+ repos</a> lands on the same size, and finds "never commit secrets" the most common instruction in the wild.</p>
+<p>All of this is scaffolding the labs are actively trying to absorb into the models &mdash; better memory, better context management, agents choosing what they need. Until they do, these files and loops are the interface to your factory.</p>
+
+<h2>So what do you do?</h2>
+<p>If you are an engineering leader, the factory reframes your questions. Not "should we use AI coding" &mdash; that ship has sailed &mdash; but three concrete ones. What environment do agents get? Give them what you would give an engineer, sandboxed and scoped. How do you keep them on task? An AGENTS.md worth maintaining, a verification loop the agent cannot talk its way around, and hard caps on iteration. What goes to the agent versus the human? Start with migrations, upgrades and bug fixes, run everything else hybrid, and move the line as the frontier moves.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date"></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
