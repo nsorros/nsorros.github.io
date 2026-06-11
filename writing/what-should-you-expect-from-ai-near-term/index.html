@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>What should you expect from AI in the near term? — Nick Sorros</title>
+<meta name="description" content="What should you expect from AI in the near term? — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">What should you expect from AI in the near term?</h1>
+    </header>
+
+    <div class="prose">
+<figure><img src="/image/attachment%3Aeb21b4d9-4e96-4693-b5b6-516fb790fa7f%3Ablog.jpg?table=block&amp;id=1c45904c-8bc7-802e-b31a-ce7177758ce3&amp;spaceId=e0ae7653-26a1-45d5-bc92-c37a596791d3&amp;width=1410&amp;userId=&amp;cache=v2" alt=""></figure>
+<p>Many people I speak to either underestimate AI by highlighting all the limitations the technology has right now, or overestimate it by assuming it will be able to do their job in a few years or months. Planning for the future with either of these assumptions is problematic — on the one hand because you are dismissing the opportunities lying ahead, and on the other because you are too afraid to leverage them. So let me try to paint a clearer picture of what we should be expecting from AI in the near term.</p>
+<p>When OpenAI released GPT-3 back in 2020, it was a super impressive model because it was the first time an AI model could write human-like text, but it was nowhere near the level of ChatGPT, which appeared two years later. The text was incoherent for long generations and it wasn&#x27;t following instructions particularly well. I remember thinking at the time, &quot;This is an excellent model for synthetic data or prototypes but not for anything else.&quot; Little did I, or anyone else for that matter, know at the time that the model was much better than what it seemed on the surface — all that was needed was a little more training to follow instructions and give helpful responses. This gave us ChatGPT.</p>
+<p>I think we often fall into the same trap with AI. We tend to think that current limitations are insurmountable, the most recent example being problem solving (reasoning), which until recently was considered something that required some new breakthrough. Instead, as DeepSeek demonstrated better than anyone else, it only required a small amount of problem-solving data. So it is not a stretch to expect AI to be able to use computer interfaces soon, like your phone and computer — something it is not particularly good at right now.</p>
+<p>In fact, I feel that in the same way that following instructions was instrumental to surfacing the power behind GPT-3, using computer interfaces is key to bringing to life many of the benefits of AI to everyday users. Another important addition coming soon is integrating with the products you use. Early examples of that are the Copilot series, Apple Intelligence, but also Notion AI among others. Just today, OpenAI announced connectors to common apps such as Google Drive. This is transformational. Imagine asking the AI to write a case study based on all the work you have done for a client or ask a question about a conversation that is transcribed from a previous meeting.</p>
+<p>Probably the most intuitive way to think of future AI abilities is to quantify them according to the time it takes a human to do the same task. Assuming harder or more valuable tasks take more time, we would want AI to be able to tackle increasingly more time-consuming tasks to free up our time, right? Software engineering is proving an interesting testbed for what&#x27;s to come in many other areas of work, and there it turns out AI is already able to do tasks that take humans 15 minutes. Even more interestingly, this seems to double twice a year, so we could well be approaching tasks that would take engineers 1 hour by the end of the year.</p>
+<p>There is a big difference between tasks that take minutes versus hours. The former might not even be something you consider a task; it is most likely more of a distraction from your main tasks, which are the latter. It is worth noting that as AI is picking up tasks that used to take more time, new tasks will emerge, so in my opinion, AI will transform jobs, not take them. Similarly, businesses will be transformed and would need to be planning with the productivity gains AI can offer to their workforce in order to remain competitive.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/What-should-you-expect-from-AI-in-the-near-term-1c45904c8bc7806691d0f14f013a74fb" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

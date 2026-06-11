@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Back to trillion param models — Nick Sorros</title>
+<meta name="description" content="Back to trillion param models — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.12</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Back to trillion param models</h1>
+    </header>
+
+    <div class="prose">
+<p>Five years ago, Google published the first trillion param model called Switch Transformer. Since then, many models have been published, the majority of which smaller yet better. We are now back at the trillion range, what took us so long?</p>
+<p>It turns out, those models needed much more data to justify the size. How much more? About 100x more. That generation of models like GPT3 and T5 was trained with billions of tokens instead of trillions. So what happened was that we spent the last five years playing catchup on the data size while models were shrinking instead of getting larger. This is no longer the case, last week Alibaba released Qwen 3 Max, a trillion model trained on an astonishing 36 trillion tokens.</p>
+<p>This is not the first trillion model since Switch Transformer. GPT4/5, Claude, Gemini and Grok are also most likely at that range. It is the first time though, a provider openly shares this information at that scale. Does this mean models will start getting bigger again?</p>
+<p>They are but at a much slower pace for a two main reasons</p>
+<p>1️⃣ We have almost run out of data. Web, Videos, Books, Audio sum up to approx 100T tokens, exact amount depending on the source.</p>
+<p>2️⃣ Instead of scaling model size and data, we are now into scaling thinking time (inference)</p>
+<p>As a side note, and a potential third reason, the scale we operate now is not that different than neither the size of the human brain with its 100T “params” nor the data it receives yearly which is on the 1000T scale. We are only 1 or 2 orders of magnitude away.</p>
+<p>To conclude, I think the trillion param size is a nice sweet spot at the moment that will grow much slower so in the next few years we might see hardware catching up and being able to run these models into our laptops, mobiles and edge devices 🚀</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Back-to-trillion-param-models-27d5904c8bc780e5a0dbd74697856011" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
