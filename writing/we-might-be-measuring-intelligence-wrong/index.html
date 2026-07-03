@@ -48,8 +48,13 @@
     </header>
 
     <div class="prose">
-<p>Benchmarks reward pass@k, right at least once in k tries. But agents act once, so what matters is pass&and;k, right every time.</p>
-<p>Capability has raced ahead; reliability is climbing behind it — which is why the impressive monthly numbers don't always translate to impressive agentic performance.</p>
+<p>One of the most common ways we measure how good an AI model is, is a metric called <strong>pass@k</strong>. The idea is simple: you let the model produce k answers to a problem, and you count it as a success if <em>at least one</em> of them is correct. It sits behind a lot of the benchmark numbers you see quoted.</p>
+<p>And it does tell us something real: that the model is <em>capable</em> of generating the correct answer. Somewhere in those k attempts, the right answer exists.</p>
+<p>But here's the catch. In the real world we almost never care about a model that gets it right once in five tries and misses the mark the other four. A coding agent, a customer-service agent, an agent touching a production database — it acts once, and that one action is the one that counts. "At least one of k was right" is cold comfort if you can't tell <em>which</em> one.</p>
+<figure><img alt="pass@k vs pass∧k — capability rises with every retry, reliability collapses" src="passk-vs-passandk.png" /><figcaption>With a fixed 70% chance per attempt: getting it right at least once (pass@k) climbs to ~100% with retries; getting it right every time (pass&and;k) collapses to ~3%. Benchmarks reward the top curve.</figcaption></figure>
+<p>For a model to be genuinely useful, it is not enough to <em>generate</em> the right answer — it has to <em>pick</em> it. And picking requires something deeper: real understanding of the problem, and well-placed confidence across its own answers, so it knows which one to trust. That property — landing and recognising the right answer reliably, every time, not just once — is what we'd call reliability (pass&and;k, "all k correct"), and it is a different thing from raw capability.</p>
+<p>Reliability is improving too. It is just improving more slowly than capability. The headline benchmark numbers — the pass@k curve — have raced ahead, while the model's ability to reliably produce <em>and recognise</em> the right answer has crept up behind them.</p>
+<p>That slower rate isn't necessarily alarming. It looks like we are still converging towards more reliable AI, just on a gentler slope. What's worth keeping in mind is the distinction itself. It is at least one clean reason why the genuinely impressive numbers announced every month don't always translate into impressive performance on the critical, agentic tasks people actually want to hand off. We have been measuring, and rewarding, what a model <em>can</em> do. Deployment depends on what it does <em>every time</em>.</p>
     </div>
 
     <footer class="article-foot">
