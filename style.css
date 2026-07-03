@@ -710,6 +710,13 @@
   margin: 36px 0;
 }
 .prose figure { margin: 28px 0; }
+.prose figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
 .prose figure img,
 .prose p > img {
   display: block;
