@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Close the loop — Nick Sorros</title>
+<meta name="description" content="Close the loop — where the loop came from and how you actually put one to work. By Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.07</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">Close the loop</h1>
+    </header>
+
+    <div class="prose">
+<p>Everyone is talking about building loops, operating a level up, running factories. But what does it all mean and how do we put the concepts into practice? This is the third piece I've written in this arc, after the harness (the body around the model's brain) and the factory (how an org runs a fleet of agents it never typed for). This one is about the loop itself: where it came from, and how you actually put one to work.</p>
+
+<h2>Where the loop came from</h2>
+<p>When ChatGPT launched it had no loop at all. Request, response, done. You asked, it answered, and if the answer was wrong you asked again. You were the loop.</p>
+<p>The first real loop arrived with reasoning models. Instead of answering in one shot, the model was allowed to think, call a tool, look at the result, think again and running until it decided it had a response. Give that loop the ability to act, edit files, run commands, open PRs, and you get agents like Claude Code. That's still the first loop. The halt condition is the model's own sense that its reasoning is done.</p>
+<p>The moment agents got useful we started handing them goals instead of steps. Not "write this function," but "make this test pass," "ship this feature." That's the second loop, and it's the one we're in now: the thing runs until the goal is met, not until the reasoning effort is spent. The halt condition moved up a level, from "I'm done thinking" to "the objective is achieved."</p>
+<p>It's not hard to see where this goes. Each loop swallows the one below it and takes a more abstract goal. It looks a lot like climbing a company hierarchy: at the bottom someone is told exactly what to do, a level up they're given a task and left to work out the steps, a level up from that they own an outcome and decide the tasks themselves. This is what the conversation about loops and factories is all about. Now let's see how we can put it in practice.</p>
+
+<h2>Operate one level up</h2>
+<p>Here's the whole method in one line: build the level of abstraction one step above where you're working today, and do your work from there.</p>
+<p>Make it concrete. Right now most engineering with AI happens at the keyboard. You, or your engineers, instruct a model to write code and correct it interactively through a CLI, prompt by prompt. That's operating inside the first loop. The move up is to stop being the thing that prompts the agent.</p>
+<p>You can call this way of working loopcraft, loop engineering but regardless of the name what it means is: replacing yourself as the person who prompts the agent. So instead of correcting output live, you build a coding agent that takes a brief and produces a PR, ideally correct in one shot or with minor feedback, and you stop iterating on the code. You iterate on the design of the agent. When a PR comes back wrong, you don't fix the PR. You fix the thing that produced it, so the next hundred come back better.</p>
+<p>This is different from a coding agent inside a CLI. You're not sitting in front of it. It picks its work up from where the work already lives, a ticket in your project tracker, a message in your team channel and delivers a PR back. The best demonstration of this is the recently released Claude Tag: you @-mention it on an issue and it goes away, does the work, and opens the pull request. No terminal, no live prompting. The task comes in through the tools your team already uses and the result comes back the same way.</p>
+<p>Once you have that, you do the same move again, one level up. Now the interesting question isn't how the code gets written, that's handled. It's where the tickets come from. And a ticket is usually a by-product: something said in a meeting, a request buried in an email, a bug reported in a channel, an issue in the repo. So you build the layer above the coding agent, a system that reads those sources and drafts the tickets, which you review and feed to the agent that solves them. Now you're not writing tickets either. You're steering a pipeline that turns raw signal into shipped code, and can interact with the system at different levels of abstraction: the ticket created, the PR produced etc.</p>
+
+<h2>As far up as it goes</h2>
+<p>You can keep climbing. Every function of a business is, in principle, some loop of signal in and work out, and each one can get an agent that does the work a level below where you sit while you move up to steer it. Taken to its end, you run the whole organisation this way: agents wired into every function, doing the work the business theoretically needs done, and you intervening to correct the system rather than to do the work yourself. This is the loop-and-factory idea taken to its extreme, not one agent in a loop, but the org itself as a stack of loops you supervise.</p>
+<p>I'm not claiming that end state is reachable for a whole business, or that it should be. Plenty of the work won't fit the transformation, e.g. the judgment is the job and can't be handed down a level. The exercise is still valuable. Find the bottleneck, push the agent one level of abstraction up from where it sits today, and watch how many loops you can close in your organisation.</p>
+
+<p class="prose-sources"><em>Sources: <a href="https://www.latent.space/p/ainews-loopcraft-the-art-of-stacking">Loopcraft: The Art of Stacking Loops</a> (Latent Space) · <a href="https://addyosmani.com/blog/loop-engineering/">Addy Osmani — Loop Engineering</a> · <a href="https://engineering.atspotify.com/2025/11/spotifys-background-coding-agent-part-1">Spotify — Background Coding Agent (Honk), parts 1–3</a></em></p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date"></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
