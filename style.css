@@ -786,31 +786,7 @@
   .prose pre { font-size: 11.5px; padding: 14px 16px; }
 }
 
-  /* ENGAGEMENTS (folded into // working_with_me) ---------------- */
-  .eng-lead {
-    max-width: 66ch;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.75;
-    margin: 64px 0 8px;
-  }
-  .eng-lead strong { color: var(--ink); font-weight: 600; }
-  .tiers .work-year {
-    font-size: 15px;
-    color: var(--ink);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.5;
-  }
-  .tiers .work-year .muted {
-    display: inline-block;
-    margin-top: 3px;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-  }
-  .work-row.flag { background: var(--paper); }
-  .work-row.flag .work-note { color: var(--ink-2); }
+  /* WORKING WITH ME --------------------------------------------- */
   .lead-more { margin-top: 18px; font-size: 13px; }
   .lead-more a {
     color: var(--ink);
