@@ -811,6 +811,14 @@
   }
   .work-row.flag { background: var(--paper); }
   .work-row.flag .work-note { color: var(--ink-2); }
+  .lead-more { margin-top: 18px; font-size: 13px; }
+  .lead-more a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1px;
+    transition: border-color .15s;
+  }
+  .lead-more a:hover { border-bottom-color: var(--ink); }
   .tag.on {
     border-color: var(--ink);
     color: var(--ink);
