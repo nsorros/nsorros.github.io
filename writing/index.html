@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Writing &amp; Talks — Nick Sorros</title>
+<meta name="description" content="Essays, shorts and talks by Nick Sorros — on AI, NLP, evals, agents, and shipping production AI." />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<style>
+  .archive-year {
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-top: 56px;
+    margin-bottom: 16px;
+  }
+  .archive-year:first-of-type { margin-top: 0; }
+  .writing-list + .writing-list { margin-top: 0; }
+
+  .archive-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin: 24px 0 36px;
+    padding: 12px 14px;
+    border: 1px solid var(--border, #2a2a2a);
+    background: var(--panel, transparent);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .archive-filter .filter-label {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 11px;
+    margin-right: 6px;
+  }
+  .archive-filter button {
+    font: inherit;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--border, #2a2a2a);
+    padding: 4px 10px;
+    cursor: pointer;
+    text-transform: lowercase;
+  }
+  .archive-filter button:hover { border-color: var(--ink); }
+  .archive-filter button.active {
+    background: var(--ink);
+    color: var(--bg, #fff);
+    border-color: var(--ink);
+  }
+
+  /* Filter rules — applied at section level */
+  [data-archive-filter="essay"]     .writing-row:not([data-kind="essay"])     { display: none; }
+  [data-archive-filter="short"]     .writing-row:not([data-kind="short"])     { display: none; }
+  [data-archive-filter="talk"]      .writing-row:not([data-kind="talk"])      { display: none; }
+  [data-archive-filter="highlight"] .writing-row:not([data-highlight="true"]) { display: none; }
+
+  /* Hide empty year groups */
+  [data-archive-filter="essay"]     .writing-list:not(:has(.writing-row[data-kind="essay"]))     { display: none; }
+  [data-archive-filter="essay"]     .writing-list:not(:has(.writing-row[data-kind="essay"])) + .archive-year,
+  [data-archive-filter="essay"]     .archive-year:has(+ .writing-list:not(:has(.writing-row[data-kind="essay"]))) { display: none; }
+  [data-archive-filter="short"]     .writing-list:not(:has(.writing-row[data-kind="short"]))     { display: none; }
+  [data-archive-filter="short"]     .archive-year:has(+ .writing-list:not(:has(.writing-row[data-kind="short"]))) { display: none; }
+  [data-archive-filter="talk"]      .writing-list:not(:has(.writing-row[data-kind="talk"]))      { display: none; }
+  [data-archive-filter="talk"]      .archive-year:has(+ .writing-list:not(:has(.writing-row[data-kind="talk"]))) { display: none; }
+  [data-archive-filter="highlight"] .writing-list:not(:has(.writing-row[data-highlight="true"])) { display: none; }
+  [data-archive-filter="highlight"] .archive-year:has(+ .writing-list:not(:has(.writing-row[data-highlight="true"]))) { display: none; }
+
+  /* Star marker on highlight rows */
+  .writing-row[data-highlight="true"] .writing-kind::after {
+    content: " ★";
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../#about">about</a>
+      <a href="../#work">work</a>
+      <a href="./">writing</a>
+      <a href="../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <section class="archive-section" id="archive" data-archive-filter="all">
+    <div class="archive-head">
+      <span class="fn-eyebrow" style="font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color: var(--muted);">// writing &amp; talks</span>
+      <h1>Things I've been <em style="font-style:italic; font-weight:400; color: var(--muted);">writing</em>.</h1>
+    </div>
+
+    <div class="archive-filter" role="toolbar" aria-label="Filter writing">
+      <span class="filter-label">filter:</span>
+      <button data-filter="all" class="active" type="button">all</button>
+      <button data-filter="essay" type="button">essays</button>
+      <button data-filter="short" type="button">shorts</button>
+      <button data-filter="talk" type="button">talks</button>
+      <button data-filter="highlight" type="button">★ highlights</button>
+    </div>
+
+      <h2 class="archive-year">2026</h2>
+      <ul class="writing-list">
+        <li class="writing-row" data-kind="short"><a href="./escape-from-openai/">
+          <span class="writing-date">2026.07</span>
+          <span class="writing-title">Escape from OpenAI</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="essay" data-highlight="true"><a href="./close-the-loop/">
+          <span class="writing-date">2026.07</span>
+          <span class="writing-title">Close the loop</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./we-might-be-measuring-intelligence-wrong/">
+          <span class="writing-date">2026.07</span>
+          <span class="writing-title">We might be measuring intelligence wrong</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./two-monarchies-open-vs-closed/">
+          <span class="writing-date">2026.07</span>
+          <span class="writing-title">Two monarchies, open vs closed</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./anthropic-takes-the-lead-with-fable/">
+          <span class="writing-date">2026.06</span>
+          <span class="writing-title">Anthropic takes the lead with Fable</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="essay" data-highlight="true"><a href="./building-the-factory-that-builds-software/">
+          <span class="writing-date">2026.06</span>
+          <span class="writing-title">Building the factory that builds software</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="essay" data-highlight="true"><a href="./the-model-is-the-brain-the-harness-is-the-body/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">The model is the brain, the harness is the body</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="essay" data-highlight="true"><a href="./rabbit-and-turtle/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">Rabbit and turtle</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="essay" data-highlight="true"><a href="./ai-in-search/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">AI in search — embeddings is not a strategy</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./the-end-of-repetitive-tasks/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">The end of repetitive tasks</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./gemini-35-flash-secret/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">Gemini 3.5 Flash &mdash; the secret</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./is-finetuning-era-over/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">Is the finetuning era over?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./harness-is-new-prompt-eng/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">Harness engineering is the new prompt engineering</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./open-weights-update/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">Open weights update</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./mythos-and-firefox/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">Mythos and Firefox</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./linkedin-hallucination/">
+          <span class="writing-date">2026.05</span>
+          <span class="writing-title">LinkedIn hallucination rates</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./the-ai-disruption-matrix/">
+          <span class="writing-date">2026.04</span>
+          <span class="writing-title">The AI disruption matrix</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="essay" data-highlight="true"><a href="./clawdbot-in-200-lines-of-code/">
+          <span class="writing-date">2026.04</span>
+          <span class="writing-title">Clawdbot in 200 lines of code</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./lets-talk-about-clawdbot/">
+          <span class="writing-date">2026.04</span>
+          <span class="writing-title">Let&#x27;s talk about clawdbot</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./the-year-that-google-strikes-back/">
+          <span class="writing-date">2026.03</span>
+          <span class="writing-title">The year that Google strikes back</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./the-missing-ingredient-for-agi/">
+          <span class="writing-date">2026.03</span>
+          <span class="writing-title">The missing ingredient for AGI</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./the-future-of-work/">
+          <span class="writing-date">2026.03</span>
+          <span class="writing-title">The future of work</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./my-take-on-gemini-3/">
+          <span class="writing-date">2026.03</span>
+          <span class="writing-title">My take on Gemini 3</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./what-makes-companies-fail/">
+          <span class="writing-date">2026.02</span>
+          <span class="writing-title">What makes companies fail</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./software-engineers-are-obsolete-or-are-they/">
+          <span class="writing-date">2026.02</span>
+          <span class="writing-title">Software engineers are obsolete, or are they?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./have-you-read-the-ai-2027-analysis/">
+          <span class="writing-date">2026.02</span>
+          <span class="writing-title">Have you read the AI 2027 analysis?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./the-way-we-work-is-about-to-change/">
+          <span class="writing-date">2026.01</span>
+          <span class="writing-title">The way we work is about to change</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./here-is-how-we-use-ai-at-mantis/">
+          <span class="writing-date">2026.01</span>
+          <span class="writing-title">Here is how we use AI at Mantis</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+      </ul>
+
+      <h2 class="archive-year">2025</h2>
+      <ul class="writing-list">
+        <li class="writing-row" data-kind="short"><a href="./here-is-the-issue-with-ai-doing-actual-work/">
+          <span class="writing-date">2025.12</span>
+          <span class="writing-title">Here is the issue with AI doing actual work</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./back-to-trillion-param-models/">
+          <span class="writing-date">2025.12</span>
+          <span class="writing-title">Back to trillion param models</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./are-we-beginning-to-use-ai-too-much/">
+          <span class="writing-date">2025.11</span>
+          <span class="writing-title">Are we beginning to use AI too much?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./gpt5-is-amazing-or-is-it/">
+          <span class="writing-date">2025.10</span>
+          <span class="writing-title">GPT5 is amazing, or is it?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./from-ai-tools-to-ai-infrastructure/">
+          <span class="writing-date">2025.09</span>
+          <span class="writing-title">From AI tools to AI infrastructure</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./agentic-rag-is-the-new-oil/">
+          <span class="writing-date">2025.09</span>
+          <span class="writing-title">Agentic RAG is the new oil, don&#x27;t miss out!</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./agenticai-is-everywhere-but-what-is-an-agent/">
+          <span class="writing-date">2025.08</span>
+          <span class="writing-title">AgenticAI is everywhere — but what is an agent?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./valuable-insights/">
+          <span class="writing-date">2025.08</span>
+          <span class="writing-title">How to know you&#x27;re sitting on valuable insights</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./claude-sub-agents/">
+          <span class="writing-date">2025.08</span>
+          <span class="writing-title">Claude sub-agents</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./stop-using-ai-as-magic-wand/">
+          <span class="writing-date">2025.07</span>
+          <span class="writing-title">Stop using AI as a magic wand</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="https://www.nsorros.com/Learn-by-not-using-AI-or-tools-1f35904c8bc780849766d6ff6a102e0d" target="_blank" rel="noopener">
+          <span class="writing-date">2025.07</span>
+          <span class="writing-title">Learn by not using AI or tools</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./whats-going-on-with-mcp/">
+          <span class="writing-date">2025.07</span>
+          <span class="writing-title">What&#x27;s going on with MCP?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./upskilling-software-eng-team/">
+          <span class="writing-date">2025.07</span>
+          <span class="writing-title">Upskilling a software engineering team</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./will-ai-make-your-role-obsolete/">
+          <span class="writing-date">2025.06</span>
+          <span class="writing-title">Will AI make your role obsolete?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="talk"><a href="./rag-meets-knowledge-bases/">
+          <span class="writing-date">2025.06</span>
+          <span class="writing-title">RAG meets knowledge bases</span>
+          <span class="writing-kind">talk</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./ai-tools-power-lies-in-who/">
+          <span class="writing-date">2025.06</span>
+          <span class="writing-title">The power lies in who is using the tools, and how</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./efficiency/">
+          <span class="writing-date">2025.06</span>
+          <span class="writing-title">Efficiency</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./ai-as-productivity-booster/">
+          <span class="writing-date">2025.06</span>
+          <span class="writing-title">AI as a productivity booster</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./what-should-you-expect-from-ai-near-term/">
+          <span class="writing-date">2025.05</span>
+          <span class="writing-title">What should you expect from AI in the near term?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./what-happened-with-gpt4-5/">
+          <span class="writing-date">2025.05</span>
+          <span class="writing-title">What happened with GPT4.5?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./llms-getting-lost-in-multi-turn-conversation/">
+          <span class="writing-date">2025.05</span>
+          <span class="writing-title">LLMs getting lost in multi-turn conversation</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./here-is-how-r1-is-trained/">
+          <span class="writing-date">2025.04</span>
+          <span class="writing-title">Here is how R1 is trained</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./what-is-going-on-with-deepseek/">
+          <span class="writing-date">2025.04</span>
+          <span class="writing-title">What is going on with DeepSeek?</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./tutorcopilot/">
+          <span class="writing-date">2025.04</span>
+          <span class="writing-title">TutorCopilot</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./hebbia/">
+          <span class="writing-date">2025.04</span>
+          <span class="writing-title">Hebbia</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./ai-to-find-patients-in-clinical-trials/">
+          <span class="writing-date">2025.03</span>
+          <span class="writing-title">AI to find patients in clinical trials</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./ocr/">
+          <span class="writing-date">2025.03</span>
+          <span class="writing-title">OCR</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./the-year-of-agents/">
+          <span class="writing-date">2025.03</span>
+          <span class="writing-title">The year of agents</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./static-embeddings/">
+          <span class="writing-date">2025.02</span>
+          <span class="writing-title">Static embeddings</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./llm-world-model/">
+          <span class="writing-date">2025.01</span>
+          <span class="writing-title">LLM world model</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./modernbert/">
+          <span class="writing-date">2025.01</span>
+          <span class="writing-title">ModernBERT</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./open-models/">
+          <span class="writing-date">2025.01</span>
+          <span class="writing-title">Open models</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./building-agents/">
+          <span class="writing-date">2025.01</span>
+          <span class="writing-title">Building agents</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+      </ul>
+
+      <h2 class="archive-year">2024</h2>
+      <ul class="writing-list">
+        <li class="writing-row" data-kind="short"><a href="./pydantic-ai/">
+          <span class="writing-date">2024.12</span>
+          <span class="writing-title">Pydantic AI</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./rag-metrics/">
+          <span class="writing-date">2024.12</span>
+          <span class="writing-title">RAG metrics</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./write-about-ai-and-todos/">
+          <span class="writing-date">2024.12</span>
+          <span class="writing-title">Write about AI and todos</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./cerebras-and-groq-speeds/">
+          <span class="writing-date">2024.12</span>
+          <span class="writing-title">Cerebras and Groq speeds</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./my-take-on-reflection-and-o1/">
+          <span class="writing-date">2024.12</span>
+          <span class="writing-title">My take on Reflection and o1</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./docling/">
+          <span class="writing-date">2024.11</span>
+          <span class="writing-title">Docling</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./extract-financial-data/">
+          <span class="writing-date">2024.11</span>
+          <span class="writing-title">Extract financial data</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./disrupting-transformers/">
+          <span class="writing-date">2024.10</span>
+          <span class="writing-title">Disrupting transformers</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./out-of-domain-embeddings/">
+          <span class="writing-date">2024.10</span>
+          <span class="writing-title">Out-of-domain embeddings</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./audio-from-sources/">
+          <span class="writing-date">2024.10</span>
+          <span class="writing-title">Audio from sources</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="talk"><a href="./a-tour-of-llms/">
+          <span class="writing-date">2024.10</span>
+          <span class="writing-title">A tour of LLMs</span>
+          <span class="writing-kind">talk</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./open-vs-closed-source/">
+          <span class="writing-date">2024.10</span>
+          <span class="writing-title">Open vs closed source</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./ai-thinking/">
+          <span class="writing-date">2024.10</span>
+          <span class="writing-title">AI thinking</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./gliner/">
+          <span class="writing-date">2024.10</span>
+          <span class="writing-title">GLiNER</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./contextual-retrieval-and-late-chunking/">
+          <span class="writing-date">2024.10</span>
+          <span class="writing-title">Contextual retrieval and late chunking</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./ai-producing-research-ideas/">
+          <span class="writing-date">2024.10</span>
+          <span class="writing-title">AI producing research ideas</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="talk"><a href="./extreme-multilabel-classification/">
+          <span class="writing-date">2024.06</span>
+          <span class="writing-title">Extreme multilabel classification</span>
+          <span class="writing-kind">talk</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="talk"><a href="./interpretability-of-llms/">
+          <span class="writing-date">2024.06</span>
+          <span class="writing-title">Interpretability of LLMs</span>
+          <span class="writing-kind">talk</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="https://www.nsorros.com/2023" target="_blank" rel="noopener">
+          <span class="writing-date">2024.01</span>
+          <span class="writing-title">The year of ChatGPT</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+      </ul>
+
+      <h2 class="archive-year">2023</h2>
+      <ul class="writing-list">
+        <li class="writing-row" data-kind="essay" data-highlight="true"><a href="./eight-examples-is-all-you-need/">
+          <span class="writing-date">2023.10</span>
+          <span class="writing-title">Eight examples is all you need</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="short"><a href="./prototyping-with-large-language-models/">
+          <span class="writing-date">2023.06</span>
+          <span class="writing-title">Prototyping with Large Language Models</span>
+          <span class="writing-kind">short</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+      </ul>
+
+      <h2 class="archive-year">2022</h2>
+      <ul class="writing-list">
+        <li class="writing-row" data-kind="essay"><a href="./reproducible-data-science/">
+          <span class="writing-date">2022.09</span>
+          <span class="writing-title">Reproducible data science</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="essay"><a href="./mlops-with-sagemaker-part-ii/">
+          <span class="writing-date">2022.07</span>
+          <span class="writing-title">MLOps with SageMaker — Part II</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+        <li class="writing-row" data-kind="essay"><a href="./mlops-with-sagemaker-part-i/">
+          <span class="writing-date">2022.06</span>
+          <span class="writing-title">MLOps with SageMaker — Part I</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+      </ul>
+
+      <h2 class="archive-year">2021</h2>
+      <ul class="writing-list">
+        <li class="writing-row" data-kind="essay" data-highlight="true"><a href="./a-neural-network-tagging-biomedical-grants/">
+          <span class="writing-date">2021.11</span>
+          <span class="writing-title">A neural network tagging biomedical grants</span>
+          <span class="writing-kind">essay</span>
+          <span class="writing-read"></span>
+          <span class="writing-arrow">&rarr;</span>
+        </a></li>
+      </ul>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+
+  // Archive filter
+  (function() {
+    var section = document.getElementById('archive');
+    if (!section) return;
+    var buttons = section.querySelectorAll('.archive-filter button');
+    function apply(filter) {
+      section.setAttribute('data-archive-filter', filter);
+      buttons.forEach(function(b) {
+        b.classList.toggle('active', b.getAttribute('data-filter') === filter);
+      });
+      try { localStorage.setItem('archiveFilter', filter); } catch (e) {}
+    }
+    buttons.forEach(function(b) {
+      b.addEventListener('click', function() { apply(b.getAttribute('data-filter')); });
+    });
+    var stored;
+    try { stored = localStorage.getItem('archiveFilter'); } catch (e) {}
+    if (stored && ['all','essay','short','talk','highlight'].indexOf(stored) !== -1) {
+      apply(stored);
+    }
+  })();
+</script>
+</body>
+</html>

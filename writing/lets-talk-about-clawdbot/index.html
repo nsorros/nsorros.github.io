@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Let&#x27;s talk about clawdbot — Nick Sorros</title>
+<meta name="description" content="Let&#x27;s talk about clawdbot — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.04</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Let&#x27;s talk about clawdbot</h1>
+    </header>
+
+    <div class="prose">
+<p>Recently, some aspect of the lobster 🦞 craze has hit you. It might be from news that AI bots are talking to each other and conspiring against us, or that finally the AI assistant we have been waiting for has arrived, or maybe that there is a crypto conspiracy behind it all. What’s going on?</p>
+<p>The simplest explanation is that this is the true ChatGPT moment for agentic AI. Why? Because ChatGPT was not new technology, it was a model (GPT3) that has been around for more than one year, and that many people were already very excited about, but it was not available in a form that the vast majority of people could engage with. So ChatGPT came along and broke that barrier and the rest is history. Agentic AI has been making more noise but it has mostly affected professionals that write code through Claude Code or similar tools. The abilities of agentic AI have not yet hit the general public other than simple agents here and there. To be more precise about what I mean, and mostly for the benefit of those not writing code, the way we write code has completely changed in the last 12 months, to the point that when we are rate limited from the AI providers, we feel we cannot do our job 😱</p>
+<p>What if we can transform most work like that? This brings us to clawdbot 🦞 In order to bring the power of GPT3 to the general public, a chat interface was built aka ChatGPT. In a similar manner, to bring agentic AI and Claude Code like abilities to everyone, the creator of clawdbot added a layer to Claude Code where you can interact with it from your messaging platform of choice and 💥 Suddenly, many more people got access to Claude Code like abilities which are vast given enough permissions. This is not democratising writing code, code is just a means to an end, its about demonstrating the agentic AI abilities and as it turns out, Claude Code and a chat interface was all you need for that demo. This combination alone can transform a lot of your work. For example, it can connect to your task tracker, pick up a task, do the required steps, update the tracker, and email your manager for review. Lets all install clawdbot then right?</p>
+<p>Well no ❌ In order for clawdbot to be useful, you need to give it vast permissions which in turn means you are putting yourself in high risk from easy attacks like someone asking your clawdbot to send them money with no good way of defending. But putting this HUGE risk aside, what’s important to keep from this saga is that the moment for agentic AI has come and this means the way we work will be completely transformed in the same way that software engineering has transformed. This does not mean people will lose their job, quite the contrary in most cases, but it does mean you need to adapt as a person and as a business to stay relevant. It also means there is a great opportunity for innovation that you can profit from 💰</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Lets-talk-about-clawdbot-3065904c8bc780e5b0aced34a7f3f0ad" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
