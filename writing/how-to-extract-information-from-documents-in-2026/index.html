@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>How to extract information from documents in 2026 — Nick Sorros</title>
+<meta name="description" content="Why document extraction works best with a model inside a harness, rather than OCR plus a model or a one-shot VLM." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.08</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">How to extract information from documents in 2026</h1>
+    </header>
+
+    <div class="prose">
+<p>💡 In short: use a model inside a harness, not an OCR + model system and not just a model that can read files and images.</p>
+
+<p>Extracting information from documents used to be the bread and butter of applied text AI. Even though it is a relatively solved problem nowadays, performance varies drastically depending on the choices you make, which may have important consequences depending on the application.</p>
+
+<p>This problem traditionally consisted of two steps:</p>
+<p>👁️ reading the text from the document through OCR or other means<br />
+🔎 finding the relevant information inside the text, e.g. numbers, dates, companies, etc.</p>
+
+<p>A few years ago, end-to-end neural network approaches combined the two and, with enough data, outperformed this decomposition. This was still pre-LLM. The issue with those early neural systems was that they worked quite well for certain types of files but failed on others, making the decomposed approach still relevant for cases where the end-to-end neural approach did not work. The win with those early systems was that they simplified the problem into one step that, given initial data, you could solve end to end: files in, information out.</p>
+
+<p>Then came LLMs 🧠. They were originally not that good at this task in particular, but on the other hand they worked out of the box, unlike the other systems, which required training. And, as we all know, not working particularly well was only a short-term limitation, which brings us to today. You would expect that any frontier LLM could now solve this problem out of the box with high enough accuracy, but the answer is a bit more nuanced.</p>
+
+<p>Maybe surprisingly to some, the best way to solve this problem is to use a model within a harness, instead of tasking a frontier model with extracting all the information at once. The harness allows the model to take a more iterative approach, decompose the problem, break down its work and verify its answers.</p>
+
+<figure>
+  <img src="./extractbench-system-types.png" alt="Bar chart of mean overall unified value F1 in ExtractBench: direct VLMs 72.2%, specialized APIs 85.5%, and coding agents 90.4%." width="1536" height="1024" />
+  <figcaption>Category means calculated from the systems in ExtractBench Table 2. “Direct VLMs” combines the paper’s open-source and commercial VLM groups; “specialized APIs” covers managed extraction systems; “coding agents” covers Codex and Claude Code. Source: <a href="https://arxiv.org/abs/2607.29677">ExtractBench</a>.</figcaption>
+</figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center"><span class="status-dot"></span> systems nominal</div>
+    <div class="foot-cell right">built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date"></span></div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() { apply(root.dataset.theme === 'dark' ? 'light' : 'dark'); });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
