@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Why skills work? &mdash; Nick Sorros</title>
+<meta name="description" content="Why skills work? &mdash; by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">&larr; back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.08</span>
+        <span class="sep">&middot;</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Why skills work?</h1>
+    </header>
+
+    <div class="prose">
+<p>There are a couple of ways to teach an AI system how to do a task. Among them, skills have quickly become one of the most popular, but why?</p>
+<p>The short answer is because it works quite well for a moderate amount of effort, but the longer answer involves looking at the alternatives as well.</p>
+<p>1️⃣ Memory<br />
+A rather obvious and simpler alternative is for an AI system to learn by inspecting its own errors. This would be looking at past conversations and inferring from your feedback or behaviour things it got right and wrong. The issue with this approach is that the signal-to-noise ratio is lower when looking at all past interactions because missing even one important detail or prior error can sink performance back to the baseline. You can overcome this with a memory system. That is an active process that looks into past conversations and distills learnings into its memory, i.e. a dedicated space containing only the signal part. Not only do AI systems do that, but it also performs quite well, although a bit lower than skills.</p>
+<p>2️⃣ Skills<br />
+This is partly because skills in fact are a more deliberate choice of information. Sometimes manually created, others automatically, but in any case they are built intentionally to patch a known limitation of the AI system and provide back a clear way of doing so. Another way to think about why skills are better than memory is that in the case of memory the system is trying to infer what is right and wrong whereas in skills you deliberately tell the system.</p>
+<p>3️⃣ Train<br />
+Of course all the above ways do not truly change the underlying model; if anything, they can be considered as part of the harness around the model. You can of course also train the actual model to perform better and in fact this will undeniably perform the best, but the cost of doing so might be prohibitive or at least not worth it for most. Skills, on the other hand, not only have a big impact on performance, they are also relatively easy to develop, and you can easily share them and explain them. All properties which are not present or as easy when training a new model.</p>
+<p>💡 Here is the catch though: memory has been improving quite rapidly and it’s catching up to skills in terms of performance, so is it worth developing and thinking about skills? Well, one reason why skills might be a good idea and a differentiator is that memory takes time to build. It’s the difference between training a junior person in months or years vs a few days. So a better way to think about it is: skills make your AI system better from day one while memory slowly compounds adjustments as you use it.</p>
+<p><img src="../../assets/images/bee940f017ddb05d.png" alt="Nothing, memory, skills — task success rate averaged across all three benchmarks and both agent pairings: 53.0%, 55.0%, 64.3% (Jiang et al., arXiv:2608.14036, Table 1)" /></p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">&larr; back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById("theme-toggle");
+    var saved = localStorage.getItem("theme");
+    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    function paint() { root.setAttribute("data-theme", dark ? "dark" : "light"); if (btn) btn.textContent = dark ? "light" : "dark"; }
+    paint();
+    if (btn) btn.addEventListener("click", function () { dark = !dark; localStorage.setItem("theme", dark ? "dark" : "light"); paint(); });
+  })();
+</script>
+</body>
+</html>
