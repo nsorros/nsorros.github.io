@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Athens — Nick Sorros</title>
+<meta name="description" content="A friend's guide to Athens — neighbourhoods, coffee, food, bakeries, drinks, art, and things to do with kids." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css" />
+<style>
+  .guide-head { padding-top: 56px; margin-bottom: 20px; }
+  .guide-eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .guide-head h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; margin: 14px 0 0; }
+  .guide-head h1 em { font-style: italic; font-weight: 400; color: var(--muted); }
+  .guide-intro { max-width: 62ch; font-size: 16px; line-height: 1.7; color: var(--ink-2); margin: 22px 0 4px; text-wrap: pretty; }
+  .guide-intro a { color: var(--ink); border-bottom: 1px solid var(--line); transition: border-color .15s; }
+  .guide-intro a:hover { border-bottom-color: var(--ink); }
+  .guide-cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 8px; }
+
+  .guide-toc {
+    display: flex; flex-wrap: wrap; gap: 6px 18px;
+    margin: 40px 0 72px;
+    font-size: 12px; letter-spacing: 0.04em; color: var(--muted);
+  }
+  .guide-toc a::before { content: "/ "; color: var(--line); }
+  .guide-toc a:hover { color: var(--ink); }
+
+  .guide-section { padding-bottom: 96px; }
+  .guide-section .section-marker { margin-bottom: 0; }
+  .guide-list { list-style: none; }
+  .guide-row {
+    display: grid;
+    grid-template-columns: 260px 1fr 40px;
+    gap: 32px;
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+    align-items: baseline;
+    transition: padding-left .15s, background .15s;
+  }
+  .guide-row:last-child { border-bottom: 1px solid var(--line); }
+  .guide-row:hover { padding-left: 8px; background: var(--paper); }
+  .guide-name { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+  a.guide-name { border-bottom: 1px solid transparent; transition: border-color .15s; }
+  a.guide-name:hover { border-bottom-color: var(--ink); }
+  .guide-note { font-size: 14px; line-height: 1.6; color: var(--ink-2); max-width: 64ch; text-wrap: pretty; }
+  .guide-note.empty { color: var(--muted); }
+  .guide-arrow { font-size: 12px; color: var(--line); text-align: right; transition: color .15s, transform .15s; }
+  .guide-row:hover .guide-arrow { color: var(--ink); transform: translateX(4px); }
+
+  .guide-close { margin-top: 24px; }
+  @media (max-width: 720px) {
+    .guide-row { grid-template-columns: 1fr 24px; gap: 6px 16px; }
+    .guide-name { grid-row: 1; grid-column: 1; }
+    .guide-arrow { grid-row: 1; grid-column: 2; align-self: baseline; }
+    .guide-note { grid-row: 2; grid-column: 1 / -1; }
+    .guide-row:hover { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../#about">about</a>
+      <a href="../#work">work</a>
+      <a href="../writing/">writing</a>
+      <a href="../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+  <div class="guide-head">
+    <span class="guide-eyebrow">// athens</span>
+    <h1>A friend&rsquo;s guide to <em>Athens</em>.</h1>
+  </div>
+  <p class="guide-intro">
+    The places I send friends to when they visit. Not a top-ten list &mdash;
+    just where I actually drink coffee, eat, and walk. Every name opens in
+    Google Maps; the whole thing is also one saved list.
+  </p>
+  <div class="guide-cta">
+    <a class="btn" href="https://maps.app.goo.gl/op2EyjMNYqgiCTh87" target="_blank" rel="noopener">
+      <span>$&nbsp;</span>open the Google Maps list<span class="caret">_</span>
+    </a>
+  </div>
+
+  <nav class="guide-toc" aria-label="Sections">
+    <a href="#neighbourhoods">neighbourhoods</a>
+    <a href="#coffee">coffee</a>
+    <a href="#stores">concept stores</a>
+    <a href="#food">food</a>
+    <a href="#bakeries">bakeries</a>
+    <a href="#drinks">drinks</a>
+    <a href="#art">art</a>
+    <a href="#experiences">experiences</a>
+    <a href="#kids">kids</a>
+  </nav>
+
+  <!-- 01 NEIGHBOURHOODS -->
+  <section class="guide-section" id="neighbourhoods">
+    <div class="section-marker">
+      <span class="marker-num">[01]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// neighbourhoods</span>
+    </div>
+    <ul class="guide-list">
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/52NmX5UY1zWvPdoT8" target="_blank" rel="noopener">Kypseli</a>
+        <span class="guide-note">Diverse, cultural and up-and-coming.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/ujsbEJBVZTqzEVQw7" target="_blank" rel="noopener">Pangrati</a>
+        <span class="guide-note">A more developed, clean and posh version of Kypseli.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/vk1rFXtTb9ndDnAC9" target="_blank" rel="noopener">Plaka</a>
+        <span class="guide-note">The old Athens.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/NC2FCKi3UqGxxhmw8" target="_blank" rel="noopener">Anafiotika</a>
+        <span class="guide-note">This spot next to the Parthenon is like going to a Greek island. A very unique experience.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 02 COFFEE -->
+  <section class="guide-section" id="coffee">
+    <div class="section-marker">
+      <span class="marker-num">[02]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// coffee</span>
+    </div>
+    <ul class="guide-list">
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/fn9RXq6uTNccAab98" target="_blank" rel="noopener">KICK</a>
+        <span class="guide-note">The coffee spot we work from.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/oJLbVVyQaMwmEvsz7" target="_blank" rel="noopener">Anana Coffee &amp; Food</a>
+        <span class="guide-note">An equally nice coffee shop in a more central location.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/X6DjvrZmio1uLnzY9" target="_blank" rel="noopener">Dope Roasting Co</a>
+        <span class="guide-note">Some London vibes, also in the centre.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/xcPyKBFEE13W7VYv8" target="_blank" rel="noopener">Taf Coffee</a>
+        <span class="guide-note">The first specialty coffee shop in Athens, so it influenced many of the others.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/NuaCnAwnLuYNjwpa9" target="_blank" rel="noopener">LOT 51</a>
+        <span class="guide-note">A bit further from the centre, but quite hippy and nice.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/YvYLYRAULcJyK64G7" target="_blank" rel="noopener">The Underdog</a>
+        <span class="guide-note">Legendary coffee shop that has won many awards worldwide.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/2fKEzfTYhDH89UG47" target="_blank" rel="noopener">Samba Coffee Roasters</a>
+        <span class="guide-note">I personally really like the coffee here. It&rsquo;s a small chain, so there are a few Sambas around.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 03 CONCEPT STORES -->
+  <section class="guide-section" id="stores">
+    <div class="section-marker">
+      <span class="marker-num">[03]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// concept stores</span>
+    </div>
+    <ul class="guide-list">
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/tbA18Emo6eYAwhim8" target="_blank" rel="noopener">Minu</a>
+        <span class="guide-note">A really nice place in a traditional old Athenian house. All the furniture is design furniture they also sell, plenty of plants, and food and coffee.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/b8GqLKKzc6Dwf8B36" target="_blank" rel="noopener">Paraphernalia</a>
+        <span class="guide-note">Most of the furniture in our house is from here.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/m9Ugq33bFDTLPN746" target="_blank" rel="noopener">Plegma Coffee &amp; Living</a>
+        <span class="guide-note empty">Cafe.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 04 FOOD -->
+  <section class="guide-section" id="food">
+    <div class="section-marker">
+      <span class="marker-num">[04]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// food</span>
+    </div>
+    <ul class="guide-list">
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/XwvLbtTS8f69ViLW8" target="_blank" rel="noopener">Lisa</a>
+        <span class="guide-note">Pizza. The pizza place in Kypseli.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/f9bvdanBZ9WAfgbA8" target="_blank" rel="noopener">Pizza Dough!</a>
+        <span class="guide-note">An equally nice pizza, more central. Also has natural wines.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/6Te619FQt2t3ZFEi6" target="_blank" rel="noopener">Django Gelato</a>
+        <span class="guide-note">Unbelievable ice cream.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/bMucTiLTEgGMPFbU6" target="_blank" rel="noopener">Fita</a>
+        <span class="guide-note">Fine dining, but toned down and for our age. Very recommended.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/9UKtgnGcQK1kzJRu6" target="_blank" rel="noopener">Dylan (ΝΤΥΛΑΝ)</a>
+        <span class="guide-note">Same idea as Fita, but in Kypseli.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/rAf9DWoAW289MNne8" target="_blank" rel="noopener">Annie &ndash; Fine Cooking</a>
+        <span class="guide-note">The menu changes every day and the food is amazing. Also has natural wines.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/aww4nmk99yS8i9G77" target="_blank" rel="noopener">Linou Soumpasis &amp; Sia</a>
+        <span class="guide-note">Alternative fine dining. The best of all the options, super recommended.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 05 BAKERIES -->
+  <section class="guide-section" id="bakeries">
+    <div class="section-marker">
+      <span class="marker-num">[05]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// bakeries</span>
+    </div>
+    <ul class="guide-list">
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/yYLKF1TenetJzJiS9" target="_blank" rel="noopener">KORA</a>
+        <span class="guide-note">Only sourdough bread, quite famous for it. A bit pricey.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/4D5eS8zBdxSLZPex5" target="_blank" rel="noopener">Flake</a>
+        <span class="guide-note">The place opposite KICK.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/KjjqQeChb1VqpTZX7" target="_blank" rel="noopener">Neropistolo</a>
+        <span class="guide-note">New entrant in town, on my list to go.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/cNqx1vj4cTU7qG8C8" target="_blank" rel="noopener">Asterisque</a>
+        <span class="guide-note empty">Pastry shop.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 06 DRINKS -->
+  <section class="guide-section" id="drinks">
+    <div class="section-marker">
+      <span class="marker-num">[06]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// drinks</span>
+    </div>
+    <ul class="guide-list">
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/sVNMcByuTBSydHP58" target="_blank" rel="noopener">Eprepe Bar</a>
+        <span class="guide-note empty">Wine bar.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/8bZfqLgkW649TqaK8" target="_blank" rel="noopener">Wine is fine</a>
+        <span class="guide-note empty">Wine bar.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/m4XWu6EjcYYtPcra8" target="_blank" rel="noopener">Materia Prima</a>
+        <span class="guide-note empty">Bistro, in Pangrati.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/Jid1L8iDg5nZsQh69" target="_blank" rel="noopener">Paleo Wine Store</a>
+        <span class="guide-note empty">Wine bar.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 07 ART -->
+  <section class="guide-section" id="art">
+    <div class="section-marker">
+      <span class="marker-num">[07]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// art</span>
+    </div>
+    <ul class="guide-list">
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/hMAdYFhNjwGMhZPA7" target="_blank" rel="noopener">EMST</a>
+        <span class="guide-note empty">National Museum of Contemporary Art Athens.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/iHY3VAfstFwg1mVH6" target="_blank" rel="noopener">Acropolis Museum</a>
+        <span class="guide-note">Really worth going. All the Parthenon marbles are displayed there.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/smHD4GPVxFHpi1T4A" target="_blank" rel="noopener">Benaki Museum</a>
+        <span class="guide-note">Ancient Greek history.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/GZGrMLCp9S8KJLXM9" target="_blank" rel="noopener">Goulandris Foundation</a>
+        <span class="guide-note">Amazing art collection. Very famous paintings that one mega-rich Greek collected.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 08 EXPERIENCES -->
+  <section class="guide-section" id="experiences">
+    <div class="section-marker">
+      <span class="marker-num">[08]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// experiences</span>
+    </div>
+    <ul class="guide-list">
+      <li class="guide-row">
+        <span class="guide-name">Open-air cinema</span>
+        <span class="guide-note empty">Summer.</span>
+        <span class="guide-arrow"></span>
+      </li>
+      <li class="guide-row">
+        <span class="guide-name">Parthenon</span>
+        <span class="guide-note empty"></span>
+        <span class="guide-arrow"></span>
+      </li>
+      <li class="guide-row">
+        <span class="guide-name">Walk Plaka &amp; Anafiotika</span>
+        <span class="guide-note">Links in <a href="#neighbourhoods" style="color:var(--ink); border-bottom:1px solid var(--line);">neighbourhoods</a>.</span>
+        <span class="guide-arrow"></span>
+      </li>
+      <li class="guide-row">
+        <span class="guide-name">Kypseli or Pangrati</span>
+        <span class="guide-note">Explore either for a true Athenian neighbourhood.</span>
+        <span class="guide-arrow"></span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 09 KIDS -->
+  <section class="guide-section" id="kids">
+    <div class="section-marker">
+      <span class="marker-num">[09]</span>
+      <span class="marker-line"></span>
+      <span class="marker-label">// kids</span>
+    </div>
+    <ul class="guide-list">
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/HspFnysr5zm3Kfj4A" target="_blank" rel="noopener">Stavros Niarchos Park</a>
+        <span class="guide-note">Open and beautiful space for both grown-ups and little ones.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/ejYMgNi6TBG1rAy96" target="_blank" rel="noopener">XPLORE Entertainment Center</a>
+        <span class="guide-note">A super big indoor entertainment space. A bit too much to go often, but super fun for one time.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+      <li class="guide-row">
+        <a class="guide-name" href="https://maps.app.goo.gl/hJAqFQCK37Jf41Nq6" target="_blank" rel="noopener">The Ellinikon Experience Park</a>
+        <span class="guide-note">The old airport, now redeveloped as a park, play and residential area.</span>
+        <span class="guide-arrow">&rarr;</span>
+      </li>
+    </ul>
+  </section>
+
+  <div class="guide-close">
+    <a href="../" class="back-link">&larr; back to nsorros.com</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">&copy; 2014&mdash;2026 &middot; Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> &middot; deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
