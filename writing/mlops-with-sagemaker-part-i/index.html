@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MLOps with SageMaker — Part I — Nick Sorros</title>
+<meta name="description" content="MLOps with SageMaker — Part I — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2022.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">MLOps with SageMaker — Part I</h1>
+    </header>
+
+    <div class="prose">
+<h2>How to effortlessly train sklearn 📊, pytorch🔥, and transformers 🤗 models in the cloud</h2>
+<p><a href="https://aws.amazon.com/sagemaker/">SageMaker</a> is a Machine Learning Operations (MLOps) platform, offered by AWS, that provides a number of tools for developing machine learning models from no code solutions to completely custom. With SageMaker, you can label data, train your own models in the cloud using hyperparameter optimization, and then deploy those models easily behind a cloud hosted API. In this series of posts we will explore SageMaker’s services and provide guides on how to use them, along with code examples. In this first post we will touch on training models using popular frameworks such as sklearn, pytorch and transformers for which Sagemaker provides pre-configured containers.</p>
+<p>We will be working with a minimal project structure:</p>
+<p><img alt="project-structure" src="../../assets/images/project-structure.png" /></p>
+<p>Most of the code for training models, preprocessing data or making predictions should live in <code>src</code> and be well tested. The <code>scripts</code> folder is reserved for automating tasks which might otherwise be done manually with few commands or lines of code. We will also use the scripts folder to store the scripts necessary to run your code on SageMaker.</p>
+<p>The main library we need is <code>sagemaker</code> (which can be installed from pip as usual) but I am also going to be using typer for adding command line tool (CLI) functionality to my scripts. Other than those I will only use tqdm for adding progress bars, <code>black</code> for formatting and <code>pytest</code> for tests. All this is on top of the framework you want to experiment with, which in my case also includes <code>pytorch</code>, <code>transformers</code>, and <code>sklearn</code>.</p>
+<p>The data I will be using comes from a <a href="https://www.kaggle.com/yasserh/imdb-movie-ratings-sentiment-analysis">sentiment classification task</a> on Kaggle. The data comes in CSV format and contains two columns, text and label. The label is either 0 or 1.</p>
+<p>Below is a simple training script in sklearn that trains a <code>tf-idf svm</code> pipeline using that data.</p>
+<p><img alt="tfidf-svm-script" src="../../assets/images/tfidf-svm-script.png" /></p>
+<p>The script is vanilla <code>sklearn</code>. The only alteration for sagemaker is to set the default <code>data_path</code> and <code>model_path</code>. We can use this script outside sagemaker without any problem by passing a path to our data and models folder. Let’s run it</p>
+<p><img alt="run-train-sklearn" src="../../assets/images/run-train-sklearn.png" /></p>
+<p>Before we explain the default values for model and data path let’s also write the script that will trigger the sagemaker job.</p>
+<p><img alt="sagemaker-sklearn-train" src="../../assets/images/sagemaker-sklearn-train.png" /></p>
+<p>That’s it. We can now run this script by passing a path to our local data and models folder and it will download the container locally and run it.</p>
+<p>![run-sagemaker-sklearn(/images/run-sagemaker-sklearn.png#center)</p>
+<p>If we now change the instance type to one of the instances SageMaker works with (complete list <a href="https://aws.amazon.com/sagemaker/pricing/">here</a>) and pass an s3 path to our data and models folder, the training will happen in the cloud.</p>
+<p><img alt="run-sklearn-sagemaker-cloud" src="../../assets/images/run-sklearn-sagemaker-cloud.png" /></p>
+<p>One thing to note is that the data and model path needs to be prepended either with <code>file://</code> or <code>s3://</code> depending on whether you want to read from a local directory or s3.</p>
+<p>In order for SageMaker to work, you need to have a role with appropriate permissions. You can read more on how to create that <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html,">here</a>. Here is also a <a href="https://github.com/MantisAI/sagemaker-test/blob/master/terraform/sagemaker_test.tf">terraform manifest</a> that my co-founder <a href="https://twitter.com/m_a_upson">Matt</a> has written which might be helpful to set up. It is important to ensure the role has permissions to read and write in s3 in order to read the data and write the model. In this script we pass the role via a command line argument which by default reads it from an environment variable.</p>
+<p>What’s going on under the hood is that sagemaker uses a preconfigured container with sklearn installed. We instruct sagemaker to use that container by using the <code>SKLearn</code> class. The version of <code>sklearn</code> is defined by the parameter <code>framework_version</code>, so in this example it is <code>0.20</code>, and it is advised to have the same version in your <code>requirements.txt</code> to ensure a smooth experience. Currently sagemaker provides containers with version <code>0.20</code> and <code>0.23</code> but not <code>1.0+</code>.</p>
+<p>Our training script defined in the <code>entry_point</code> is copied inside the container. Note that our training script only uses the standard library and <code>scikit-learn</code>. If it was using a library not present in the container, SageMaker would throw an error. This is why we opted for <code>argparse</code> instead of <code>typer</code> for passing command line arguments to that script. We can define additional dependencies that will be installed in the container but let’s leave that for the next blog.</p>
+<p>The data passed as a parameter is also copied inside the container inside a predefined location. This location is passed as the environment variable <code>SM_CHANNEL_TRAIN</code>. Similarly, there is a predefined location that sagemaker will look for the model in order to copy it outside the container. This location is also passed as an environment variable, <code>SM_MODEL_DIR</code>. Note that SageMaker does not copy your data to s3 automatically so this is something you need to do if the data is not there already. Lastly, the hyperparameters provided will get passed as command line arguments into our training script. As such they need to have the same name as the command line arguments in the training script. Even though not strictly required, we also pass a <code>job_name</code> to more easily retrieve the logs and the model afterwards.</p>
+<p>Switching to a different framework should be straightforward as most of the code to trigger the SageMaker job was framework agnostic. Here is the equivalent script for PyTorch.</p>
+<p><img alt="pytorch-script" src="../../assets/images/pytorch-script.png" /></p>
+<p>We have to switch to using the <code>PyTorch</code> class that takes similar arguments. The only other things that change are the <code>hyperparameters</code>, <code>framework_version</code> and the <code>job_name_prefix</code>. Currently, the latest pytorch version supported is <code>0.10</code>. We also need to provide a valid python version, which now is <code>py38</code>, so once more it is advisable to be running python3.8 locally to ensure your code is compatible. Our <code>entry_point</code> targets a pytorch training script which you can find <a href="https://github.com/MantisAI/sagemaker_examples/blob/main/src/train_pytorch.py">here</a>.</p>
+<p>Finally, let’s switch to transformers:</p>
+<p><img alt="transformers-script" src="../../assets/images/transformers-script.png" /></p>
+<p>As previously, we need to import the right class which in this case is <code>HuggingFace</code>. We need to provide appropriate versions for our main libraries pytorch and transformers. The latest transformers version supported at time of writing is <code>4.12</code>. Our hyperparameters are also specific to the training script which you can find <a href="https://github.com/MantisAI/sagemaker_examples/blob/main/src/train_transformers.py">here</a>.</p>
+<p>As we mentioned, uploading your data to s3 is also necessary to get sagemaker working. It may be that your data is already there. If not, there are a couple of ways you can upload them including <code>awscli</code> with <code>aws s3 cp</code>. SageMaker also provides a convenient function that allows you to upload single files or entire folders in a predefined location. Here it is wrapped in a script.</p>
+<p><img alt="upload-data" src="../../assets/images/upload-data.png" /></p>
+<p>You may also want to download the trained model locally. There is another function that allows you to download file(s) from s3. Here it is, also wrapped in a script.</p>
+<p><img alt="download-model" src="../../assets/images/download-model.png" /></p>
+<p>Note that we introduce an optional parameter <code>job_name</code>. This is because SageMaker does not only save the model in the <code>model_path</code> but also some other information like logs. If we simply want to download the model, this is stored inside <code>job_name/output</code> which is one of the reasons we want to have control of the job name instead of having it auto generated.</p>
+<p>Finally, when you kick off a job with sagemaker, it streams the logs produced by default. Some of those jobs though will need some time to finish so you need a way to access the logs at random intervals. You can easily do that via another SageMaker command, like here:</p>
+<p><img alt="get-logs" src="../../assets/images/get-logs.png" /></p>
+<p>The wait parameter provides logs in a streaming fashion as we would see them in the terminal if we were running the script locally. We can interrupt at any point without killing the job.</p>
+<p>These are all the additional scripts we added to work with SageMaker</p>
+<p><img alt="scripts-tree" src="../../assets/images/scripts-tree.png" /></p>
+<p>You can find the complete code inside this repository https://github.com/MantisAI/sagemaker_examples, including the training scripts for pytorch and transformers.</p>
+<p>In this post we set the scene on how to use SageMaker to train your models. We started by using its pre configured framework containers which easily allow you to run your script in the cloud. We also created some helper scripts to upload data and download models as well as see logs to be able to work with and monitor a SageMaker job.</p>
+<p>In our next post we will explore how we can customize our training by including additional libraries, bringing additional scripts and building our own containers. We will then explore inference with SageMaker. Stay tuned.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/MLOps-with-SageMaker-Part-I-1b45904c8bc78012ab0efc786686d854" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

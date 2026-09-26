@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TutorCopilot — Nick Sorros</title>
+<meta name="description" content="TutorCopilot — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.04</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">TutorCopilot</h1>
+    </header>
+
+    <div class="prose">
+<p><a href="https://arxiv.org/abs/2410.03017?_hsenc=p2ANqtz-_xiwfl9OX5umE_oWOXkoaYUSoCQNgphcyILyYi_BpXQo3Yy2in8iErwOlbnZCA1d8tBV1CLtmYDpEAiMDGQy4t2kh8wA&amp;_hsmi=353823758">https://arxiv.org/abs/2410.03017?_hsenc=p2ANqtz-_xiwfl9OX5umE_oWOXkoaYUSoCQNgphcyILyYi_BpXQo3Yy2in8iErwOlbnZCA1d8tBV1CLtmYDpEAiMDGQy4t2kh8wA&amp;_hsmi=353823758</a></p>
+<p>💡 Here is a Human-AI approach on how the technology can make us better instead of obsolete</p>
+<p>As AI is improving at an accelerated pace, it is natural to feel that our job might be at risk in the near future. There is no doubt that AI will have a significant role to play in most workplaces but this does not mean it will be at the expense of some of us in order to realise the efficiency gains that the technology is promising. In fact, since everyone will have access to AI, it is unlikely that any competitive advantage will come from the technology alone but in how businesses and humans use it within organisations.</p>
+<p>An illustrative example on how AI can empower us comes from a study in the education sector where the goal was to improve tutors using AI and tactics from more experienced educators. Not only was this succesful, effectively democratising access to good education, it also means that AI can play a role in helping us navigate the changes it can cause to our work in two ways</p>
+<p>1️⃣ it can diffuse knowledge from more experienced people in order to outperform any AI doing entry level work</p>
+<p>2️⃣ it can scale up any retraining that will be needed in an ongoing basis as our work changes over time</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

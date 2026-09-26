@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The future of work — Nick Sorros</title>
+<meta name="description" content="The future of work — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.03</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">The future of work</h1>
+    </header>
+
+    <div class="prose">
+<p>The word on the street is that AI is coming out for our jobs. I hardly remember a conversation with someone not raising the concern that AI will automate what they do in the near few years. Is that the future we are heading to?</p>
+<p>In short, I don’t think so even though I am quite certain that most of the tasks we do today and get paid for won’t exist for much longer. So if AI automates what we currently do away, what is left to do?</p>
+<p>Let’s use software engineering as a starting point. AI today writes professional code across stacks and specialisation from infrastructure to front end, back end, mobile and AI itself. Is that eating away software engineering jobs? Yes and no at the same time. Junior software engineers seem affected but the overall trend is more demand not less. If anything, I think we are seeing a temporal discrepancy between the skills required right now and the training universities provide, in other words we train people for roles that don’t exist (writing junior level code) and inversely we don’t train them well for what is needed (architecting software solutions and AI writing the core). I think this discrepancy will be corrected soon in the same way that there was a year or two where AI could do your homework at school and the education al system had not caught up with that reality. Now it has to the point where a lot of exercises explicitly require the use of AI to complete.</p>
+<p>Let’s take the software engineering example to its extreme to picture what the future might look like. We are experiencing a rapid automation of production across verticals from knowledge work e.g. producing code, drafting legal contracts, creating designs etc to physical work e.g. factory workers, drivers, cleaning etc. Everything points to AI making us all obsolete right?</p>
+<p>Unlikely I would say. Why? Who is accountable if doctor AI prescribes you the wrong drug or does a mistake in your surgery? And who goes to jail if your financial AI commits fraud to earn you more money. Will you leave your kid to a teacher AI robot to educate them? And is a politician AI designing laws for us and judging us against those the best idea?</p>
+<p>We will still need humans to be accountable for different areas of expertise, think software, legal, engineering. We will also need them to decide what is best for humans, think policy, government, design. And we will definitely need them to liaise with, think education, service. We will still have hierarchies inside companies where the bottom layers are responsible for “producing” value using AI while the rest are accountable and manage those resources.</p>
+<p>Will we able to produce more stuff with the same number of people? Absolutely hence at some point this should show in macroeconomic data which it still hasn’t. Will we need the same amount of people in every role? Mostly yes, in the same way that software tools over the years have only increased demand. Some roles should be affected though, we don’t have the same number of farmers as we did 200 years ago but we do have the same number of people working. We might not have as many drivers even though auto pilot in planes which has existed for many years has not even removed the pilot yet. We will very likely need fewer factory workers unless we substantially increase production and those workers oversee the machines. We will need the same amount of teachers, doctors possibly lawyers as well.</p>
+<p>What will change? In a nutshell I think we will do more novel work. Anything repeatable that does not require critical human thinking will be delegated to AI with us acting as reviewers or the work produced. But critical thinking, taste, communication will not be handed over, we will design what we want to produce for us, what is tasteful for us and who will service us.</p>
+<p>If that turns out to be true, work will be more rewarding and meaningful for a lot of people since repeatable tasks that need to be done for our economy to work are not the best motivators for people. We will also be able to relocate more resources int solving novel and important problems like solving environments and health challenges.</p>
+<p>So should you worry about your job? I don’t think so. Will your current job obsolete soon? Very likely. Does this mean you need to acquire new skills or stay unemployed?  It really, you will do the same job using AI, it is just that most of the job would do now AI will do and most of job you will do in the future is either new or your manager does.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/The-future-of-work-2cc5904c8bc780d6a72fd5fe7fd47567" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

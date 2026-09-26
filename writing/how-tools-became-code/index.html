@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>How tools became code &mdash; Nick Sorros</title>
+<meta name="description" content="How tools became code &mdash; by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">&larr; back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.08</span>
+        <span class="sep">&middot;</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">How tools became code</h1>
+    </header>
+
+    <div class="prose">
+<p>When ChatGPT launched it was a very useful tool but lacked any agency, i.e. you could not easily get it to do stuff for you. Tools, and later on MCP, appeared as a means to solve that and connect AI to your device, your apps and the world. Tools were incorporated into AI in a relatively straightforward way, initially by prompting the model and later on by training it to use tools. As it turns out though, when models learned to write code proficiently, tool use became a by-product of that, meaning they could use tools without being trained on tool use in particular ✨</p>
+<p>This is a recurring phenomenon in AI, so much so that it is referred to as the bitter lesson of AI. This is the loop where humans manually design a solution to an AI problem, only for AI to make that solution obsolete a few years later as it becomes more general. A more obvious example is how we used to train specialised models to read documents, transcribe speech and so on, all of which have been swallowed by the general models we now all use. Other than the philosophical point here though, there are some real gains in this transition from explicit tool use to code which I want to touch on.</p>
+<p>The human-designed tool use process required the AI to call tools almost one at a time, because the AI was given the available tools and returned the ones it wanted to use and with what arguments. This is quite slow and more error prone than the alternative that coding models have enabled: writing a small code snippet that calls all the tools needed, in parallel or in sequence, and returns just the result the AI needs 🏎️</p>
+<p>💡This transition is quite new: models from last year performed better with the traditional way of using tools, so it's only this year that coding models have made the old way obsolete. So as you are implementing your agentic use cases, keep in mind that all you need is a coding model (and a harness, but that is another post).</p>
+<p><img src="../../assets/images/30ad2961c76c7f1b.png" alt="Code caught up with JSON in 2026" /></p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">&larr; back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById("theme-toggle");
+    var saved = localStorage.getItem("theme");
+    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    function paint() { root.setAttribute("data-theme", dark ? "dark" : "light"); if (btn) btn.textContent = dark ? "light" : "dark"; }
+    paint();
+    if (btn) btn.addEventListener("click", function () { dark = !dark; localStorage.setItem("theme", dark ? "dark" : "light"); paint(); });
+  })();
+</script>
+</body>
+</html>

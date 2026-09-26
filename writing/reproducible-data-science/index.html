@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Reproducible data science — Nick Sorros</title>
+<meta name="description" content="Reproducible data science — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2022.09</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">Reproducible data science</h1>
+    </header>
+
+    <div class="prose">
+<p><img alt="reproducibility" src="../../assets/images/reproducibility.jpeg" />
+Source: https://blog.f1000.com/2014/04/04/reproducibility-tweetchat-recap/</p>
+<p>Ever since we started working on data science projects at Wellcome data labs we have been thinking a lot about reproducibility. As a team of data scientists, we wanted to ensure that the results of our work can be recreated by any member of the team. Among other things this allows us to easily collaborate on projects and offer support to each other. It also reduces the time it takes us to transition from an experimental idea to production.</p>
+<h2>How do we do that?</h2>
+<p>Our process has evolved over the years but the core ideas are heavily inspired by <a href="https://drivendata.github.io/cookiecutter-data-science/">data science cookiecutter</a>. Even though we do not initialise our projects with the template, we re-create the structure as needed in each project. The structure we follow is</p>
+<pre><code>PROJECT_NAME
+| — data/
+|    |— raw/
+|    |— processed/
+| — models/
+| - [notebooks/]       # jupyter notebooks
+| - [docs/]            # documentation can go here including results
+| - [configs/]
+| — PROJECT_NAME/      # source code goes here like train.py
+| — requirements.txt
+| - Makefile
+| - README.md
+| - [setup.py]
+</code></pre>
+<p>In square brackets are the files and folders most projects have but we do not enforce.</p>
+<h2>Data</h2>
+<p>We store our raw data in a dedicated folder and ensure that we keep this data unchanged, and therefore do not invalidate any processing we do after. Whenever we apply any processing to a raw or processed file, the result goes to either the <code>processed</code> (never raw) or <code>models</code> folder depending on the output. Even though we do not apply any versioning to the data or models, something that I will touch again later on the post, this convention allows us to recreate processed files and models by running our code through the raw data.</p>
+<p>Our data and models are synced to AWS S3 (note that s3 provides some form of versoning). Our code is versioned through git and shared through Github. This setup means that any member of the team can switch and work on any project easily by cloning a repo or navigating to the project folder and pulling the data and models from S3.</p>
+<h2>Makefile</h2>
+<p>We make the process of syncing data and models even easier through the use of a <a href="https://opensource.com/article/18/8/what-how-makefile">Makefile</a>.</p>
+<pre><code>PROJECT_NAME := classifier
+PROJECT_BUCKET := datascience/$(PROJECT_NAME)
+
+.PHONY: sync_data
+sync_data: ## syncs data to s3
+    aws s3 sync data/ s3://$(PROJECT_BUCKET)/data
+    aws s3 s3://$(PROJECT_BUCKET)/data data/
+
+.PHONY: sync_models
+sync_models: ## syncs models to s3
+    aws s3 sync models/ s3://$(PROJECT_BUCKET)/models
+    aws s3 s3://$(PROJECT_BUCKET)/models models/
+</code></pre>
+<p>The Makefile allows us to define shorthand commands for commonly performed actions, and ensures that there is a consistent way to run these commands, which means they can be reproduced with the same result.</p>
+<h2>Virtualenv</h2>
+<p>One of the most important components of a data science project which we want to be able to recreate, is the <a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> that contains all the dependencies of the project (for example the python library ‘pandas’). The dependencies are typically defined in a requirements.txt. To avoid different ways of creating the virtualenv (e.g. python -m venv venv, virtualenv -p python3 venv) and different python and pip versions we use another make command to standardise the creation of the virtualenv.</p>
+<pre><code>PYTHON := python3.8
+VENV := venv
+PIP := venv/bin/pip
+
+.PHONY: venv
+venv: ## creates virtualenv
+    @if [ -d $(VENV) ]; then rm -rf $(VENV); fi
+    @mkdir -p $(VENV)
+    $(PYTHON) -m venv $(VENV)
+    $(PIP) install --upgrade pip
+    $(PIP) install -r requirements.txt
+</code></pre>
+<p>Being able to get a reproducible virtualenv still requires that the dependencies you define are pinned to exact versions. Otherwise, every time a user creates a virtualenv with the above command they will get a different set of dependencies. A common way to ensure all required dependencies are pinned is through the use of an <code>unpinned_requirements.txt</code> and <code>pip freeze</code>.</p>
+<p>The unpinned requirements file consists of the names of unpinned libraries (e.g. pandas) for which you don’t have a preference over which version is installed, and pinned libraries, for which it is important that a specific version or version range is installed (e.g. <code>spacy&gt;2</code> or <code>spacy==3.0</code>). You can install the unpinned requirements to your virtualenv and then create the requirements.txt with pip freeze which will output all dependencies pinned to the versions installed. You can automate updating the requirements.txt file with yet another <code>make</code> command</p>
+<pre><code>update-requirements: VENV := /tmp/update-requirements-venv
+update-requirements: ## updates requirements
+    @if [ -d $(VENV) ]; then rm -rf $(VENV); fi
+    @mkdir -p $(VENV)
+    $(PYTHON) -m venv $(VENV)
+    $(PIP) install --upgrade pip
+    $(PIP) install -r unpinned_requirements.txt
+    echo &quot;Created by update-requirements. Do not edit.&quot; &gt; requirements.txt
+    $(PIP) freeze | grep -v pkg-resources==0.0.0 &gt;&gt; requirements.txt
+</code></pre>
+<h2>Configs</h2>
+<p>Having uncorrupted raw data and a reproducible virtualenv is only a minimum requirement to be able to reproduce a data science project. We also need a way to replicate the actual analysis or modelling. Fortunately data science projects often follow a standard flow of steps where data is preprocessed, features are extracted, and a model is trained and evaluated. Each of these steps can be defined in a separate file, for example preprocess.py or train.py, and receive command line arguments for the various parameters that are needed to reproduce its outputs. It is important to avoid hardcoding any parameters, even those that seem less likely to change, as when they change you will make your previous results not reproducible. An example train.py would look like:</p>
+<pre><code>import argparse
+
+
+def train(data_path, model_path, learning_rate, batch_size):
+    ...
+
+
+if __name__ == &quot;__main__&quot;:
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument(&quot;--data_path&quot;, type=str, help=&quot;path to train data&quot;)
+    argparser.add_argument(&quot;--model_path&quot;, type=str, help=&quot;path to save the model&quot;)
+    argparser.add_argument(&quot;--learning_rate&quot;, type=float, help=&quot;learning rate param&quot;)
+    argparser.add_argument(&quot;--batch_size&quot;, type=int, help=&quot;batch size param&quot;)
+    args = argparser.parse_args()
+
+    data_path = args.data_path
+    model_path = args.model_path
+    learning_rate = args.learning_rate
+    batch_size = args.batch_size
+
+    train(data_path, model_path, learning_rate, batch_size)
+</code></pre>
+<p>Now you can mention the exact command that recreates a certain result in your README and the user can rerun the step easily. You can take this a step further by defining a config file where you define the parameters for all steps of a particular experiment along with a version, something like</p>
+<pre><code>[DEFAULT]
+version = 2021.03.0
+
+[preprocess]
+raw_data_path = data/raw/data.xlsx
+processed_data_path = data/processed/data.jsonl
+
+[train]
+data_path = data/processed/data.jsonl
+model_path = models/cnn-2021.03.0/
+learning_rate = 1e-3
+batch_size = 32
+</code></pre>
+<p>and your train.py, changed to read the arguments from the config, would now look like:</p>
+<pre><code>import configparser
+import argparse
+
+def train(data_path, model_path, learning_rate, batch_size):
+    ...
+
+if __name__ == &quot;__main__&quot;:
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument(&quot;--config&quot;, type=str, help=&quot;path to config file&quot;)
+    args = argparser.parse_args()
+
+    cfg = configReader
+    cfg.read(args.config)
+    data_path = cfg[&quot;train&quot;][&quot;data_path&quot;]
+    model_path = cfg[&quot;train&quot;][&quot;model_path&quot;]
+    learning_rate cfg[&quot;train&quot;].getfloat(&quot;learning_rate&quot;)
+    batch_size = cfg[&quot;train&quot;].getint(&quot;batch_size&quot;)
+
+    train(data_path, model_path, learning_rate, batch_size)
+</code></pre>
+<p>In the example shown I am using an INI config file but you can use other formats like TOML, YAML and JSON easily. Config files offer a couple of advantages. The most important for reproducibility is that they contain all the parameters needed for each step in order to recreate the entire experiment. At the same time, they offer a quick way to review all the different parameters tried on a given project. If combined with a results table in a separate document where the version of the config links to the results achieved, someone can get some really good intuition about what has and has not worked. Note that we also use the version number in the model output to be able to know which config produces each model.</p>
+<h2>Is that all?</h2>
+<p>The ideas presented so far have taken us a long way to reproducibility but they are not the whole story. I will briefly mention some additional considerations that are also important and that have been progressively playing an important role in our projects.</p>
+<h2>Tests</h2>
+<p>Possibly the most important next thing is tests. In the absence of tests, to ensure that your code and configs work as expected after every change would require manually rerunning some that are most likely to be affected. Rerunning your configs through your code is a form of integration test so why not automate it? It is also the bare minimum to ensure reproducibility. Ideally though, you want to have unit tests for most steps so that if a change has the potential to affect your results, you are more likely to catch it early.</p>
+<h2>Code reviews</h2>
+<p>Another mechanism for catching errors that might impact reproducibility is code reviews. To enable code reviews we work mainly in python scripts instead of notebooks. Code reviews allow us to capture methodological flaws. To reduce the time commitment that code reviews require we aim for pushing small changes, ideally less than 200 lines, even though that is not always possible. Code reviews are also an excellent way to collaborate on projects as data scientists tend to work independently even in teams.</p>
+<h2>Random seeds</h2>
+<p>Data science algorithms are rarely deterministic. From splitting your data to initialising parameters of a neural network, it is typical for some parts of the pipeline to contain a probabilistic component. In order to get reproducible results then, it is important to somehow control that randomness, and the way to do that is by setting up a random seed. Python numpy, tensorflow and most data science libraries expose a standard way to define the random seed that will be used. Note that you may need to set the seed in multiple places in order for it to be truly reproducible.</p>
+<h2>Data and model versioning</h2>
+<p>Of course the elephant in the room so far has been something I mentioned very early in the post, which is that we do not version our data and models. Actually we sort of version our models as shown earlier by using the version from the config, but what about the data? Well, one idea is to version the data in a similar way to models i.e. introduce a calver number which does not need to follow the config so we do not have to keep identical copies of the data but can change when data has changed. That would be better from what we have now and in fact there is one project that follows that idea but there is still something missing.</p>
+<p>What is missing is the fact that, as I mentioned, data science projects constitute a series of steps which can form a Directed Acyclic Graph (DAG). Any change in a file used by the DAG, either data or code, may invalidate the results in the end, and so far we have no way of defining that DAG and checking that no changes have been made. This is solved by <a href="https://dvc.org/">DVC</a>, a tool we have lately started using to address that obvious gap in our reproducibility efforts. DVC requires a separate blog post all together so stay tuned.</p>
+<p>You can see all those ideas in actions, in various stages at the following open source projects (<a href="https://github.com/wellcometrust/nutrition-labels">1</a>,<a href="https://github.com/wellcometrust/grants_tagger">2</a>). We would love to hear your thoughts and suggestions on this very important and interesting topic.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Reproducible-data-science-1af5904c8bc780678e27e1355d06dc3b" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

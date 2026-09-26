@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>We might be measuring intelligence wrong — Nick Sorros</title>
+<meta name="description" content="We might be measuring intelligence wrong — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.07</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">We might be measuring intelligence wrong</h1>
+    </header>
+
+    <div class="prose">
+<p>One of the most common ways we measure how good an AI model is, is a metric called <strong>pass@k</strong>. The idea is simple: you let the model produce k answers to a problem, and you count it as a success if <em>at least one</em> of them is correct. It sits behind a lot of the benchmark numbers you see quoted.</p>
+<p>And it does tell us something real: that the model is <em>capable</em> of generating the correct answer. Somewhere in those k attempts, the right answer exists.</p>
+<p>But here's the catch. In the real world we almost never care about a model that gets it right once in five tries and misses the mark the other four. A coding agent, a customer-service agent, an agent touching a production database — it acts once, and that one action is the one that counts. "At least one of k was right" is cold comfort if you can't tell <em>which</em> one.</p>
+<figure><img alt="pass@k vs pass∧k — capability rises with every retry, reliability collapses" src="passk-vs-passandk.png" /><figcaption>With a fixed 70% chance per attempt: getting it right at least once (pass@k) climbs to ~100% with retries; getting it right every time (pass&and;k) collapses to ~3%. Benchmarks reward the top curve.</figcaption></figure>
+<p>For a model to be genuinely useful, it is not enough to <em>generate</em> the right answer — it has to <em>pick</em> it. And picking requires something deeper: real understanding of the problem, and well-placed confidence across its own answers, so it knows which one to trust. That property — landing and recognising the right answer reliably, every time, not just once — is what we'd call reliability (pass&and;k, "all k correct"), and it is a different thing from raw capability.</p>
+<p>Reliability is improving too. It is just improving more slowly than capability. The headline benchmark numbers — the pass@k curve — have raced ahead, while the model's ability to reliably produce <em>and recognise</em> the right answer has crept up behind them.</p>
+<p>That slower rate isn't necessarily alarming. It looks like we are still converging towards more reliable AI, just on a gentler slope. What's worth keeping in mind is the distinction itself. It is at least one clean reason why the genuinely impressive numbers announced every month don't always translate into impressive performance on the critical, agentic tasks people actually want to hand off. We have been measuring, and rewarding, what a model <em>can</em> do. Deployment depends on what it does <em>every time</em>.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

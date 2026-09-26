@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Clawdbot in 200 lines of code — Nick Sorros</title>
+<meta name="description" content="Clawdbot in 200 lines of code — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.04</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">Clawdbot in 200 lines of code</h1>
+    </header>
+
+    <div class="prose">
+<p>Clawdbot (or openclaw in the last few days) has taken the world by storm, in some ways this feels like the ChatGPT moment for agentic AI i.e. ai that acts not just responds to your questions.</p>
+<p>How does clawdbot, or even better AI that acts, works? Lets implement it in as few lines of code as possible to uncover the mystery 🎩 Here are the ingredients</p>
+<p>🧠 AI (LLM)</p>
+<p>⚒️ Tools</p>
+<p>🔁 Agentic loop</p>
+<p>🗒️ Memory</p>
+<p>🪖 Rules aka prompt</p>
+<h3>AI 🧠</h3>
+<p>Let’s start with the easy part, calling the AI, the one that responds but does not act.</p>
+<pre><code>def call_llm(messages, tools, api_key):
+    req = urllib.request.Request(
+&quot;https://openrouter.ai/api/v1/chat/completions&quot;,
+        data=json.dumps({&quot;model&quot;: &quot;openrouter/free&quot;, &quot;messages&quot;: messages, &quot;tools&quot;: tools}).encode(),
+        headers={&quot;Authorization&quot;: f&quot;Bearer {api_key}&quot;, &quot;Content-Type&quot;: &quot;application/json&quot;},
+        method=&quot;POST&quot;
+)
+with urllib.request.urlopen(req) as resp:
+        data = json.loads(resp.read().decode())
+if &quot;choices&quot; not in data:
+return f&quot;Error: {data.get(&#x27;error&#x27;, &#x27;No choices&#x27;)}&quot;, []
+    msg = data[&quot;choices&quot;][0][&quot;message&quot;]
+return msg.get(&quot;content&quot;, &quot;&quot;), msg.get(&quot;tool_calls&quot;, [])
+</code></pre>
+<p>this is the least exciting part but its the one doing most of the heavy lifting lets not forget, we are sending our conversation in messages , the tools available and an API KEY to our provide of choice, in this case openrouter which gives us access to any model we want and get back a response together with tools the AI would like to use.</p>
+<h3>Tools ⚒️</h3>
+<p>The tools are what allows the AI to act 🪄 so its part of the magic for sure. Tools are not new, in fact they date back to GPT4 which launched a few months after ChatGPT, but it has taken some time for the dust to settle in making the AI use tools more reliably. Introducing tools is a double edge sword ⚔️ On the one hand, adding more tools makes the AI more able to do more things, so the more the better in some sense, but on the other hand as we give it more tools we make it harder for the AI to pick the right one and we experience that with worse performance after a point. So there is a minimalist philosophy that has prevailed in regards to tools where we add the minimum tools needed to unlock AI abilities. In our case, these are read, write and edit files as well as run terminal commands and search the web through exa.</p>
+<pre><code>def read(path: str) -&gt; str:
+return Path(path).read_text()
+def write(path: str, content: str) -&gt; str:
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    Path(path).write_text(content)
+return f&quot;Written to {path}&quot;
+def edit(path: str, old: str, new: str) -&gt; str:
+    content = Path(path).read_text()
+    Path(path).write_text(content.replace(old, new, 1))
+return f&quot;Edited {path}&quot;
+def run(command: str) -&gt; str:
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+return result.stdout or result.stderr
+
+def web_search(query: str) -&gt; str:
+import urllib.request, urllib.parse, json, os
+    api_key = os.environ.get(&quot;EXA_API_KEY&quot;)
+if not api_key:
+return &quot;Error: EXA_API_KEY not set&quot;
+    data = json.dumps({&quot;query&quot;: query, &quot;num_results&quot;: 5}).encode()
+    req = urllib.request.Request(
+&quot;https://api.exa.ai/search&quot;,
+        data=data,
+        headers={&quot;Authorization&quot;: f&quot;Bearer {api_key}&quot;, &quot;Content-Type&quot;: &quot;application/json&quot;}
+)
+with urllib.request.urlopen(req) as resp:
+        results = json.loads(resp.read().decode()).get(&quot;results&quot;, [])
+if not results:
+return &quot;No results found.&quot;
+return &quot;\n\n&quot;.join(f&quot;- {r[&#x27;title&#x27;]}\n  {r[&#x27;url&#x27;]}&quot; for r in results)
+
+TOOLS = {&quot;read&quot;: read, &quot;write&quot;: write, &quot;edit&quot;: edit, &quot;run&quot;: run, &quot;web_search&quot;: web_search}
+
+TOOL_SCHEMAS = [
+{&quot;type&quot;: &quot;function&quot;, &quot;function&quot;: {&quot;name&quot;: &quot;read&quot;, &quot;parameters&quot;: {&quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {&quot;path&quot;: {&quot;type&quot;: &quot;string&quot;}}, &quot;required&quot;: [&quot;path&quot;]}}},
+{&quot;type&quot;: &quot;function&quot;, &quot;function&quot;: {&quot;name&quot;: &quot;write&quot;, &quot;parameters&quot;: {&quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {&quot;path&quot;: {&quot;type&quot;: &quot;string&quot;}, &quot;content&quot;: {&quot;type&quot;: &quot;string&quot;}}, &quot;required&quot;: [&quot;pa
+th&quot;, &quot;content&quot;]}}},
+{&quot;type&quot;: &quot;function&quot;, &quot;function&quot;: {&quot;name&quot;: &quot;edit&quot;, &quot;parameters&quot;: {&quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {&quot;path&quot;: {&quot;type&quot;: &quot;string&quot;}, &quot;old&quot;: {&quot;type&quot;: &quot;string&quot;}, &quot;new&quot;: {&quot;type&quot;: &quot;strin
+g&quot;}}, &quot;required&quot;: [&quot;path&quot;, &quot;old&quot;, &quot;new&quot;]}}},
+{&quot;type&quot;: &quot;function&quot;, &quot;function&quot;: {&quot;name&quot;: &quot;run&quot;, &quot;parameters&quot;: {&quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {&quot;command&quot;: {&quot;type&quot;: &quot;string&quot;}}, &quot;required&quot;: [&quot;command&quot;]}}},
+{&quot;type&quot;: &quot;function&quot;, &quot;function&quot;: {&quot;name&quot;: &quot;web_search&quot;, &quot;parameters&quot;: {&quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {&quot;query&quot;: {&quot;type&quot;: &quot;string&quot;}}, &quot;required&quot;: [&quot;query&quot;]}}},
+]
+</code></pre>
+<p>Choosing the right tools is a bit of an art 🎨, you can argue the only tool you need is run and the AI should be able to figure out the rest and this might be true given the right prompt or model but the set above seems to be the minimum set that seems to work relatively reliably and it is not very disimilar to the toolset claude code, clawdbot and others provide.</p>
+<h3>Agentic loop 🔁</h3>
+<p>If AI is the heavy lifting 💪 and tools a big part of the magic 🪄, the agentic loop is what puts them in practice to unleash the power 🚀 The loop is as simple as it sounds and it shows up under many different names like effort level, deep versions of models, time spent thinking, test time compute, search etc. Irrespective of name though, the implementation is a loop where the model, knowing the task from the user and the tools available works step by step to answer. Here is how</p>
+<pre><code>while True:
+	  task = input(&quot;\n&gt; &quot;).strip()
+if task.lower() in (&quot;quit&quot;, &quot;exit&quot;, &quot;q&quot;):
+print(&quot;Goodbye!&quot;)
+break
+if not task:
+continue
+	
+	  conversation.append({&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: task})
+	  run_agent(conversation, api_key)
+def compact(conversation: list) -&gt; list:
+if len(conversation) &lt;= 8:
+return conversation
+
+    prompt = conversation[:2] # system + memory
+    recent = conversation[-4:] # last 4 messages
+    middle = conversation[2:-4]
+print(f&quot;\n[Compacting {len(middle)} messages...]&quot;)
+return prompt + [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: f&quot;[Summary of {len(middle)} previous messages]&quot;}] + recent
+	  
+def run_agent(conversation, api_key, max_iterations=5):
+for iteration in range(max_iterations):
+print(f&quot;\n[Step {iteration + 1}/{max_iterations}]&quot;)
+try:
+            response, tool_calls = call_llm(conversation, TOOL_SCHEMAS, api_key)
+except Exception as e:
+if &quot;context&quot; in str(e).lower():
+print(f&quot;\n[Context limit hit, compacting...]&quot;)
+                conversation = compact(conversation)
+continue
+raise
+if response:
+print(f&quot;Thinking: {response[:200].replace(chr(10), &#x27; &#x27;)}...&quot;)
+if &quot;context&quot; in response.lower():
+print(f&quot;\n[Context limit hit, compacting...]&quot;)
+            conversation = compact(conversation)
+continue
+if not tool_calls:
+print(f&quot;Final: {response}&quot;)
+return
+
+        conversation.append({&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: response, &quot;tool_calls&quot;: tool_calls})
+for tc in tool_calls:
+            name = tc[&quot;function&quot;][&quot;name&quot;]
+            args = json.loads(tc[&quot;function&quot;].get(&quot;arguments&quot;) or &quot;{}&quot;)
+            tc_id = tc.get(&quot;id&quot;, &quot;&quot;)
+print(f&quot;  → {name}({args})&quot;)
+try:
+                result = TOOLS[name](**args)
+except Exception as e:
+                result = f&quot;Error: {e}&quot;
+print(f&quot;  ← {result[:100]}...&quot;)
+            conversation.append({&quot;role&quot;: &quot;tool&quot;, &quot;content&quot;: result, &quot;tool_call_id&quot;: tc_id})
+</code></pre>
+<p>Nothing fancy, we call the AI repeatedly a number of times, some of those times the AI decides it wants to use tools, something it has been trained to do it is worth keeping in mind. Lets call the reasoning around those tool uses thinking and return if there is nothing else to act on.</p>
+<p>☝️The only important thing to call out is that at some point this back and forth contains more tokens than AI can handle and in these cases we need to summarise whats going on while keeping the initial directions and last few messages for continuity. This is what the function compact does.</p>
+<h3>Memory 🗒️</h3>
+<p>This brings us nicely to memory as the number of tokens AI can process can be though of as some form of short term memory. This number has increased substantially in the last years. When ChatGPT launched this was closer to the low thousands whereas now we are in the low millions. After a point though it makes little sense keeping so much information in context and here is where some form of external memory comes into play. Memory also shows up with different names, the latest of which is skills. Irrespective of name, what we want is some way to save notes for future reference or pass in our knowledge to AI and the AI using it. No need to reinvent the wheel every time from first principles if it can save instructions how it achieved it the first time. Simple concept but quite powerful 💡</p>
+<pre><code>memory = get_memory(MEMORY_PATH)
+print(f&quot;[Memory loaded: {len(memory)} chars]&quot;)
+
+conversation = [
+{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: SYSTEM_PROMPT},
+{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: f&quot;Memory:\n{memory}&quot;},
+]
+def get_memory(memory_path: str = &quot;memory/&quot;) -&gt; str:
+    path = Path(memory_path)
+if not path.exists():
+return &quot;No memory found.&quot;
+
+    memory_files = []
+for f in sorted(path.glob(&quot;*.md&quot;)):
+        memory_files.append(f&quot;=== {f.name} ===\n{f.read_text()}&quot;)
+return &quot;\n\n&quot;.join(memory_files) if memory_files else &quot;No memory found.&quot;
+</code></pre>
+<p>There are a couple of ways to implement memory but one way is simply to keep a folder, lets call it memory, where we save md files with useful instructions. Then we pass it as is, or summarised, to the model first thing after the system prompt while also mentioning in the system prompt to save information to memory when it makes mistakes or long efforts to respond in order to improve over time.</p>
+<h3>Rules 🪖</h3>
+<p>The final touch is how we prompt the model. This is important because the model has not been trained to explicitly act as the agent we designed. It has been trained to use tools so no much prompting needed there but has no concept of memory and is cautious when responding instead of being brave 😂 things will be alright so needs a bit of nudging.</p>
+<pre><code>SYSTEM_PROMPT = &quot;&quot;&quot;You are a helpful assistant with access to tools: read, write, edit, run, web_search.
+
+User memory is provided below in the conversation. USE that info directly - don&#x27;t re-read files.
+
+RULES:
+1. The memory system message contains everything you need - use it
+2. Try 3+ approaches before giving up
+3. Never ask for clarification - figure it out
+4. If you make mistakes or spend long time exploring, SAVE what you learned to memory/ for next session
+5. Keep memory organized - one file per tool/task (e.g., memory/gog.md for email, memory/gh.md for GitHub, memory/code.md for coding, memory/user.md for preferences). Overlap is f
+ine.
+6. You can read/research freely but ALWAYS ask permission before taking actions (sending emails, creating tasks/meetings, editing files, running destructive commands)&quot;&quot;&quot;
+</code></pre>
+<p>And just like that you can have AI that acts whether you call it Clawdbot 🦞 Claude Code or otherwise. I chose to call it bot to avoid issues with the usual suspects 😂 Here is the whole code <a href="https://github.com/nsorros/bot/blob/main/blog_agent.py" target="_blank" rel="noopener">https://github.com/nsorros/bot/blob/main/blog_agent.py</a> which you can use as is with just python. Note that in order for it to be more useful from the starts you might want to populate memory with one or two files which you can take straight from the skills of openclaw or ask the model to pick it up via search. Use at your own risk ⚠️ with the tools in your laptop, the more tools, the more useful and the more risky…</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Clawdbot-in-200-lines-of-code-30d5904c8bc780118ffcf3655570ac92" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Two monarchies, open vs closed — Nick Sorros</title>
+<meta name="description" content="Two monarchies, open vs closed — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.07</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Two monarchies, open vs closed</h1>
+    </header>
+
+    <div class="prose">
+<p>We have two very different monopolies right now in AI. On the one hand, Anthropic leading the closed AI race with ~54% of enterprise coding spend and &gt;60% of programming spend on OpenRouter. On the other, China — with a plethora of very competitive models in the open domain like DeepSeek, Moonshot (Kimi), Zhipu (GLM), Xiaomi (MiMo) and MiniMax — which went from ~1% of OpenRouter traffic in late 2024 to 30–45% today.</p>
+<p>And while Anthropic is top of mind currently with the recent release of Fable, I wanted to change gears and look into the open model race, which is currently a slightly more exciting one — the lead changes hands every few weeks and the gap with the closed providers keeps narrowing.</p>
+<p>Here are some models to keep in mind:</p>
+<ul>
+<li><strong>DeepSeek</strong> — the most-used (largest token volume on OpenRouter, most-liked on Hugging Face). The workhorse.</li>
+<li><strong>Qwen</strong> — the most-built-on (more derivative models than Google and Meta combined). The platform.</li>
+<li><strong>Kimi</strong> — winning the PR war and the benchmark headline lately (twice grabbed the open lead; tied at the top right now). The one everyone's talking about, though by raw usage it's the smallest of the three.</li>
+</ul>
+<p>And a couple of useful observations:</p>
+<ol>
+<li>The open-to-closed gap closed from ~13 points a year ago to ~6 (about 3 months) now.</li>
+<li>There are a lot of excellent open models now and they're all Chinese. Most are, to some extent, distilled from closed frontier models — worth highlighting, because it means it's likely not soon that the frontier itself switches to China.</li>
+</ol>
+<figure><img alt="The open frontier right now: Kimi, MiMo and DeepSeek each take a benchmark; GLM trails close behind" src="open-benchmarks.png" /><figcaption>The open frontier right now: Kimi, MiMo and DeepSeek each take a benchmark; GLM trails close behind.</figcaption></figure>
+<p>In summary, there has never been a better time for open source AI — many powerful models to choose from, all very close to the frontier. So if you care about owning the IP to the intelligence layer, privacy, or any sort of optimisation or customisation, you have plenty of excellent choices.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

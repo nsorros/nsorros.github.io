@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anthropic takes the lead with Fable — Nick Sorros</title>
+<meta name="description" content="Anthropic takes the lead with Fable — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.06</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Anthropic takes the lead with Fable</h1>
+    </header>
+
+    <div class="prose">
+<p>Anthropic went from a <a href="https://x.com/AnthropicAI/status/1962909473736962122">$1B run-rate at the start of 2025</a> to <a href="https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation">$14B in February</a>, <a href="https://venturebeat.com/technology/anthropic-says-it-hit-a-30-billion-revenue-run-rate-after-crazy-80x-growth">passed OpenAI in April at $30B</a>, and announced <a href="https://www.anthropic.com/news/series-h">$47B in May alongside a Series H at a $965B valuation</a>. This meteoric rise is at the back of mostly Claude Code alone which now writes <a href="https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation">~4% of all public GitHub commits</a>.</p>
+<p>Interestingly though, all of that dominance was built without a dominant model.</p>
+<p>The Claude Code moment, somewhere around mid-2025, was, to a large extent, a product win, not a benchmark win. Anthropic shipped the harness everyone wanted before everyone else. This first to market advantage created a snowball effect that has led to a <a href="https://blog.jetbrains.com/research/2026/04/which-ai-coding-tools-do-developers-actually-use-at-work/">18% workplace adoption, up ~6x in a year, with the highest loyalty score in the category</a>. Capability-wise though, the labs stayed within arm's reach of each other the whole time. Every release cycle the lab that ships, takes the lead on a few benchmarks by 3–7 points, concedes a few others to whoever shipped last month, and the lead changes hands again six weeks later.</p>
+<figure><img alt="The frontier, the night before Fable — benchmark matrix across labs" src="fable-matrix.png" /></figure>
+<p>And then Fable comes in, Fable 5 is the first Mythos-class model the public can touch, and it doesn't follow the trend. It makes a significant jump in every benchmark in the table above, 80.3 on SWE-Bench Pro (+11 over its own twelve-day-old predecessor), 64.5 on Humanity's Last Exam, and 29.3 on FrontierCode Diamond, more than double the best score from two days before. No concessions, no trades. That has not happened in any release in the past year.</p>
+<p>The cleanest way to see how unusual this is: plot the frontier over time and fit the trend. Frontier coding capability has been improving at a remarkably steady ~3.6 points per month on SWE-Bench Pro, with each lab's release landing roughly where the line predicts. Fable lands 10 points above the line, about three months of progress ahead of schedule, in a field where the lead normally changes hands over one or two points.</p>
+<figure><img alt="SWE-Bench Pro: the frontier vs the trend — Fable lands 10 points above the line" src="fable-trend.png" /></figure>
+<p>And notice the hollow dot in April. That's <a href="https://red.anthropic.com/2026/mythos-preview/">Mythos Preview</a>, the restricted model Anthropic disclosed on April 7 and refused to ship, scoring 77.8 while the best available model from any lab was at 57.7. The capability jump didn't even happen on June 9, it happened months ago, inside Anthropic, and was nearly four months ahead of trend when it did. Fable is basically that model with a safety layer bolted on, after two months of safeguard work. One caveat worth keeping is that these are vendor-reported launch numbers, and independent harnesses have historically scored a few points lower.</p>
+<p>So Anthropic now leads on revenue, distribution, and for the first time capability, visibly and on every axis at once. Let's see how long they can keep that lead... 🍿</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

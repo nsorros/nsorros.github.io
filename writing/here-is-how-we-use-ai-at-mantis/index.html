@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Here is how we use AI at Mantis — Nick Sorros</title>
+<meta name="description" content="Here is how we use AI at Mantis — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.01</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Here is how we use AI at Mantis</h1>
+    </header>
+
+    <div class="prose">
+<p>Here are Mantis, we are heavy users of AI tools, as you would expect from an AI consultancy. We are reaching an inflection point where AI is starting to be a core part of how we work so we thought it would be useful to share more information on how we use AI to make us more productive 🚀</p>
+<p>AI tools like ChatGPT are super useful on their own but they are exponentially more useful when connected to the business tools you use to do work. This simple idea lies at the core of our system. We have connected all our business tools to our AI system of choice, this includes</p>
+<ul><li>Our documents</li><li>The project management tool we use to assign tasks to everyone at Mantis</li><li>Our CRM which keeps information about our customers and at which stage each potential project is</li><li>Our code repository that keeps all the software assets created for a project</li><li>And last but not least our communication data that includes emails, chats and calls</li></ul>
+<p>These are all sensitive data of course so we have picked up a tool that respects the privacy of our clients and is secure and we have made sure that those data are held completely out of any training loop. This is not difficult to achieve nowadays as most products and major cloud providers offer solutions that tick some, if not all, of these boxes. That said you still need to be careful about prompt injections for which there is not a perfect solution at the moment other than monitoring what the AI is doing.</p>
+<p>Allowing AI access to your data truly transforms how you do work since AI can</p>
+<p>✉️ draft personalised responses that have all the content from the conversations you had along with any steering you want to provide</p>
+<p>📜 respond to tenders and make offers that use your company guidelines and experience so they are grounded to your company and ways</p>
+<p>💼 create case studies out of the work completed informed both from the tasks as well as the code written and the communication around it</p>
+<p>📄 write a project report with the same information but for a different audience</p>
+<p>🔍 find any information you are looking for, however small or big, be it something mentioned in a conversation or agreed during an offer</p>
+<p>These are only some of the use cases we use AI for but you can immediately see how I said that AI has reached a point where significant gains can be achieved with the right setup. It is now more common to use AI for a task rather than not. One important consideration we are seeing with increasingly using AI to do work is to carefully review the work that AI produces. Only last week, <a href="https://fortune.com/2025/10/07/deloitte-ai-australia-government-report-hallucinations-technology-290000-refund/" target="_blank" rel="noopener">Deloitte was fined for errors made by AI in a report to the Australian government</a>. So to the extent that you are not blindly trusting AI to do your work, there are serious productivity gains to be achieved and this is without even talking about agents 🕵️ which offer yet another productivity boost that we can discuss another time.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Here-is-how-we-use-AI-at-Mantis-2955904c8bc780fcad5df77b1eb125ba" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The model is the brain, the harness is the body — Nick Sorros</title>
+<meta name="description" content="The model is the brain, the harness is the body — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">The model is the brain, the harness is the body</h1>
+    </header>
+
+    <div class="prose">
+<p>A couple of years ago, prompt engineering was going to be a career. Then the models got good enough that the tricks stopped mattering, and the job evaporated before it really arrived. Now it's all about harness engineering, the scaffolding around the model: how it reasons, calls tools, manages context, remembers, checks its work, is what we talk about now. So it's worth asking: will harness engineering have the same fate as prompt engineering?</p>
+<figure><img alt="The harness as an iceberg — the rented intelligence shows above the waterline; the durable runtime and product sit below" src="harness-iceberg.png" /></figure>
+
+<p>This is not to say that the harness is not important because it is. It is what turns your AI model into an agent. However, it currently serves two distinct roles, one of which gets more publicity and is more important in the short term, with the other being the core of what stays. Let's start with the first.</p>
+<h2>Patching limitations of current models</h2>
+<p>One of the main reasons, harness engineering is getting a lot of attention is because it makes an existing model perform better on a task. That on its surface seems valuable and can be mistaken for long term business value. However, I don't think most of those fixes are here to stay. Here is a list of such fixes, some of which are already obsolete:</p>
+<p>🤔 <strong>Reasoning</strong> like chain-of-thought, self-reflection loops (Reflexion, Self-Refine). Before reasoning models, there were plenty of techniques that were making models better at thinking which had a downstream effect in real world tasks, coding included but nowadays models are trained to reason so these techniques got removed from the harness level.</p>
+<p>🛠️ <strong>Tools.</strong> Early harness code was also fixing issues with tool use, format the call, parse output, retry bad JSON. Models choose and call tools cleanly now, the skill is being internalised. Tools choice still matters but it plays an ever smaller role as models become better at making the right choice by themselves.</p>
+<p>💿 <strong>Context.</strong> Pruning, compacting, pulling key facts back is where a lot of today's lift sits. Manipulating the context is the latest art form. Bringing the right tools closer to the context, keeping the right information etc and suddenly your agent starts performing much better. However models are already getting better at managing their context so I am not so sure this will be an important part of future harnesses.</p>
+<p>🏭 <strong>Domain knowledge</strong> is the single biggest lever right now. The reason being that current models, even though excellent at most domains, they lack on the job experience in your, or any, company. This means that there is plenty of room for adjusting how the agent performs in the tasks that are important to you. I am under the impression though that this will also go away when companies devise agent onboarding materials that the agent can refer back to.</p>
+<p>In any case, it is important to be sceptical about additions to the "intelligence" layer that will very likely go away at the next model iteration.</p>
+<h2>The agent runtime</h2>
+<p>The other role of the harness is more boring but more important in my opinion. It is the part that runs the AI model. This is the orchestration in some way, the software engineering engine around AI. It's more the product than the intelligence itself. It contains things like:</p>
+<p>⚙️ <strong>Runtime.</strong> The engine that actually executes the model and its tools, reliably and at a sane cost. A smarter model still has to run somewhere, and keeping it up, retrying what fails and not blowing the budget on tokens is plain infrastructure work that no model iteration takes away.</p>
+<p>💾 <strong>Storage.</strong> Sessions and memory have to live somewhere, which gives you an auditable trail of what the agent did but also the substrate for it to improve over time. However much a model can hold in its head, it still needs a notebook outside of it.</p>
+<p>🔌 <strong>Integration surface.</strong> The access to your systems and data, and the ability to take real actions in the world. A brain with no hands does nothing, and wiring up those hands is ordinary software engineering that only grows as the agent is trusted with more.</p>
+<p>🔒 <strong>Permissions and policies.</strong> The guardrails around what the agent can and cannot do, what it can touch, spend or send. The more capable the model gets the more this matters, not less, because a smarter agent left unchecked can do more damage and do it faster.</p>
+<p>✅ <strong>Independent verification.</strong> One model doing the work and another checking it, because a model grading its own output goes soft the same way you shouldn't review your own PR. This is a product decision about trust, not a trick to squeeze more intelligence out of the model.</p>
+<p>Every harness component encodes an assumption about what the model can't do, and some go stale. The ones that don't were never about the model's intelligence, they're about being a real product around it.</p>
+<h2>So what do you do?</h2>
+<p>I would start by separating the above two aspects of the harness. The intelligence uplift, context juggling, the domain rulebook which is a tune, not a moat: the same kind that prompt engineering and fine-tuning gave. Don't over invest in it, as it is a depreciating asset.</p>
+<p>The durable element of the harness is the other half, the body and the product around the model. A brain needs a body, and however smart the brain gets, someone still has to build the body well. That's just good software engineering, and good software engineering doesn't have a half-life.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date"></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

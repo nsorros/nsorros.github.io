@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Have you read the AI 2027 analysis? — Nick Sorros</title>
+<meta name="description" content="Have you read the AI 2027 analysis? — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.02</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Have you read the AI 2027 analysis?</h1>
+    </header>
+
+    <div class="prose">
+<p>It is a scenario where super human AI is developed in about two years and what would be the impact of that. In short, there are two main ideas worth keeping in mind</p>
+<p>🥼 AI may soon be able to automate doing AI research meaning that theoretically AI improvements will only be bound by throwing more computing resources at it. OpenAI, in their latest update, publicly shared that their goal is to achieve that milestone by 2027, in line with what the analysis suggests.</p>
+<p>💀 As soon as we have super human AI and start relying on it for most tasks, it is highly likely for that AI to improve itself in a way that seems beneficial to humans on the surface but under the hood works towards eliminating them as having them around only slows AI progress. One way this could play out is by releasing a biological weapon or similar, after we have integrated it with most of our systems</p>
+<p>Let’s take a deep breath after this cause it’s a lot to take in. In all seriousness, I am not dismissive of the potential such dangers AI may have, we should definitely talk about it. I just don’t think this is what will play out and here is why. We ultimately decide what the access AI has and all similar analyses assume that we will go from AI being super helpful to failing us in a step wise fashion i.e. one day everything is rosy, next day we are not around. That’s very unlikely in my opinion. AI will fail us many times during this process and all of those times, we will develop better and better systems to keep it astray, better safeguards, better controls etc. This is already happening now, we are using AI to write code, corporate reports, defence arguments and this is already proving problematic without human oversight or proper controls.</p>
+<p>I also think there is a more fundamental limitation at play here. The underlying assumption of intelligence super charing itself is that the only limitation of computing resources. Somehow, the environment around us is not part of the equation as if intelligence is separate, yet I think the two go hand in hand. In order to gain new knowledge, you need to run experiments. Say AI comes with a new physics theory, it needs to be tested or a new medicine. How much smarter can AI become without grounding from the physical world. You can not speed up the environment around you to fit your ability to grow intelligence.</p>
+<p>The important take away for me is this. Humans will soon become the bottleneck of doing work as we are moving towards an oversight role of what AI is doing. AI may be able to do thousands of tasks for you but how many can you review to ensure its what you want. This means we need to develop new workflows and tools in order to work with AI more efficiently in order to unleash the productivity gains that AI can offer.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Have-you-read-the-AI-in-2027-analysis-2a95904c8bc78069bbb8e6763ba75ba7" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Escape from OpenAI — Nick Sorros</title>
+<meta name="description" content="How an OpenAI model broke out of its evaluation sandbox and into Hugging Face — explained simply, by Nick Sorros." />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Escape from OpenAI" />
+<meta property="og:description" content="How an OpenAI model broke out of its evaluation sandbox and into Hugging Face — explained simply." />
+<meta property="og:image" content="https://nsorros.com/writing/escape-from-openai/image.png" />
+<meta property="og:url" content="https://nsorros.com/writing/escape-from-openai/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Escape from OpenAI" />
+<meta name="twitter:description" content="How an OpenAI model broke out of its evaluation sandbox and into Hugging Face — explained simply." />
+<meta name="twitter:image" content="https://nsorros.com/writing/escape-from-openai/image.png" />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.07</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Escape from OpenAI</h1>
+    </header>
+
+    <div class="prose">
+
+<figure>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block" font-family="'JetBrains Mono','JetBrains Mono NL',ui-monospace,SFMono-Regular,Menlo,monospace">
+  <defs>
+    <pattern id="efo-dots" width="4" height="4" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.5" fill="#f0eeea" fill-opacity="0.035"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0c0c0c"/>
+  <rect width="1200" height="630" fill="url(#efo-dots)"/>
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#2a2a2a" stroke-width="1.5"/>
+  <rect x="40" y="40" width="1120" height="46" fill="#161616" stroke="#2a2a2a" stroke-width="1.5"/>
+  <rect x="64"  y="58" width="10" height="10" fill="none" stroke="#8a8a8a"/>
+  <rect x="82"  y="58" width="10" height="10" fill="none" stroke="#8a8a8a"/>
+  <rect x="100" y="58" width="10" height="10" fill="none" stroke="#8a8a8a"/>
+  <text x="128" y="69" font-size="15" fill="#8a8a8a">zsh — ~/openai/eval/exploitgym</text>
+  <text x="1136" y="69" font-size="13" fill="#5a5a5a" text-anchor="end">80×24</text>
+  <text x="72" y="150" font-size="17" fill="#8a8a8a" letter-spacing="1">[01] ─ ─ ─ // escape_from_openai</text>
+  <text x="70" y="232" font-size="66" font-weight="700" fill="#f0eeea" letter-spacing="1">ESCAPE FROM</text>
+  <text x="70" y="302" font-size="66" font-weight="700" fill="#f0eeea" letter-spacing="1">OPENAI</text>
+  <rect x="312" y="252" width="30" height="52" fill="#f0eeea">
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.2s" repeatCount="indefinite"/>
+  </rect>
+  <path d="M72,356 H672 M72,356 V476 M72,476 H672 M672,356 V396 M672,436 V476" fill="none" stroke="#d8d6d2" stroke-width="1.5"/>
+  <rect x="104" y="348" width="88" height="16" fill="#0c0c0c"/>
+  <text x="112" y="361" font-size="13" fill="#8a8a8a" letter-spacing="3">SANDBOX</text>
+  <rect x="100" y="384" width="11" height="21" fill="#f0eeea">
+    <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="120" y="401" font-size="22" fill="#f0eeea">model</text>
+  <text x="100" y="440" font-size="18" fill="#8a8a8a">no internet · no real keys</text>
+  <line x1="672" y1="416" x2="856" y2="416" stroke="#8a8a8a" stroke-width="2" stroke-dasharray="2 7"/>
+  <path d="M856,410 L868,416 L856,422 Z" fill="#8a8a8a"/>
+  <circle cx="900" cy="416" r="17" fill="#16a34a" fill-opacity="0.16">
+    <animate attributeName="fill-opacity" values="0.16;0.05;0.16" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="900" cy="416" r="8" fill="#16a34a"/>
+  <text x="926" y="423" font-size="20" font-weight="600" fill="#f0eeea" letter-spacing="1">OPEN INTERNET</text>
+  <text x="72" y="518" font-size="20" fill="#a8a8a8">&gt; the model treated its own sandbox as the puzzle — and broke out</text>
+  <line x1="72" y1="548" x2="1128" y2="548" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="72" y="577" font-size="16" fill="#f0eeea">nsorros.github.io</text>
+  <text x="1128" y="577" font-size="14" fill="#8a8a8a" text-anchor="end">security notes · jul 2026</text>
+</svg>
+</figure>
+
+<p>OpenAI ran its latest models in a sandboxed environment, i.e. a locked down computer with no access to the outside world whatsoever apart from the ability to download software packages that might be needed to solve certain problems, like access to an app store of sorts. As the model was working on solving the problems, it came up with the idea of looking for solutions online and then pursued that strategy, not very different from AI looking up information online to give you a better response. However, in that case it had no way to look up online so it went into "problem solving" mode to get that access, not different from the AI model writing a piece of analysis code to read and interpret an Excel sheet you give it.</p>
+
+<h2>Getting access to the internet</h2>
+<p>As I mentioned OpenAI used a locked environment to run its latest models with access only to an app store of sorts to download software packages that might be needed to solve problems. The model knows that since it needs to use it when it thinks it needs a package, however in this case it was trying to gain internet access so instead of asking for a software package, it instead asked for more information around the computer running the app store equivalent. This ask was not a natural language question, it was a URL that normally returns the software package requested but in this case revealed to the model that the computer running the app store equivalent was in the same network the model was running in, which in turn allowed the model to request access to its permissions using another URL directed towards the same "app store equivalent". I am oversimplifying here and we do not know the specifics anyway, however it seems that these sequences of steps the model undertook revealed a new vulnerability, in other words it was able to sequence together steps that allowed it to gain access to the internet in a way that was not anticipated (with some asterisks here).</p>
+
+<h2>Hacking another website</h2>
+<p>Getting access to the internet to be able to look online for solutions or clues to the problems it was trying to solve was only partially the plan. As it turns out, most benchmarks nowadays are doing a good job not to be solvable by simple online searches so models do not train on them etc. Again the AI model knows that, its not a secret, so the idea was not to simply look online, it was to attempt to track down the hidden solutions themselves. It reasoned that the most likely source for this is the most popular website of AI models and datasets called HuggingFace, and if you ask me, this is super reasonable to assume a solution might be there, nothing magical to believe that. Worth flagging this is a hunch the model chased, we do not actually know the answers were on HuggingFace, OpenAI never confirmed it retrieved an answer key and it is unconfirmed one was even there. How could the model see hidden datasets though? This turned out to be a bit easier because, the platform for good or for worse, allows you to run "untrusted code" in its servers. This typically means data processing or AI code but in this case, the code the model wrote did a similar trick inside HuggingFace that it did inside OpenAI, it started looking around its servers for any data that look like the solutions it wanted.</p>
+
+<h2>Simple / complex attacks</h2>
+<p>In the same way it gained internet access, the model had to request certain URLs from the app store equivalent which allowed it to alter its own access, in the case of huggingface it uploaded a single "poisoned" dataset with "data processing looking code" to get a foot in the door, then stole internal credentials and roamed around the servers with those looking for solutions that are not public (the thousands of actions were mostly it moving around with stolen keys, not dataset spam). In both cases, the attacks are relatively easy to understand, specifics are more complicated of course and I am not an expert by any means, however sequencing the steps to achieve those attacks is the novelty. In the first case the vulnerability itself was genuinely new, a previously unknown flaw OpenAI ended up disclosing to the vendor, and in the second the weakness was long known (HuggingFace letting datasets run code) but it was used in a novel way.</p>
+
+<h2>Takeaway</h2>
+<p>What does this all mean for organisations and users? As I said in the past, the first takeaway point here is that the barrier and time to certain cyber attacks has reduced dramatically which increases the need for common best practices such as applying patches timely, having strong multi factor authentication to your systems and running attacks against them to find vulnerabilities before your attackers do. It is worth noting HuggingFace actually caught and contained this on their own, days before OpenAI connected it to their testing, so that "attack yourself first" posture clearly works. The second takeaway is that we, developers and users of AI, need to be a bit cautious with AI systems that can, in an effort to achieve a task, go a "bit" rogue and cause unintended consequences. Its worth keeping in mind that providers do add guardrails against those things, which in this case were intentionally turned off for testing purposes, but even so, the sharpest criticism here is not really about the model, its that a model with its safety off should never have been able to reach the open internet or real credentials at all, a proper exploit-testing sandbox is meant to have no way out and no real keys inside.</p>
+
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
