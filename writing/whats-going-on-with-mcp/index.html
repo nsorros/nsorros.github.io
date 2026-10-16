@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>What&#x27;s going on with MCP? — Nick Sorros</title>
+<meta name="description" content="What&#x27;s going on with MCP? — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.07</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">What&#x27;s going on with MCP?</h1>
+    </header>
+
+    <div class="prose">
+<p>Nothing so transformational I would argue but at the same time it’s a nice to have that makes developing AI solutions easier. A lot of people use the analog of a USB C connector so in the same way that USB C is not truly transformational, it does not enable you to do more things, but its a nice to have, since it reduces the worry and the occasional pain of mismatch ports.</p>
+<p>To bring the conversation back to AI models, you could very well connect AI models with tools before MCP. In fact I would argue that using those tools effectively was not limited by a fragmented way to interact with those tools but rather from the AI model inability to use the right tool at the right time. Remember ChatGPT plugins?</p>
+<p>What about the MxN integration problem? If you have M AI models and N tools, you need to build MxN connections, isn’t MCP solving that? It does, but how often do you have M AI models and N tools? AI providers definitely have that problem cause they want to compare their model to the competition but when developing a solution, you most likely pick a reasonable choice, be it Claude, GPT, Gemini etc, connect it with the tools you need, and iterate to make it work as per your requirements.</p>
+<p>To get the story straight though, I am not saying MCP is only hype, the same way that USB C is not only hype. It is definitely a very useful standard that makes developing AI solutions much easier, I just don’t think its that it enables you to build more complicated solutions that you could before 👌</p>
+<figure><img src="/image/attachment%3Af7762b54-6c6b-42a6-b249-6c3f27ed9feb%3AScreenshot_2025-05-14_at_10.03.21_AM.png?table=block&amp;id=1f35904c-8bc7-8014-ade8-c31a5c2841b6&amp;spaceId=e0ae7653-26a1-45d5-bc92-c37a596791d3&amp;width=1410&amp;userId=&amp;cache=v2" alt=""></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/What-s-going-on-with-MCP-1f35904c8bc780009199e172e79410a9" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rabbit and turtle — Nick Sorros</title>
+<meta name="description" content="Rabbit and turtle — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">Rabbit and turtle</h1>
+    </header>
+
+    <div class="prose">
+<p>We feel more productive with AI. We're shipping thousands of lines a day. Whole apps and complex features are built in front of our eyes in a few hours — work that would have taken weeks pre-2024. The rabbit is fast.</p>
+<p>But how much faster are we <em>actually</em> going from A to B? And what if we're moving faster down a longer road?</p>
+<figure><img alt="A → B, two paths — the turtle's straight line vs the rabbit's meandering loops" src="rabbit-turtle.png" /></figure>
+<h2>The mental model is the product</h2>
+<p>When you program, a big part of the work isn't typing code. It's fitting what already exists, and what needs to exist, into your head — and coming up with a solution that delivers the result in a way that is clean, extensible, and consistent with what the owner of the ticket actually wants. The output you're really producing is the mental model of the system. The code on the screen is a side effect of having that model in place.</p>
+<p>Asking an AI agent to do the work, while underspecifying <em>how</em> or <em>what</em> needs to be done, breaks that. The mental model isn't getting built — the AI is filling in the gaps with its own assumptions about your intent. And that doesn't speed you up, because you'll eventually need to sync mental models with the system anyway. You'll still have to decipher what got built and confirm it matches what you wanted.</p>
+<p>The difference is that now you do this iteratively. The AI produces something, you look at it, you realize you actually wanted X not Y, you tell it to adjust, it produces a new version, you refine again — until you converge. Every individual step feels fast. But are you faster, or are you just moving fast down a longer road?</p>
+<h2>Not a hypothetical</h2>
+<p>This isn't speculation. Researchers and engineers building with AI are converging on the same observation, and proposing different responses — spec-driven development, agent scaffolding, treating the LLM as a junior engineer who needs a tight brief. What matters in practice is being able to <strong>inspect whether you're in this situation</strong> and mitigate when you are. There's no clean, well-proven solution yet. So here are some thoughts and observations from my own coding journey with AI.</p>
+<h2>What we're trying to measure</h2>
+<p>The question is whether we are underspecifying and paying the price by rewriting too much of our code too often. Lines of code won't tell us — they're the most gameable metric of the AI era. Three signals get closer:</p>
+<p><strong>1. Code half-life.</strong> Of the code you wrote N weeks ago, what percentage is still alive in the codebase today? It captures durability. A high half-life means the code you ship sticks. A collapsing half-life means you're rewriting your own tracks. Compare a pre-AI codebase to a post-AI one and watch the trend shift.</p>
+<p><strong>2. Adjustment rate in your AI sessions.</strong> Read your prompts back and classify them. What fraction are <em>refinements of prior AI output</em> — "remove what you added," "different approach," "also do X" — versus brand-new scope or status checks? A pre-AI analog exists too: PR descriptions and commit messages with <code>fix:</code> / <code>refactor:</code> / <code>revert:</code> prefixes. If a meaningful share of post-AI work is mid-flight refinement and a much smaller share of pre-AI work was, you're spending real time syncing intent after the fact.</p>
+<p><strong>3. Story points (externally validated).</strong> How many units of <em>real value</em> are landing per unit time? If you have a PM, a customer, or any external system that quantifies what was actually delivered, that's the metric you want — and unlike the first two, it's hard to game. You can't fake a closed Linear ticket the way you can fake a green test.</p>
+<p>The three together are useful because each is gameable alone but the triad isn't. Writing less code raises half-life but tanks tasks shipped. Accepting whatever the AI produces lowers adjustment rate but tanks half-life. Only "specify up front, ship deliberately" pulls all three in the right direction at once.</p>
+<h2>What it looked like on two of my projects</h2>
+<p>Project A is a pre-AI codebase from 2023–2024, hand-coded, no Claude in the loop. Project B is post-AI, built mostly by me + Claude Code over the last five months. (Both anonymised.)</p>
+<figure><img alt="Project A vs Project B metrics — pre-AI vs post-AI" src="rabbit-turtle-metrics.png" /></figure>
+<p>Throughput is way up. No ambiguity — 3–4× more shipped per month, with similar effort per task. The rabbit is faster.</p>
+<p>But the durability collapsed. Code that should be settled by month four has been rewritten down to 11% of itself. And about a quarter of my prompts to Claude are refinements <em>after the fact</em> — "remove the X you added," "different approach," "also handle Y." Not bug fixes — refinements. The unmistakable fingerprint of underspecification.</p>
+<p>A few honest caveats. Project A was mostly built by a different engineer, so this isn't pure me-vs-me. The projects have different shapes (one a contained eval framework, the other a multi-app SaaS, which inherently churns more). And Project B is still young; the early-cohort half-life should improve as the code matures. But even discounting 30–40% for those confounds, the gap is enormous.</p>
+<h2>So how do you make the rabbit win?</h2>
+<p>There is no question that AI assistance gives you productivity gains. Tasks shipped per month went up 3× in my own data, with confirming evidence from external surveys. The rabbit is real, and it's fast.</p>
+<p>The real question is how to make the most of those gains. What my data and others' suggest is that you should treat speed-of-generation as a tax base, not a finish line. The tax you pay is in churn and rewrites. The way to lower the tax is upstream — by spending more time building a mental model <em>first</em>, so that what the AI does isn't something that will require ten passes of refinement.</p>
+<p>The turtle isn't slow because it types slowly. It's slow because it thinks before it moves. The rabbit can move much faster — but it only wins the race if it spends enough of its speed advantage on knowing where it's going.</p>
+<p>Three signals to start with: <strong>code half-life</strong>, <strong>adjustment rate</strong>, <strong>externally-validated points shipped</strong>. Measure them, watch the trend, and see whether your road is getting straighter — or just longer.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

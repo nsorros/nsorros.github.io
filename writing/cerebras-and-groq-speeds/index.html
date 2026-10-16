@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cerebras and Groq speeds — Nick Sorros</title>
+<meta name="description" content="Cerebras and Groq speeds — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2024.12</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Cerebras and Groq speeds</h1>
+    </header>
+
+    <div class="prose">
+<p>⚡ AI inference is speeding up</p>
+<p>Transformers, the underlying technology behind today’s AI, arenotoriously slow at inference. Remember when ChatGPT launched and you had to wait for a couple of seconds while your answer was generated one word at a time? During that time generation speed was approximately 1-10 tokens per seconds with the possibility for a 10x increase after quantisation and other optimisations 🐌</p>
+<p>Noticeably, AI response are almost instant nowadays. At the same time, there is a race happening at the hardware level for the provider that can run AI the fastest, with two of the most prominent players being Cerebras and Groq 🔥 A few months ago Groq broke into the scene with an advertised 100 tokens per second generation speed for Llama 70B which has now increased to 250 👌 And while this is extremely fast for such a large model, Cerebras recently announced a speed of 2200 tokens per second for the same model 😮</p>
+<p>On the surface such speeds may seem irrelevant for your application, but this is not entirely true since AI applications nowadays consist of multiple AI calls and components. Those speeds can enable building more complex solutions that still feel instant to the user. They also allow to improve existing solutions by allowing the model to “think more” for the same time 🚀</p>
+<figure><img alt="image" src="image.png" /></figure>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

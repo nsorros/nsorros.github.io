@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>What&rsquo;s going on with Jev? — Nick Sorros</title>
+<meta name="description" content="What&rsquo;s going on with Jev? Why a fast, general-enough decisions model filled a gap, and what it means for teams building AI. By Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.10</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">What&rsquo;s going on with Jev?</h1>
+    </header>
+
+    <div class="prose">
+<p>Jev has taken the AI world by storm in the last few weeks, so much so, that OpenAI and many others have rushed into providing a Jev like offering that follows that exact same API in most cases. What&rsquo;s going on?</p>
+<p>The airplane view is that Jev filled a notable gap, that of a fast/cheap but also general enough model to be suitable for a large enough set of AI use cases out of the box. Let&rsquo;s decouple this. Up until now you had two choices when developing AI:</p>
+<ul>
+<li>a general model that works out of the box but is slow and costly</li>
+<li>a small specialised model that works only after specific training and needs support but is fast and cheap</li>
+</ul>
+<p>Most organisations and users of course start with the general model first and optimise speed and performance using a different model family i.e. Haiku vs Opus or Luna vs Sol etc, depending on the task. Some tasks like generating a natural response usually requires a more capable model while others like deciding whether the user confirmed its identity a less capable one. However those less capable models were still quite slow and expensive, compared to the small and specialised ones. At the same time, the latter did not work out of the box which meant added costs from the get go in time or resources in order to train them and collect the required data.</p>
+<p>What was missing was a fast and general enough model for those exact use cases that did not need the latest frontier model. Jev overcomes the self imposed barrier of speed and cost that Haiku / Luna models have by reducing its generality to only cases that have to do with decisions or in AI parlance, classifications while at the same time being more general than small specialised models. This explains the popularity and surge over the last weeks purely from an economics perspective. Here is a model that performs on par or better out of the box than Luna or Haiku equivalents in exactly the cases where those are mostly used while being faster and cheaper.</p>
+<p>You might be wondering at this point, how did Jev pull this through? We do not know the exact details but we make some well informed assumptions to what might be happening.</p>
+<p>Let&rsquo;s start from speed. Restricting a model to only decision outputs, which are one or few tokens each with reasoning disabled, explains most of the speedup. In fact Haiku and Luna at those settings already run in more comparable speeds. The rest of the speed difference has to do with asking multiple questions on the same context, which may or may not happen in practice, but from a speedup perspective it helps show a more favourable picture because you load the context once and answer multiple times. OpenAI addressed that last part with their decisions API.</p>
+<p>Then comes out of the box performance. Is Jev a completely different model or architecture, is it some sort of breakthrough? Well, we do not know, but it&rsquo;s looking quite unlikely. Instead it&rsquo;s very likely the same architecture as all other LLMs i.e. a decoder model, bigger than most small specialised models and smaller than the entry point options from frontier labs. This is the sweet spot of general enough. It also means that efforts to copy Jev using a smaller model have a ceiling in performance i.e. not general enough model and efforts from frontier labs have a ceiling in speedup as their general models can only be so small to be general.</p>
+<p>The last ingredient of Jev is data. We know this is synthetic so to a certain extent, we can consider part of Jev performance somewhat distilled but that may soon not be the case and it&rsquo;s not the main point. Data wise, Jev has the advantage to only need decision like data so not the entire Internet and beyond. This means it can achieve equal or better performance in decisions as the frontier labs but with one or two orders of magnitude less data. However, they very likely have a polished enough synthetic dataset to give them some defensibility against competition which has not managed to match their performance even though the ingredients seem quite simple.</p>
+<p>Let&rsquo;s conclude, what does this mean for organisations and users alike?</p>
+<ul>
+<li>Jev and decisions models are important in many use cases and can lower your costs and latency for the same performance, so definitely something to pay attention and experiment</li>
+<li>Jev is not a breakthrough new architecture and as such you are not missing the ship if you don&rsquo;t adapt quickly. Furthermore you can emulate Jev right now with the cheap offering of most providers and no reasoning dial.</li>
+<li>Jev is quite likely to maintain its lead over the competition due to 1) its synthetic data generation recipe now and data in the near future and 2) its general enough offering which protects it somewhat from the general frontier lab offering</li>
+</ul>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date"></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Prototyping with Large Language Models — Nick Sorros</title>
+<meta name="description" content="Prototyping with Large Language Models — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2023.06</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Prototyping with Large Language Models</h1>
+    </header>
+
+    <div class="prose">
+<h4>Do we even need annotated data anymore?</h4>
+<p>Until recently, to get started with creating a machine learning model, you needed data specifically prepared for your task. Preparing data for training models is usually a manual and time consuming process, during which domain experts add instructive labels to the data which the model tries to learn. With the advent of Large Language Models (LLM) like ChatGPT and GPT4, this process may not always be necessary to create a first working model.</p>
+<p>There are at least three ways that LLMs can help you circumvent the requirement of manually preparing data for your application</p>
+<ul><li>Using LLM in a zero shot fashion for your application</li><li>Creating synthetic data to train your first model</li><li>Label your data using a LLM</li></ul>
+<p>Let’s see each of those ways in more detail. We will use ChatGPT and <a href="https://huggingface.co/datasets/ag_news" target="_blank" rel="noopener">ag_news</a> for demonstration. Ag_news is a dataset consisting of news articles tagged thematically as Business, World, Sports or Sci/Tech.</p>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/0*W_9cYDkbfR2lPEbc" alt=""></figure>
+<h2><strong>Zero shot LLM</strong></h2>
+<p>The simplest way to use a Large Language Model for your application is to ask the model to perform the task without giving it any examples of the correct input / outputs you expect. This is referred to as zero shot in AI terminology.</p>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/0*vFox06Ol0wDTUTaw" alt=""></figure>
+<p>Assuming you are happy with the performance of the model, you can integrate it into your application. The major downside with this approach is cost. Using a LLM as your machine learning model may be up to 100x more expensive than using a smaller more specialized model.</p>
+<h2><strong>Synthetic data</strong></h2>
+<p>Another route is to create synthetic data and use them to train a smaller model to perform the task.</p>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/0*8n9u4VDC2M3Ex3m8" alt=""></figure>
+<p>With this approach you need to ensure that the data are diverse, so you might need to guide the model towards certain directions, and then remove examples that are too similar to each other.</p>
+<h2><strong>Label with LLM</strong></h2>
+<p>Finally, instead of using domain experts to add labels to your data, you can use a LLM instead. Then you can use that data to train a smaller model. Prompting the models to give you labels is similar to zero shot LLM.</p>
+<figure><img src="https://miro.medium.com/v2/resize:fit:700/0*lrVpNqmDQEqtdBFO" alt=""></figure>
+<h2><strong>Performance</strong></h2>
+<p>Here is how these different approaches perform on the ag_news dataset. We use SetFit to train smaller models using the synthetic data and the data labeled from the LLM. <a href="https://github.com/huggingface/setfit" target="_blank" rel="noopener">SetFit</a> is an extremely sample efficient technique that we talked about in our previous blog post “<a href="https://medium.com/mantisnlp/eight-examples-is-all-you-need-32dad6962e6e" target="_blank" rel="noopener">Eight examples is all you need</a>”. We are using SetFit to minimize the amount of data we need to annotate using the LLM. We also use GPT3 (text-davinci-003) for our experiments.</p>
+<figure><img src="https://miro.medium.com/v2/resize:fit:640/0*aheHB2Y04HIabwC9" alt=""></figure>
+<p>GPT3 seems to work well out of the box in a zero shot fashion. It also seems that training a smaller model on data labeled from GPT3 works equally well 💥 Out of all the approaches, creating synthetic data seems to be the hardest to make work for the reasons we mentioned earlier. Even so, the very fact that it works is remarkable given that the only information we gave to GPT was that the dataset consists of one sentence news articles of certain topics.</p>
+<p>It is worth mentioning that the dataset used is most probably part of the training dataset of GPT3 so we are overestimating its performance but probably by not by too much, judging from the latest technical <a href="https://arxiv.org/pdf/2303.08774.pdf" target="_blank" rel="noopener">report</a> from OpenAI that mentions that performance seems to be close in tasks that have high and no contamination. And even though the performance is not exactly state of the art, which is closer to 94% on this dataset, it still enables you to build a great working model to start with.</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Prototyping-with-Large-Language-Models-1af5904c8bc780759129d8c7059ace68" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

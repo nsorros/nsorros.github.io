@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Let’s talk about model routing &mdash; Nick Sorros</title>
+<meta name="description" content="Let’s talk about model routing &mdash; by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">&larr; back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.08</span>
+        <span class="sep">&middot;</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Let’s talk about model routing</h1>
+    </header>
+
+    <div class="prose">
+<p>As AI use increases within an organisation, unsurprisingly someone raises the question whether all tasks need to route against the most expensive model. And the right answer, which a lot of organisations are also giving at the moment is no. The most important question here is not if but how you implement a more cost efficient but equally performant routing. Here are three steps to get you started<br />
+1️⃣ AI gateway. The first and most important step of this transformation is that you introduce a intermediate layer between the requests from the organisation users and the AI provider of choice. This where you log what users are using the organisational AI for but its also where you will be making the routing decision about which task uses which model. Introducing that layer is easy, you can use an external provider like TrueFoundry or build your own using litellm or similar.</p>
+<p>2️⃣ Evals. The second step is constructing a dataset that will allow you to measure performance against real tasks within the organisation. This will allow you to feel confident that the routing decisions you make have small to no impact in performance but a big impact on cost. You can create an eval dataset quite easily nowadays, for example by using a combination of frontier models to given you a first pass of ground truth and then by manually checking a sample of that until you are satisfied with the sample accuracy.</p>
+<p>3️⃣ Routing. The third and least important step is routing itself. I say least important because as it turns out you can use quite simply heuristics to get a long way towards a cost efficient routing. You can use a simple easy, medium, hard classification and three model choices like haiku, sonnet, opus. Your heuristic can consist of simple features like length of request, mention of certain keywords like think, presence of multiple questions etc. You can derive the heuristic rules from your actual data with a bit of analysis of the actual requests and a few experiments around heuristic performance. You can eventually graduate to a more sophisticated based routing based on AI but note that this will give you a smaller uplift that you might expect as its an active area still and no definite patterns have emerged.</p>
+<p>And just like that you can cut your bills by more than 50% or double usage for the same cost💲</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">&larr; back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById("theme-toggle");
+    var saved = localStorage.getItem("theme");
+    var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    function paint() { root.setAttribute("data-theme", dark ? "dark" : "light"); if (btn) btn.textContent = dark ? "light" : "dark"; }
+    paint();
+    if (btn) btn.addEventListener("click", function () { dark = !dark; localStorage.setItem("theme", dark ? "dark" : "light"); paint(); });
+  })();
+</script>
+</body>
+</html>

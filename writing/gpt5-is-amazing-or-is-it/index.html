@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GPT5 is amazing, or is it? — Nick Sorros</title>
+<meta name="description" content="GPT5 is amazing, or is it? — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.10</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">GPT5 is amazing, or is it?</h1>
+    </header>
+
+    <div class="prose">
+<p>Well it is not as consequential as GPT4, that’s for sure. This is unsurprising in a way since AI since GPT4 has been continuously getting better. In that way, GPT5 is just the concentration of that progress into a single model. In fact, this might be literal as well since GPT5 is rumoured to be simply a smart router that sends you to the right model.</p>
+<p>Another way to look at this is to consider the levels of intelligence OpenAI has defined</p>
+<p>1️⃣ Level 1 is conversational intelligence, this would be GPT4</p>
+<p>2️⃣ Level 2 is reasoners, this would be GPT5 which can now take gold 🥇 in math and computer competitions and exhibit PhD+ knowledge in most domains that require reasoning (thinking).</p>
+<p>3️⃣ Level 3 is autonomous AI, this is where we are headed</p>
+<p>This also explains the decision of OpenAI to open source a model as well. Level 1,2 intelligence to a large extent have been solved and the data required were very much public. This is why the competition has been able to play catchup so neither GPT5 nor the open source model released are that much better than alternatives. Level 3 on the other side, at least for now, requires different data or training that teaches the AI how to control interfaces and complete business tasks. One way to track progress against autonomous AI is by measuring AI’s ability to complete longer and longer tasks and there GPT5 leads with a comfortable margin.</p>
+<p>All of which is to say, GPT5 was not meant to be the wow moment for OpenAI, for that we need to wait for its autonomous agent operator to work properly. This could come as early as by the end of the year 🤖 The real question is will OpenAI get there first and if so, how much ahead from the competition will it be at that point…</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/GPT5-is-amazing-or-is-it-2695904c8bc780f480e2c979862e4183" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

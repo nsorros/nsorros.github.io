@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI in search — embeddings is not a strategy — Nick Sorros</title>
+<meta name="description" content="AI in search — embeddings is not a strategy — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.05</span>
+        <span class="sep">·</span>
+        <span class="m-kind">essay</span>
+      </div>
+      <h1 class="article-title">AI in search — embeddings is not a strategy</h1>
+    </header>
+
+    <div class="prose">
+<p>The first thought, when it comes to adding AI to search is most likely embeddings, a semantic representation that promises to retrieve related matches that would be missed from keyword match alone. This is true but incorporating embeddings to your search might be less straightforward than you had anticipated. The reason is that embeddings are mostly trained and benchmarked on document-like data. But many real search systems are not searching over documents. They are searching over structured or semi-structured records: products, suppliers, grants, legal matters, tickets, assets, contracts, or clinical trials.</p>
+<p>Think of an Amazon-like catalogue. A product is not just a paragraph. It has a title, brand, category, price, colour, size, availability, reviews, tags, seller information, compatibility fields, and a free-text description. If you flatten all of that into one text blob and embed it, you may erase the structure that search actually depends on.</p>
+<h2>The Issue</h2>
+<p>This is why embeddings and "semantic search" may underdeliver. The embedding may understand the general meaning of the product description, but fail to preserve distinctions that matter: category, compatibility, size, colour, availability, jurisdiction, date, or whether a field is a hard requirement rather than background context.</p>
+<p>There is an easy way to diagnose the issue. Take items you know are similar and confirm their embeddings are close. Take items you know are different and confirm they are far apart. Look at whether similarity scores are meaningfully spread, or whether everything clusters in a narrow band.</p>
+<figure><img alt="Embeddings sanity check — working vs broken distributions" src="embeddings-sanity.png" /></figure>
+<p>When choosing an embedding model, the question is not only "is this model trained on my domain?", it is also "was this model trained or benchmarked on data shaped like mine?" A retail embedding model may still be a poor fit for structured product records if it mostly learned document retrieval. A more general model tested on tables or semi-structured retrieval may be more relevant.</p>
+<p>Benchmarks such as STaRK, which evaluates retrieval over semi-structured knowledge bases, and TARGET, which looks at table retrieval, are useful because they focus on format, not just domain. The lesson from this literature is clear: pure embeddings are often weak when the record structure matters. Hybrid approaches tend to do better.</p>
+<p>Before we look into hybrid approaches into more detail though let's take a step back and start from the issue which is "what kinds of queries are users asking, and why do they fail today?"</p>
+<h2>Query Types</h2>
+<p>In many systems, queries typically fall into the following buckets.</p>
+<ul>
+<li><strong>keyword lookups.</strong> A user knows the exact product name, ID, model number, company, SKU, document, or phrase. These usually need strong lexical search, synonyms, analyzers, spelling tolerance, and sensible boosting.</li>
+<li><strong>text-and-filter queries.</strong> The user writes natural language, but the query contains structured constraints: "wireless headphones under £100 with noise cancelling," "contracts from Germany after 2022," "suppliers with ISO certification in Spain," or "grants about youth mental health in Wales." These should not be treated as one semantic blob. They should be decomposed into free text plus filters.</li>
+<li><strong>semantic queries.</strong> The user describes an intent in language that may not appear in the indexed record: "something comfortable for long flights," "a laptop for light video editing," or "insurance policies that cover climate-related disruption." These benefit from semantic expansion, dense retrieval, or both.</li>
+<li><strong>assistant questions.</strong> "Which one should I buy?", "Can I return this?", "What is the policy?", "Which supplier is safest?" Those may not belong in search at all.</li>
+</ul>
+<p>Each type will require a slightly different approach to make it work.</p>
+<h2>A Better Search</h2>
+<h3>Query decomposition</h3>
+<p>Take text-and-filter queries for example, the most useful move is query decomposition. A frontier model can turn a natural-language query into a text query, structured filters, and exclusions. For example, "wireless headphones under £100, not refurbished, for running" contains a product category, a price constraint, an exclusion, and an intended use. A less capable model may extract the obvious terms and miss the negation. A frontier model can preserve the structure. This is powerful because it improves the existing search engine rather than replacing it. Most mature systems already have useful filtering, field boosting, and keyword matching. The model's job is to translate messy user language into the shape the search engine already understands.</p>
+<figure><img alt="Query decomposition — natural language to text + filters + exclusions" src="query-decomposition.png" /></figure>
+<p>This pattern is supported by work on LLM-driven structured query extraction. Fine-tuned models can convert messy user input into a combination of semantic terms, numerical constraints, and categorical filters that an existing search engine already understands [see]. The domain changes, e-commerce, enterprise search, internal tools but the pattern is the same: do not throw away structure when the user is asking for structure.</p>
+<h3>Query expansion</h3>
+<p>For semantic queries, there is an easier step before even looking at embeddings: query expansion. Use a frontier model to generate semantically similar reformulations or a hypothetical result description, then retrieve against those expanded queries. Take the query "running headphones that don't fall out". A short query like that has very few terms in common with a typical product description. A frontier model can expand it into "wireless sports earbuds with secure ear-hook fit, sweat-resistant, IPX4 or higher", or even synthesise a hypothetical product description and embed that.</p>
+<figure><img alt="Query expansion — paraphrases and a hypothetical-doc (HyDE) reformulation" src="query-expansion.png" /></figure>
+<p>Work such as Query2doc and HyDE were among the first to explore this strategy but it's one that lasted the test of time. The way it helps is by improving recall, since its changes what enters the candidate set. A reranker cannot recover a result that was never retrieved in the first place.</p>
+<h3>Reranking</h3>
+<p>After decomposition and expansion, reranking becomes the layer that fuses and corrects. Retrieve a wider candidate set from lexical search, filters, expansion, and possibly embeddings. Then use a reranker to reorder the candidates based on the full query intent. In production, dedicated cross-encoder rerankers are often a practical starting point because they are cheaper and faster than frontier models. Frontier models are still useful for prototyping, calibration, and generating training data.</p>
+<figure><img alt="Reranking — first-stage retrieval reordered by a cross-encoder" src="reranking.png" /></figure>
+<p>There is plenty of research showing that cross-encoders are "very competitive" with GPT-4 as rerankers and "way more efficient" across standard IR benchmarks (<a href="https://arxiv.org/abs/2403.10407">Formal et al., 2024</a>), making them the right first production choice, while frontier models earn their keep generating training data and listwise judgments that can be distilled into a custom reranker later (<a href="https://arxiv.org/abs/2304.09542">Sun et al., 2023</a>).</p>
+<h3>AI judge</h3>
+<p>But none of this matters if you cannot measure whether search improved. This is where AI judges are useful, with one important caveat: do not ask a model for a vague relevance score. Decompose relevance into criteria. For a structured catalogue, criteria might be: does the product category match, do the key attributes match, does it satisfy the constraint, and how specific is the result? A result that fails a hard constraint should not score highly just because it is semantically related.</p>
+<p>The judge should see structured fields, not a dumped text blob. It should explain each criterion before scoring. And it should be calibrated against human judgments. The LLM-as-judge literature increasingly supports this direction: criteria-decomposed rubrics (<a href="https://arxiv.org/abs/2507.09488">Farzi &amp; Dietz, 2025</a>), few-shot examples, compact grading scales, and periodic human spot checks.</p>
+<figure><img alt="AI judge — criteria-decomposed rubric prompt template" src="ai-judge.png" /></figure>
+<p>Then compare systems with proper search metrics: nDCG@10 for ranking quality, relevant@10 for how many useful results appear, and a gate-failure rate for hard mismatches. Keep a frozen baseline so you know whether a new version improved search or only changed it.</p>
+<h2>Conclusion</h2>
+<p>Adding AI into your search sounds simple but there are a couple of moving components you need to get right, starting from which embeddings or whether you use embeddings at all, to understanding the queries of your users and choosing the right method for the problem. This is without even mentioning fusing results and judging improvements at scale.</p>
+<h2>What To Pay Attention To</h2>
+<ul>
+<li><strong>Pay attention: Mythos + Opus 4.7</strong> — Mythos looks real after Mozilla used it to harden Firefox at scale, while Opus 4.7 is the deployable jump in Claude capabilities that matters because many teams already use Claude and Claude Code for serious work.</li>
+<li><strong>Skip: GPT-5.5</strong> — This feels like the expected OpenAI move: matching the frontier on agentic coding and knowledge work, but not changing the story enough to dwell on.</li>
+<li><strong>Skip: Kimi K2.6 + DeepSeek V4</strong> — These releases keep narrowing the open-model gap, especially on cost, but the evidence still points to them trailing the newest frontier models on the hardest real-world agentic work.</li>
+<li><strong>Skip: Tokenmaxxing</strong> — Token consumption is a bad proxy for productivity, though it is worth watching because it may distort software engineering costs, team metrics, and hiring expectations.</li>
+<li><strong>Pay attention: RIP PR / new coding practices</strong> — The important shift is that software work is moving upstream from writing and reviewing diffs to describing intent, setting architecture, defining checks, and supervising AI write-review loops.</li>
+</ul>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

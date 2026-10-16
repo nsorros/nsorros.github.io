@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>My take on Gemini 3 — Nick Sorros</title>
+<meta name="description" content="My take on Gemini 3 — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.03</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">My take on Gemini 3</h1>
+    </header>
+
+    <div class="prose">
+<p>When Gemini 3 launched, I did what I usually do with these models, read the announcement, see the metrics and try it. There was a lot of buzz about the model so I wanted to see if it see if there was signal or just noise.</p>
+<p>My first take was that it was noise. Why? Well to begin with Google seemed to outperform everyone by a significant margin on many benchmarks that no one cares about anymore and at the same time perform on par with other models where it mattered like software engineering tasks and agentic abilities. My first conclusion was that Google is winning in a battle no one cares about. I was wrong.</p>
+<p>While it was true that the model was not really any better than the competition at least in a meaningful way, the Trojan horse I was forgetting was distribution. Google has a really large surface area to push the model. From Android, to Chrome and of course Google search and the Gsuite (Gmail, Drive, Maps). This was less important when ChatGPT was clearly the better model and product but that’s no longer the case and whether Gemini is better is unrelated if it’s as good and in front of all the tools you use, integrated and convenient.</p>
+<p>To make matters worse for OpenAI, or any other provider, there are some cherries on top that are truly superior like the video and image generation offering. I don’t think this alone was ever truly enough to switch users from ChatGPT but at the moment why not use the alternative when it comes with extras.</p>
+<p>The problematic bit for OpenAI in particular is that their main revenue source is from consumers paying for ChatGPT and this is where distribution matters the most. Google is now in a position to cause real damage with a simple move, making Gemini available free of charge 😯 and down the line monetising with ads but they can play the long game. Anthropic seems to have developed a much more defensible position selling to enterprise customers and focusing on its software engineering agent that many companies rely on to produce software nowadays.</p>
+<p>So what does this all mean for Gemini 3? It’s a very good model, as good as anything else, if not a bit better but is that enough? On its own no but with Googles distribution definitely. What can OpenAI do? There are only two options to prevent Gemini from overrating them</p>
+<p>🖱️develop a better product which they seem to be doing by betting on features such as personalisation, memory, integrations etc</p>
+<p>🧠 develop a better model which they are also working on by improving agentic abilities and the time horizon their models can operate autonomously</p>
+<p>Lets see what happens 🍿</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/My-take-on-Gemini-3-2c65904c8bc780a592b1c9f4d6ac1788" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

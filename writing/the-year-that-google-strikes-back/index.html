@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The year that Google strikes back — Nick Sorros</title>
+<meta name="description" content="The year that Google strikes back — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2026.03</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">The year that Google strikes back</h1>
+    </header>
+
+    <div class="prose">
+<p>Three years ago OpenAI launched ChatGPT and that caught everyone, but most of all Google, by surprise. Even though Google created most, if not all, of the innovations that led to ChatGPT, it somehow found itself in a race to catchup with itself 🤯 Two years later, that would be last year, it managed to lead again in the AI race with Gemini 3, a lead that it still holds narrowing the gap that OpenAI created in terms of daily users quite fast.</p>
+<figure><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""></figure>
+<p>As such, the highlight from last year is that comeback from Google but there are two more things that are worth calling out from the ocean of AI news and updates</p>
+<p>🤔 The rise of thinking models</p>
+<p>🚀 Agents taking off</p>
+<p>Let’s start with Google, what happened? Is Gemini 3 such a better model? A lot of people seem to say so but I don’t think that is reflective of what really happened, there is no wow factor in Gemini 3 in the same way there was when ChatGPT, or GPT4 launched. Google definitely managed to create a slightly better model and keep that lead but that alone is not enough to justify code red for OpenAI. The distribution of Google though is. That slightly better model is touching all the surfaces you interact from the browser (Chrome), to your phone (Android), your email (Gmail), documents (Drive), let alone where you search (Google). This model is right there and its as good, if not better, than any alternative…</p>
+<p>Of course, this would not even be possible if Google did not offer a model that performs as well in reasoning and agentic abilities which are the other two trends that happened this year. Thinking (reasoning) models dominated the news this year, we went from o1 to o3 in a few months and quite soon after reasoning was just a part of any model and those new models were winning math and coding olympiads 🥇 Interestingly, reasoning proved not to be an area where OpenAI had enough of a lead to keep its competitive advantage, even though it was OpenAI that pumping the drums 🥁 with the o series. The rise of deepseek 🐳 might have contributed here but it was definitely not the only reason why that paradigm shift was less defensible. Deepseek’s rise was impressive though for two main reasons a) they were innovating from China 🇨🇳 in a space where everyone thought that US has a strong lead and b) they democratised that gap close in the same way Llama 🦙 had done for the chat models. Llama and Meta btw were notably absent from the AI news and race.</p>
+<p>And while we are all experiencing the power of reasoning models every day, since they are now the standard models we interact with, it is agents that have delivered the most value to me personally. As my work revolves around writing code for AI solutions, agents in the form of coding assistants like Claude Code, Cursor and otherwise have truly transformed how I work. In fact this is true for most developers, so much so that interviews now happen with AI on and tenders are being advertised on how coding assistants can help modernise legacy code. The effect of AI literally doing your job is more magical 🪄 than scary and also more enjoyable than I was anticipating. This is an experience that I think will diffuse to most knowledge work in some form and this is where the benefits of AI will start showing up in the balance sheets and the economy. It’s also where the opportunity sits for innovation at the moment…</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/The-year-that-Google-strikes-back-2ea5904c8bc78091b4b6c40464d3d10e" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>

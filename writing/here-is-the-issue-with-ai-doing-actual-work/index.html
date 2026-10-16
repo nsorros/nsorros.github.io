@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Here is the issue with AI doing actual work — Nick Sorros</title>
+<meta name="description" content="Here is the issue with AI doing actual work — by Nick Sorros." />
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="../../" class="brand" style="text-decoration:none;">
+      <span class="brand-mark"></span>
+      <span class="brand-text">nsorros</span>
+      <span class="brand-domain">.com</span>
+    </a>
+    <nav class="nav">
+      <a href="../../#about">about</a>
+      <a href="../../#work">work</a>
+      <a href="../../#writing">writing</a>
+      <a href="../../#contact">contact</a>
+    </nav>
+    <div class="topbar-meta">
+      <span class="status-dot"></span>
+      <span>online</span>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="page article">
+  <a class="back-link" href="../../#writing">← back to writing</a>
+
+  <article>
+    <header class="article-head">
+      <div class="article-meta">
+        <span class="m-date">2025.12</span>
+        <span class="sep">·</span>
+        <span class="m-kind">short</span>
+      </div>
+      <h1 class="article-title">Here is the issue with AI doing actual work</h1>
+    </header>
+
+    <div class="prose">
+<p>As I mentioned at the beginning of the year, this would be <a href="https://www.nsorros.com/The-year-of-agents-1af5904c8bc780528580f5348b7ecfc0?pvs=24" target="_blank" rel="noopener">🤖The year of agents</a>. Not only have we seen leading providers switching their focus to agentic capabilities like computer use, software engineering, and their assistants thinking before answering, but agents have also shown up in the projects we use to do work, a good example being the Notion AI agent announced a few weeks ago.</p>
+<p>On the one hand, this is great news: AI is doing actual work, automating tasks for us, freeing us to do other things or at least doing more of the things we were doing. At Mantis, for example, we routinely use AI as coding assistants to draft solutions and review our code. We still have to carefully review what the AI is suggesting, but it does accelerate our development cycle. Ethan Mollick, in his newsletter which I highly recommend, also mentioned how he can now use AI to reproduce results from academic papers, something that would have been infeasible to do for most research work before.</p>
+<p>Here&#x27;s the catch though: do we trust what AI did to the extent that we will not thoroughly check the process and results? Here&#x27;s another example — just a few days ago, a project was delayed by a week, so I asked Notion AI to shift resources and tasks by one week and it did 😮 but did it do it correctly? In order to answer that, I need to spend time carefully checking what AI did. Most of the time this saves me time, but there are also times where it would have been quicker or at least as quick to do it manually.</p>
+<p>This also lies at the core of why AI is not here to replace jobs but make us more productive. And irrespective of how accurate AI really is, at the end of the day a human is accountable for the work done. The good news is that AI is pulling its weight lately, delivering actual value instead of being a better search engine 💪</p>
+    </div>
+
+    <footer class="article-foot">
+      <a class="back-link" href="../../#writing">← back to writing</a>
+      <a class="back-link" href="https://www.nsorros.com/Here-is-the-issue-with-AI-doing-actual-work-2875904c8bc780f18e7adf6276a2d728" target="_blank" rel="noopener">view on notion ↗</a>
+    </footer>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="foot-cell">© 2014—2026 · Nick Sorros</div>
+    <div class="foot-cell center">
+      <span class="status-dot"></span> systems nominal
+    </div>
+    <div class="foot-cell right">
+      built using <span class="mono-tight">AI</span> · deployed <span class="mono-tight" id="deploy-date">$(date)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var initial = stored || (prefersDark ? 'dark' : 'light');
+    apply(initial);
+    if (btn) btn.addEventListener('click', function() {
+      apply(root.dataset.theme === 'dark' ? 'light' : 'dark');
+    });
+    function apply(t) {
+      root.dataset.theme = t;
+      if (btn) btn.textContent = t === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', t);
+    }
+  })();
+  (function() {
+    var el = document.getElementById('deploy-date');
+    if (!el) return;
+    var d = new Date();
+    var pad = function(n) { return n < 10 ? '0' + n : n; };
+    el.textContent = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+  })();
+</script>
+</body>
+</html>
